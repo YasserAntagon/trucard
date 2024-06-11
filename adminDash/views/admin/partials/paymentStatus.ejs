@@ -1,0 +1,94 @@
+<script id="payStatus" type="text/template">
+    {{#payInvoice}}
+    <div class="row clearfix">
+      <div class="col-md-12 column">
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                Payment Status 
+              </h3>
+            </div>
+          </div>
+          <div class="row clearfix">
+              <div class="col-md-6 column">
+                  <div class="list-group">
+                      <div class="list-group-item">
+                           <p style="font-size:16px;">Receipt No : <b>{{ORDER_ID}}</b></p>
+                           <p style="font-size:16px;">Transaction ID : <b>{{TXN_ID}}</b></p>
+                      </div>{{#success}}
+                      <div class="list-group-item">
+                        <p style="font-size:16px;">Consumer : <b>{{CUST_NAME}}</b></p> 
+                    </div>{{/success}}
+                      <div class="list-group-item">
+                          <h4 class="list-group-item-heading">
+                              Response Code
+                          </h4>
+                          <p class="list-group-item-text">
+                              <span class="label label-success">{{TXNTYPE}}</span>
+                              <span class="label label-danger">{{RESPONSE_CODE}}</span>
+                              <span class="label label-primary">{{STATUS}}</span>
+                          </p>
+                      </div>
+
+                      <div class="list-group-item">
+                        <h4 class="list-group-item-heading">
+                            Status
+                        </h4>
+                        <p class="list-group-item-text"> 
+                            <span class="label label-success">{{RESPONSE_MESSAGE}}</span> 
+                        </p>
+                    </div>
+
+                  </div>
+              </div>
+              <div class="col-md-6 column">
+                {{#success}}<div class="list-group">
+                  <div class="list-group-item">
+                    <p style="font-size:16px;">AMOUNT : <b class="text text-success"><i class="fa fa-rupee"></i> {{INVAMOUNT}}</b></p> 
+                 
+                </div> 
+                    <div class="list-group-item">
+                      <p style="font-size:16px;">
+                            Payment<br/>
+                            <span class="label label-danger">{{PAYMENT_TYPE}}</span>
+                            <span class="label label-warning">{{MOP_TYPE}}</span>
+                            <span class="label label-info">{{reconStatus}}</span>
+                        </p>
+                    </div> 
+                    <div class="list-group-item">
+                      <p style="font-size:16px;">
+                          Card  : <b class="text text-success">{{CARD_MASK}}</b>
+                      </p>
+                  </div>
+                    {{/success}}
+                  
+                    <div class="list-group-item atomRStatus">
+                      <h4 class="list-group-item-heading">
+                          Refund
+                          <a href="javascript:;"  data-toggle="tooltip" data-placement="bottom" title="Only Failed Transactions Refund is Allowed">
+                            <i class="fa fa-question-circle"></i>
+                          </a>
+                      </h4>
+                      <p class="list-group-item-text">
+                        <div class="form-group">
+                          {{#success}}
+                            {{#isAtom}}
+                            <input type="button" o-ttype="{{type}}" o-amt="{{AMOUNT}}" pg-TxnDate="{{txnDate}}" atomtxnid="{{atomtxnid}}" o-invoice="{{invoice}}" o-ctruid="{{ctruid}}" o-isPeople="{{isPeople}}"  o-typeStatus="atom"  onclick="btnAtomRefund(this);" class="btn btn-success btnRefund" value="Initiate" />
+                            {{/isAtom}}
+                            {{^isAtom}}
+                            <input type="button" o-ttype="{{type}}" o-isPeople="{{isPeople}}" o-invoice="{{invoice}}" o-ctruid="{{ctruid}}"  o-typeStatus="{{type}}"  o-amt="{{AMOUNT}}" o-id="{{ORDER_ID}}" pg-ref="{{PG_REF_NUM}}" onclick="btnRefund(this);" class="btn btn-success btnRefund" value="Initiate" />
+                            {{/isAtom}}
+                            {{/success}}
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                        <span class="label label-default">* Only Failed Transactions Refund is Allowed</span>
+                      </p>
+                  </div>
+                </div>
+            </div>
+        </div>
+          </div>
+      </div>
+  </div>
+    {{/payInvoice}}
+</script>

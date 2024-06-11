@@ -1,0 +1,824 @@
+<div class="box-body">
+    <div id="consumerConfLoader" class="loaderContainer" style="display:none;">
+        <div class="loader"></div>
+    </div>
+    <div class="col-lg-12 ">
+        <div class="nav-tabs-custom setindvConf">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#permission" data-toggle="tab" aria-expanded="true">Access Permissions</a>
+                </li>
+                <li class=""><a href="#limit" data-toggle="tab" aria-expanded="false">Bullion
+                        Transaction Limit</a>
+                </li>
+                <li class=""><a href="#walpermission" data-toggle="tab" aria-expanded="false">Wallet
+                        Permissions</a></li>
+                <% if (pgPermissionEnable) { %>                
+                <% } else { %>
+                <li class=""><a href="#revenueMargin" data-toggle="tab" aria-expanded="false">Revenue and Partner Loading Gateway</a></li>
+                <% } %>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="permission">
+                    <div></div>
+                    <div class="col-md-6">
+
+                        <table style="clear: both" class="table table-bordered table-striped" id="user">
+                            <thead>
+                                <th colspan="2">Consumer Access Permission
+                                </th>
+                                <th colspan="2">
+                                    <div>
+                                        <a type="button" title="Change Configuration"
+                                            class="btn text-info btn-box-tool pull-right" data-type="accesspermission"
+                                            onclick="onedit(this)"><i class="fa fa fa-pencil"></i>
+                                            Change Configuration</a>
+                                        <a type="button" data-type="accesspermission" onclick="onedit(this)"
+                                            title="Cancel"
+                                            class="cnlbtn btn btn-box-tool text-info hidden pull-right"><i
+                                                class="fa fa-2x fa-trash text text-danger"></i> Cancel</a>
+                                    </div>
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="20%">Buy :</td>
+                                    <td><a href="javascript:;" id="buy" data-type="select"
+                                            data-title="Select Permission" data-title="Buy"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonbuy"></label></small>
+                                        <!-- <small><label class="text-danger" id="lblreason"></label></small> -->
+                                    </td>
+                                    <td width="20%">Sell:</td>
+                                    <td><a href="javascript:;" id="redeem" data-type="select"
+                                            data-title="Select Permission" data-title="Enter username"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonredeem"></label></small></td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Transfer :</td>
+                                    <td>
+                                        <a href="javascript:;" id="transfer" data-type="select"
+                                            data-title="Select Permission"
+                                            class="editable editable-click editable-disabled"></a><br />
+                                        <small><label class="text-danger" id="lblreasontransfer"></label></small>
+                                    </td>
+                                    <td width="20%">Sell to Wallet :</td>
+                                    <td><a href="javascript:;" id="redeemToWallet" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                    <small><label class="text-danger" id="lblreasonredeemToWallet"></label></small></td>
+                                <td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Link Bank :</td>
+                                    <td><a href="javascript:;" id="linkbank" data-type="select"
+                                            data-title="Select Permission"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonlinkbank"></label></small>
+                                    </td>
+                                    <td width="20%">Sell to Bank :</td>
+                                    <td><a href="javascript:;" id="redeemtobank" data-type="select"
+                                        data-title="Select Permission"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonredeemtobank"></label></small>
+                                    </td>
+                                </tr> 
+                                <td colspan="4">
+                                    <button class="btn btn-sm btn-primary pull-right" disabled id="svPermission">Save
+                                        Permission</button>
+                                </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+
+                        <table style="clear: both" class="table table-bordered table-striped" id="user">
+                            <thead>
+                                <th colspan="2">Partner Access Permission
+                                </th>
+                                <th colspan="2">
+                                    <div>
+                                        <a type="button" title="Change Configuration"
+                                            class="btn text-info btn-box-tool pull-right" data-type="enaccesspermission"
+                                            onclick="onedit(this)"><i class="fa fa fa-pencil"></i> Change
+                                            Configuration</a>
+                                        <a type="button" data-type="enaccesspermission" onclick="onedit(this)"
+                                            title="Cancel"
+                                            class="cnlbtn btn btn-box-tool text-info hidden pull-right"><i
+                                                class="fa fa-2x fa-trash text text-danger"></i> Cancel</a>
+                                    </div>
+                                </th>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="20%">Buy :</td>
+                                    <td><a href="javascript:;" id="enbuy" data-type="select"
+                                            data-title="Select Permission" data-title="Buy"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonenbuy"></label></small>
+                                        <!-- <small><label class="text-danger" id="lblreason"></label></small> -->
+                                    </td>
+                                    <td width="20%">Sell:</td>
+                                    <td><a href="javascript:;" id="enredeem" data-type="select"
+                                            data-title="Select Permission" data-title="Enter username"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonenredeem"></label></small></td>
+                                </tr>
+                                <tr> 
+                                    <td width="20%">Login :</td>
+                                    <td><a href="javascript:;" id="login" data-type="select"
+                                            data-title="Select Permission"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a><br />
+                                        <small><label class="text-danger" id="lblreasonlogin"></label></small>
+                                    </td>
+                                    <td width="20%">Consumer Access :</td>
+                                    <td><a href="javascript:;" id="consumerAccess" data-type="select"
+                                            data-title="Select Permission"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonconsumerAccess"></label></small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="20%">Link Bank :</td>
+                                    <td><a href="javascript:;" id="enlinkbank" data-type="select"
+                                            data-title="Select Permission"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonenlinkbank"></label></small>
+                                    </td>
+                                    <td width="20%">Sell to Bank :</td>
+                                    <td><a href="javascript:;" id="enredeemtobank" data-type="select"
+                                            data-title="Select Permission"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title=""></a>
+                                        <br />
+                                        <small><label class="text-danger" id="lblreasonenredeemtobank"></label></small>
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td width="20%">Sell To Wallet : </td>
+                                    <td><a href="javascript:;" id="enredeemToWallet" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                        <small><label class="text-danger" id="lblreasonenredeemToWallet"></label></small>
+                                    </td>                                    
+                                    <% if (!pgPermissionEnable) { %>
+                                    <td width="20%">All Consumer Access : </td>
+                                    <td><label class="custom-control custom-checkbox">
+                                            <input id="consumerAppaccess" type="checkbox"
+                                                class="custom-control-input hidden" disabled="">
+                                            <span class="custom-control-indicator"></span>
+                                        </label></td>
+                                        <% } %>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4">
+                                        <button class="btn btn-sm btn-primary pull-right" disabled
+                                            id="svenPermission">Save
+                                            Permission</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="limit">
+                    <div class="btn-group radio-group pull-right">
+                        <!-- <label class="btn btn-warning btn-sm">Consumer <input type="radio" onclick="limitfor(this);"
+                                value="consumer" id="pending" checked name="limitfor"></label> -->
+                        <label class="btn btn-success btn-sm not-active hidden">Self<input type="radio" id="KYC"
+                                name="limitfor" onclick="limitfor(this);" checked value="entity"></label>
+                    </div>
+                    <table style="clear: both" class="table table-bordered table-striped" id="user">
+                        <thead>
+                            <th>
+                                Module
+                            </th>
+                            <!-- <th>
+                        Permissions
+                    </th> -->
+                            <th>
+                                Gold Limit
+                            </th>
+                            <th>
+                                Silver Limit
+                            </th>
+                            <th>
+                                Other Limits
+                            </th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="20%">Buy :</td>
+                                <!-- <td><a href="javascript:;" id="buy" data-type="select" data-title="Select Permission"
+                    data-title="Buy" class="editable editable-click editable-disabled"
+                    data-original-title="" title=""></a>
+            </td> -->
+                                <td>Min : <i class="fa fa-rupee"></i> <a href="javascript:;" id="buyMinGold"
+                                        data-type="text" data-title="Enter Gold Min "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Min"></a> <span>
+                                    </span> <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="buyMaxGold"
+                                        data-type="text" data-title="Enter Gold Max "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Max"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td>Min : <i class="fa fa-rupee"></i> <a href="javascript:;" id="buyMinSilver"
+                                        data-type="text" data-title="Enter Min Silver "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Silver Min"></a> <span>
+                                    </span>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="buyMaxSilver"
+                                        data-type="text" data-title="Enter Max Silver"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Silver Max"></a> <span>
+                                    </span>
+                                </td>
+                                <td>
+                                    Txn invervals : <a href="javascript:;" id="buytxnInterval" data-type="text"
+                                        data-title="Enter Txn Time Interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Txn Time Interval"></a>
+                                    min<span>
+                                    </span><br />
+                                    No. of Txn in invervals : <a href="javascript:;" id="buynotxnInterval"
+                                        data-type="text" data-title="Enter no of txn in time interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter no of txn in time interval"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in month : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="buyMaxamtmonth" data-type="text"
+                                        data-title="Enter maximun amount of txn in month "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter maximun amount of txn in month"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in hour : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="buyMaxamthour" data-type="text"
+                                        data-title="Enter minimun amount of txn in hour "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in hour"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in Day : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="buyMaxAmtOfTxnInDay" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updateLimitbuy(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="buy" class="btn text-info"
+                                        onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td width="20%">Sell:</td>
+                                <!-- <td><a href="javascript:;" id="redeem" data-type="select" data-title="Select Permission"
+                                data-title="Enter username"
+                                class="editable editable-click editable-disabled" data-original-title=""
+                                title=""></a></td> -->
+                                <td>Min : <i class="fa fa-rupee"></i> <a href="javascript:;" id="redeemMinGold"
+                                        data-type="text" data-title="Enter Gold Min "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Min"></a> <span>
+                                    </span> <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="redeemMaxGold"
+                                        data-type="text" data-title="Enter Gold Max "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Max"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td>Min : <i class="fa fa-rupee"></i> <a href="javascript:;" id="redeemMinSilver"
+                                        data-type="text" data-title="Enter Min Silver "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Silver Min"></a> <span>
+                                    </span>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="redeemMaxSilver"
+                                        data-type="text" data-title="Enter Max Silver"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Silver Max"></a> <span>
+                                    </span>
+                                </td>
+                                <!-- <td>Redeem Incashment in Bank (Min) : <i class="fa fa-rupee"></i> <a
+                                        href="javascript:;" id="redeemtobankMin" data-type="text"
+                                        data-title="Enter Gold Min "
+                                        class="editable editable-click editable-disabled"
+                                        data-original-title="" title="Enter Gold Min">0</a>
+                                    <br />
+                                    Redeem Incashment in Bank (Max) : <i class="fa fa-rupee"></i> <a
+                                        href="javascript:;" id="redeemtobankMax" data-type="text"
+                                        data-title="Enter Gold Max "
+                                        class="editable editable-click editable-disabled"
+                                        data-original-title="" title="Enter Gold Max">0</a>
+                                    <br />
+                                    <small class="text-danger">* One time limit of amount for redeem
+                                        to bank. </small>
+                                </td> -->
+                                <td>
+                                    Txn invervals : <a href="javascript:;" id="redeemtxnInterval" data-type="text"
+                                        data-title="Enter Txn Time Interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Txn Time Interval"></a> min
+                                    <span>
+                                    </span><br />
+                                    No. of Txn in invervals : <a href="javascript:;" id="redeemnotxnInterval"
+                                        data-type="text" data-title="Enter no of txn in time interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter no of txn in time interval"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in month : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="redeemMaxamtmonth" data-type="text"
+                                        data-title="Enter maximun amount of txn in month "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter maximun amount of txn in month"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in hour : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="redeemMaxamthour" data-type="text"
+                                        data-title="Enter minimun amount of txn in hour "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in hour"></a> <span>
+                                    </span> <br />
+                                    Maximum amount of txn in Day : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="redeemMaxAmtOfTxnInDay" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span>
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updateLimitRedeemCash(this)"><i class="fa fa-save fa-2x"></i></a>
+                                    <a type="button" title="Change Configuration" data-type="redeemCash"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td width="20%">Transfer :</td> 
+                                <td>Min : <i class="fa fa-rupee"></i> <a href="javascript:;" id="transferMinGold"
+                                        data-type="text" data-title="Enter Gold Min "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Min"></a> <span>
+                                    </span> <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="transferMaxGold"
+                                        data-type="text" data-title="Enter Gold Max "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Max"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td>Min : <i class="fa fa-rupee"></i><a href="javascript:;" id="transferMinSilver"
+                                        data-type="text" data-title="Enter Min Silver "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Silver Min">0</a> <span>
+                                    </span>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i><a href="javascript:;" id="transferMaxSilver"
+                                        data-type="text" data-title="Enter Max Silver"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Silver Max">0</a> <span>
+                                    </span>
+                                </td>
+                                <td>
+                                    Txn invervals :<a href="javascript:;" id="transfertxnInterval" data-type="text"
+                                        data-title="Enter Gold Max " class="editable editable-click editable-disabled"
+                                        data-original-title="" title="Enter Gold Max"></a> min<span>
+                                    </span><br />
+                                    No. of Txn in invervals : <a href="javascript:;" id="transfernotxnInterval"
+                                        data-type="text" data-title="Enter Gold Max "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Max"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in month : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="transferMaxamtmonth" data-type="text" data-title="Enter Gold Max "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Max"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in hour : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="transferMaxamthour" data-type="text" data-title="Enter Gold Max "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Gold Max"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in Day : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="transferMaxAmtOfTxnInDay" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span><br />
+                                    Txn charges Free below : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="txnFreeLimit" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span>
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updateLimitTransfer(this)"><i class="fa fa-save fa-2x"></i></a>
+                                    <a type="button" title="Change Configuration" data-type="transfer"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+                            </tr> 
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane" id="walpermission">
+                    <table style="clear: both" class="table table-bordered table-striped" id="user">
+                        <thead>
+                            <th>
+                                Module
+                            </th>
+                            <th>
+                                Permissions
+                            </th>
+                            <th>
+                                Wallet One Time Limit
+                            </th>
+                            <th>
+                                Transaction & Wallet Hold Limit
+                            </th>
+                            <th>Other Limits</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="20%">Wallet Amount Containing:</td>
+                                <td>
+                                    <a href="javascript:;" id="walletAccess" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a><br>
+                                    <small><label class="text-danger" id="lblreasonwalletAccess"></label></small>
+                                </td>
+                                <td>
+                                    Min <i class="fa fa-rupee"></i> <a href="javascript:;" id="walletMinSilver"
+                                        data-type="text" data-title="Enter Min Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="walletMaxSilver"
+                                        data-type="text" data-title="Enter Max Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    <small class="text-danger">* One time limit of amount add in wallet. </small><br />
+                                    <br />
+                                    <small><strong>Pay By Wallet:</strong></small> <a href="javascript:;" id="payByWallet" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                    <small><label class="text-danger" id="lblreasonpayByWallet"></label></small><br />
+                                    <small class="text-danger">* Enable and disable Wallet Payment Option. </small>
+                                </td>
+                                <td>Total : <i class="fa fa-rupee"></i> <a href="javascript:;" id="totalWallet"
+                                        data-type="text" data-title="Enter Total Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    <small class="text-danger">* The limit of wallet amount
+                                        (in rupees) of consumer </small> 
+                                </td>
+                                <td>
+                                    Txn invervals : <a href="javascript:;" id="wallettxnInterval" data-type="text"
+                                        data-title="Enter Txn Time Interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Txn Time Interval"></a>
+                                    min<span>
+                                    </span><br />
+                                    No. of Txn in invervals : <a href="javascript:;" id="walletnotxnInterval"
+                                        data-type="text" data-title="Enter no of txn in time interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter no of txn in time interval"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in month : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="walletMaxamtmonth" data-type="text"
+                                        data-title="Enter maximun amount of txn in month "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter maximun amount of txn in month"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in hour : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="walletMaxamthour" data-type="text"
+                                        data-title="Enter minimun amount of txn in hour "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in hour"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in Day : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="walletMaxAmtOfTxnInDay" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updatewalletlimit(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="walletpermission"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="20%">Wallet To Bank:</td>
+                                <td><a href="javascript:;" id="wallettobank" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                        <br>
+                                    <small><label class="text-danger" id="lblreasonwallettobank"></label></small></td>
+                                <td>Min <i class="fa fa-rupee"></i> <a href="javascript:;" id="wallettobankMin"
+                                        data-type="text" data-title="Enter Min Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="wallettobankMax"
+                                        data-type="text" data-title="Enter Max Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a><br />
+                                    <small class="text-danger">* One time limit of amount for wallet
+                                        to bank. </small>
+                                </td>
+                                <td>
+                                    <!--<i class="fa fa-2x fa-times  text text-danger"></i>-->
+                                </td>
+                                <td>
+                                    Txn invervals : <a href="javascript:;" id="wallettobanktxnInterval" data-type="text"
+                                        data-title="Enter Txn Time Interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Txn Time Interval"></a>
+                                    min<span>
+                                    </span><br />
+                                    No. of Txn in invervals : <a href="javascript:;" id="wallettobanknotxnInterval"
+                                        data-type="text" data-title="Enter no of txn in time interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter no of txn in time interval"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in month : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="wallettobankMaxamtmonth" data-type="text"
+                                        data-title="Enter maximun amount of txn in month "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter maximun amount of txn in month"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in hour : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="wallettobankMaxamthour" data-type="text"
+                                        data-title="Enter minimun amount of txn in hour "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in hour"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in Day : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="wallettobankMaxAmtOfTxnInDay" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updatewallettobanklimit(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="wallettobank"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+                            </tr>     
+                            <tr>
+                                <td colspan="5">
+                                    <h5 class="text-danger">Wallet transactions have certain limits
+                                        as governed by RBI.
+                                        The various limits are:</h5>
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Limit Type</th>
+                                            <th>Period</th>
+                                            <th>
+                                                Full KYC
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>Adding money to wallet ( Including receiving money
+                                                from another user )</td>
+                                            <td>At any Time</td>
+                                            <td>Rs 10,0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bullion Unit Valuation contain in account (
+                                                Including on hold redeem unit )</td>
+                                            <td>At any Time</td>
+                                            <td>Unlimited*</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="hidden" id="ispgEnable" value="<%- pgPermissionEnable  %>">
+                <% if (!pgPermissionEnable) { %>
+                <div class="tab-pane active hideAfterRendering" id="revenueMargin">
+                    <div class="col-md-4">
+                        <table style="clear: both" class="table table-bordered table-striped" id="user">
+                            <thead>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Values
+                                </th>
+                                <th>
+                                    Variable
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="3">
+                                        <div class="btn-group radio-group pull-right">
+                                            <label class="btn btn-warning btn-sm">Consumer <input type="radio"
+                                                    onclick="revenueFor(this);" value="consumer" id="pending" checked
+                                                    name="revenueFor"></label>
+                                            <label class="btn btn-success btn-sm not-active">Partner<input
+                                                    type="radio" id="KYC" name="revenueFor" onclick="revenueFor(this);"
+                                                    value="entity"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                        <select class="form-control" id="paylist" onchange="paymentClick(this);">
+                                            <option value="buy">Buy</option>
+                                            <option value="redeemCash">Sell</option>
+                                            <option value="transfer">Transfer</option>
+                                            <option value="common">Common</option>
+                                        </select></td>
+                                </tr>
+                                <tr>
+                                    <td width="80%">TruCoin Rate :
+                                        <br><small class="text-warning">( base rate for calculation)</small></td>
+                                    <td width="80%">₹&nbsp;<a href="javascript:;" id="txtRate" data-type="text"
+                                            data-pk="1" data-title="Enter TruCoin Rate"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title="">5300</a></td>
+                                    <td class="text text-success">rate</td>
+
+                                </tr>
+                                <tr>
+                                    <td width="80%">Client Loading (Network Fee) :
+                                        <br><small class="text-warning">(sharable with client and applicable on
+                                            client)</small></td>
+                                    <td width="80%"><a href="javascript:;" id="txtclientNetworkFee" data-type="text"
+                                            data-pk="1" data-title="Enter Transaction fee"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title="">0</a> %
+                                    </td>
+                                    <td class="text text-success">clientPer</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">OR</td>
+                                    <td colspan="2"></td>
+
+                                </tr>
+                                <tr>
+                                    <td width="80%"> Loading (Network Fee) :
+                                        <br><small class="text-warning">(non sharable with client)</small></td>
+                                    <td width="80%"><a href="javascript:;" id="txtNetworkFee" data-type="text"
+                                            data-pk="1" data-title="Enter Transaction fee"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title="">1</a> %
+                                    </td>
+                                    <td class="text text-success">truPer</td>
+                                </tr>
+                                <tr>
+                                    <td width="80%">Transaction Fee :<br><small class="text-warning">(Sharable with
+                                            client)</small></td>
+                                    <td width="80%"><a href="javascript:;" id="txttransactionFees" data-type="text"
+                                            data-pk="1" data-title="Enter Network fee"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title="">0.5</a> %
+                                    </td>
+                                    <td class="text text-success">txnPer</td>
+                                </tr>
+                                <tr>
+                                    <td width="80%">TDS:<br><small class="text-warning">(TDS deduction on partner
+                                            earning)</small></td>
+                                    <td width="80%"><a href="javascript:;" id="txttdscharges" data-type="text"
+                                            data-pk="1" data-title="Enter TDS Percentage"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title="">5</a> %
+                                    </td>
+                                    <td class="text text-success">tdsPer</td>
+                                </tr>
+
+                                <tr class="d2d">
+                                    <td width="80%">Partner Default Revenue Share :<br />
+                                        <small class="text text-warning">Applicable on Transation Fee & Client
+                                            Charges</small>
+                                    </td>
+                                    <td width="80%"><a href="javascript:;" id="txtentityRevCharges" data-type="text"
+                                            data-pk="1" data-title="Partner default revenue share charges"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title="">80</a> %</td>
+                                    <td class="text text-success">pRevShare</td>
+                                </tr>
+                                <tr class="d2d">
+                                    <td width="80%">Company Revenue Share :<br />
+                                        <small class="text text-warning">Applicable on Transation Fee & Client
+                                            Charges</small>
+                                    </td>
+                                    <td width="80%"><a href="javascript:;" id="txtRevenue" data-type="text"
+                                            data-pk="1" data-title=" default revenue share charge"
+                                            class="editable editable-click editable-disabled" data-original-title=""
+                                            title="">20</a> %</td>
+                                    <td class="text text-success">truRevShare</td>
+                                </tr>
+                                <tr class="d2d">
+                                    <td width="80%"> Revenue Applicable :<br />
+                                        <small class="text text-warning">Applied charges enable or disabled</small></td>
+                                    <td width="80%">
+                                        <label class="custom-control custom-checkbox">
+                                            <input id="isrevenueapplied" type="checkbox"
+                                                class="custom-control-input hidden" checked="">
+                                            <span class="custom-control-indicator"></span>
+                                        </label> </td>
+                                    <td></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <% if (!pgPermissionEnable) { %>
+                    <div class="col-md-8">
+                        <div class="col-md-12">
+                            <div class="box box-widget widget-user-2">
+                                <div class="box-body box-bodys">
+                                    <h5 class="card-title1">
+                                        BroadCast Rate Formula
+                                    </h5>
+                                </div>
+                                <div class="box-footer no-padding">
+                                    <textarea class="CodeMirror" id='editor'>
+                                  </textarea></div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="box box-widget widget-user-2">
+                                <div class="box-body box-bodys">
+                                    <h5 class="card-title1">
+                                        BroadCast Rate Result
+                                    </h5>
+                                </div>
+                                <div class="box-footer no-padding">
+
+                                    <div class="box-footer" style="background-color: #282a36;" id="broadcastResult">
+
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-md-12">
+                                            <input type="button" onclick="uploadRevenueLoading();"
+                                                class="btn btn-warning fa fa-cart pull-right" id="btnSubmit"
+                                                value="Submit" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+                </div>
+                <% } %>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+    </div>
+</div>
+
+<script src="js/entity/configuration.js" type="text/javascript"></script>
+<script src="api/admin/controllers/verifyTPIN.js"></script>
+<script src="api/entityApi/controllers/configuration.js"></script>
+<script src="js/entity/chargesConf.js" type="text/javascript"></script>

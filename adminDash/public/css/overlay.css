@@ -1,0 +1,48 @@
+
+.overlaytru {
+  height: 100%;
+  width: 0;
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 20; 
+  background-color: rgba(221, 121, 121, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+  
+.overlaytru-content {
+  position: relative;
+  top: 10%;
+  width: 100%;
+  left: 25px;
+}
+  
+  .overlaytru a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlaytru a:hover, .overlaytru a:focus {
+    color: #f1f1f1;
+  }
+  
+  .overlaytru .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlaytru a {font-size: 20px}
+    .overlaytru .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+    }
+  }

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <%- include ('./partials/head'); %>
+<link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<!--- CSS-->
+<link rel="stylesheet" href="css/branchStep.css">
+<link rel="stylesheet" href="css/mapInWindow.css">
+<link rel="stylesheet" href="css/permission.css">
+</head>
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper"> 
+        <%- include ('./partials/header'); %><div class="content-wrapper"> 
+          <div class="containerbg">
+    <!-- TO DO List -->
+    <div class="col-md-12">
+        <div class="col-md-12 dept">
+            <div class="box box-success">
+                <div id="compLocationLoader" class="loaderContainer" style="display:none;">
+                    <div class="loader"></div>
+                </div>
+                <input type="hidden" id="branchId" value="<%- branchId %>">
+                <div class="box-header">
+                    <h3 class="box-title">Branch Details</h3>
+                    <div class="box-tools pull-right">
+                        <a type="button" title="modify Company Branch details" class="btn btn-box-tool editbranch"
+                            data-widget="edit"><i class="fa fa-pencil"></i></a>
+                        <!-- <a type="button" id="btnBranchClose" onclick="branchClose();" class="btn btn-box-tool"
+                            data-widget="remove"><i class="fa fa-times"></i></a> -->
+                    </div>
+                </div>
+                <div class="box-body">
+                    <section>
+                        <div class="stepwizard">
+                            <div class="stepwizard-row setup-panel">
+                                <div class="stepwizard-step">
+                                    <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                                    <p>Branch Details</p>
+                                </div>
+                            </div>
+                        </div>
+                        <form role="form" data-toggle="validator" id="branchform">
+                            <div class="containerbg">
+                                <div class="tab-content">
+                                    <div class="row setup-content" id="step-1">
+                                        <div class="row">
+                                            <input type="hidden" id="atruid" />
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label> Branch Name : <span
+                                                            class="text text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+
+                                                        <input type="text" maxlength="50" required class="form-control"
+                                                            id="txtBranchName"
+                                                            placeholder="Enter Company Branch name..">
+                                                    </div>
+                                                    <div class="text-danger" id="error_comp_name"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label> Select Company Name : <span
+                                                            class="text text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+                                                        <select id="cmbCompany" class="form-control">
+
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Purpose : <span
+                                                            class="text text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-user"></i>
+                                                        </div>
+
+                                                        <input maxlength="50" type="text" required="required"
+                                                            class="form-control aplhanumspace" id="txtpurpose"
+                                                            placeholder="Enter what work actually done here" />
+
+                                                    </div>
+                                                    <div class="text-danger" id="error_cshort_name"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Telephone / Mobile No : <span
+                                                            class="text text-danger">*</span></label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-phone"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control number" id="txttelno"
+                                                            placeholder="Enter telephone / Mobile number">
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                    <div class="text-danger" id="error_txttelno"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group ">
+                                                    <label>Telephone Number 2 : </label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-phone"></i>
+                                                        </div>
+                                                        <input type="text" class="form-control number" id="txttelno2"
+                                                            placeholder="Enter telephone number 2">
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                    <div class="text-danger" id="error_txttelno2"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Email ID : <span
+                                                            class="text text-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-envelope"></i>
+                                                        </div>
+                                                        <input maxlength="48" type="email" required="required"
+                                                            id="txtemail" class="form-control"
+                                                            placeholder="Enter Email ID" onkeypress="isEmail()" />
+                                                    </div>
+                                                    <div id="error_txtemail" class="text-danger"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Fax :</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-fax"></i>
+                                                        </div>
+                                                        <input type="text" placeholder="Enter Fax Number"
+                                                            class="form-control number" id="txtfaxno" maxlength="20">
+                                                    </div>
+                                                    <div id="error_txtfaxno" class="text-danger"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Branch Reg. Date : <span
+                                                            class="text text-danger">*</span></label>
+
+                                                    <div class="input-group date">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <input type="text" id="txtBranchRegDate"
+                                                            class="form-control pull-right"
+                                                            data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                    <div class="text-danger" id="error_txtcompregdate"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-8">
+                                                <div class="form-group">
+                                                    <label>Description : </label>
+
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-file-text-o"></i>
+                                                        </div>
+                                                        <textarea class="form-control" style="resize:none;"
+                                                            placeholder="Enter branch description" id="txtDescription"
+                                                            maxlength="1000"></textarea>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                    <div id="error_txtDesc" class="text-danger"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary nextBtn btn-sm pull-right" id="btn1" onclick="submitLocation();"
+                                            type="button">Submit</button>
+                                    </div> 
+                                </div>
+                            </div>
+
+                        </form>
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div></div>
+    </div>
+    <%- include ('./partials/footer'); %>
+<script src="truComponents/inputmask/jquery.inputmask.js"></script>
+<script src="truComponents/inputmask/jquery.inputmask.date.extensions.js"></script>
+<script src="truComponents/inputmask/jquery.inputmask.extensions.js"></script>
+<script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="js/globalVal.js"></script>
+<script src="api/admin/controllers/verifyTPIN.js"></script>
+<script src="api/admin/controllers/companyLocation.js"></script>
+<script src="js/companyLocation.js"></script> 
+
+<!-- /.content-wrapper --> 
+</body>
+</html>

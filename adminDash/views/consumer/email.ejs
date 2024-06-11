@@ -1,0 +1,197 @@
+    <section class="content">
+      <div class="container">
+        <div class="row"> 
+          <div class="col-md-12">
+            <div class="card card-outline">
+              <div class="card-header">
+                <h3 class="card-title">Compose Email</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <div class="form-group toMail"> 
+                     <input class="form-control" id="enClientName" disabled>
+                   </div>
+                <div class="form-group toMail">
+                 <!--  <input class="form-control" id="toMultiple" name="tags-3" placeholder="To:"> -->
+                  <input class="form-control" id="toSend" placeholder="To:" disabled>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" id="subject" placeholder="Subject:">
+                </div>
+                <div class="form-group ceditor">
+                    <textarea id="compose-textarea" class="form-control" style="height: 300px;min-height: 300px;">
+                    </textarea>
+                </div> 
+                <div class="form-group">
+                    <label for="attachment">Attachment</label>                                            
+                    <input type="file" class="form-control-file" multiple="true" name="attachmentFile" id="attachmentFile">
+                  </div>
+                <div class="editorPreview hidden">
+                  <center style="width: 100%; background-color: #f5f5f5">
+                    <div style="max-width: 600px; margin: 0 auto;border:1px solid #eee;background-color: #FFF;" class="email-container">
+                        <!-- BEGIN BODY -->
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
+                            style="margin: auto;">
+                            <tr>
+                                <td valign="top" class="bg_white" style="padding: 1em 2.5em 0 2.5em;">
+                                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td class="logo" style="text-align: center;"> 
+                                                <h1><a href='https://company.com' style='display:inline-block' target='_blank'> 
+                                                        <img src='https://company.com/assets/images/logo.png' alt='' width='140'
+                                                            height='60' style='display:block;outline:none;text-decoration:none;padding:10px;padding-bottom:0px'>
+                                                    </a></h1>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr><!-- end tr -->
+                            <tr>
+                                <td valign="middle" class="hero bg_white" style="padding: 1em 0 2em 0;">
+                                    <img src="images/email.png" alt=""
+                                        style="width: 300px; max-width: 600px; height: auto; margin: auto; display: block;">
+                                </td>
+                            </tr><!-- end tr -->
+                            <tr>
+                                <td align="center" valign="middle" class="hero bg_white" style="padding: 0 0 1em 0;">
+                                     <table>
+                                        <tr>
+                                            <td>
+                                              <div class="text" style="padding: 1em">
+                                                    
+                                                    <p class="msgtext" style="color: #000;"></p>
+                                                     <br><br>Please contact us for more details - <a class="emailsender" href="mailto:info@company.com">info@company.com</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr><!-- end tr -->
+                            <!-- 1 Column Text + Button : END -->
+                        </table>
+                        <div style='background-color:#40b2cc;margin:0!important;padding:0!important'>
+                            <table bgcolor='#40b2cc' border='0' cellspacing='0' cellpadding='0' width='100%'>
+                                <tbody>
+                                    <tr>
+                                        <td align='center' style='border-collapse:collapse;padding:0px 0px 0px 0px'>
+            
+                                            <table align='center' bgcolor='#40b2cc' border='0' cellspacing='0' cellpadding='0'
+                                                width='100%' style='max-width:100%'>
+                                                <tbody>
+                                                    <tr>
+                                                        <td bgcolor='#e2e2e2' style='background-color:#40b2cc'>
+                                                            <table align='center' cellspacing='0' cellpadding='0' border='0'
+                                                                width='100%'>
+                                                                <tbody>
+            
+                                                                    <tr>
+                                                                        <td align='center' style='padding:15px 0 15px 0'>
+                                                                            <table width='100%' cellspacing='0' cellpadding='0'
+                                                                                border='0'>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align='center'
+                                                                                            style='color:#a6afb9;font-family:Tahoma,Verdana,Arial,sans-serif,'
+                                                                                            Open
+                                                                                            Sans';font-size:10px;font-weight:700;line-height:1.6'>
+                                                                                            <a href='javascript:void(0)'
+                                                                                                style='color:#000;text-decoration:underline'>Download </a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+            
+                                                                    <tr>
+                                                                        <td align='center'>
+                                                                            <table width='100%' cellspacing='0' cellpadding='0'
+                                                                                border='0'>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align='right' valign='middle'>
+                                                                                            <a href='https://play.google.com/store/apps/details?id=YOUR_APP_ID&hl=en_IN'
+                                                                                                style='display:inline-block;color:#000;text-decoration:none'
+                                                                                                target='_blank'>
+                                                                                                <img src='https://docs.google.com/uc?export=download&id=1tttAW_53cj8Ithqjedmj4OwE_DCY77T5'
+                                                                                                    alt='google store' width='150'
+                                                                                                    height='50'
+                                                                                                    style='display:inline-block;vertical-align:middle;outline:none;text-decoration:none;padding:0 5px 0 5px'>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                          <td align='left' valign='middle'>
+                                                                                            <a href='javascript:void(0)' onclick="return alert('Coming Soon....')"
+                                                                                                style='display:inline-block;color:#000;text-decoration:none'>
+                                                                                                <img src='https://docs.google.com/uc?export=download&id=1CHh04j9DqvUNG-4m7Fm5SzK4Rtnb7Qag'
+                                                                                                    alt='Apple store' width='150'
+                                                                                                    height='50'
+                                                                                                    style='display:inline-block;vertical-align:middle;outline:none;text-decoration:none;padding:0 5px 0 5px'>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td align='center' style='padding:30px 0 30px 0'>
+                                                                            <table width='100%' cellspacing='0' cellpadding='0' border='0'>
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td align='center' style='color:#000;font-family:Tahoma, 'Helvetica Neue', 'Helvetica' ,
+                                                                                            Helvetica, Arial,
+                                                                                            sans-serif;font-size:10px;font-weight:500;line-height:1.6'>
+                                                                                            <strong>© 2021 Company Name.</strong> All right reserved.
+                                                                                            <br /><a target='_blank' href='https://company.com/india/terms-conditions/'
+                                                                                                style='color:#000;text-decoration:underline'>Terms
+                                                                                                of Use</a> - <a target='_blank'
+                                                                                                href='https://company.com/india/privacy-policy/'
+                                                                                                style='color:#000;text-decoration:underline'>Privacy
+                                                                                                Statement</a>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+            
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+            
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                  </center>
+                </div> 
+              </div>
+              <div class="card-footer">
+                <div class="float-right"> 
+                  <button type="button" id="btnPreview" class="btn btn-default"><i class="fa fa-eye"></i> Preview Mail</button>
+                  <button type="button" onclick="SendClick();" class="btn btn-primary"><i class="fa fa-envelope"></i> Send</button>
+                </div>
+                <button type="button" onclick="discards();" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="api/consumerApi/controllers/bulkclient.js"></script>
+    <script src="truComponents/summernote/summernote-bs4.js"></script>
+    <script>
+      $(function () {
+        //Add text editor
+        $('#compose-textarea').summernote()
+      })
+    </script>

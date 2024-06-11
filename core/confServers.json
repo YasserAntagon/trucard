@@ -1,0 +1,13 @@
+{
+    "router": "http://localhost",
+    "clusterServer": "http://localhost",
+    "emailServer": "http://localhost",
+    "otpServer": "http://localhost",
+    "adminRouter": "http://localhost",
+    "adminAuth": "http://localhost",
+    "notifyServer": "http://localhost",
+    "cdn": "http://localhost:3111",
+    "bankServer": "http://localhost:3117",
+    "txnQueueServer": "http://localhost",
+    "randomOTP": false
+}

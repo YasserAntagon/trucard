@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <%- include ('./partials/head'); %>
+<link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css"> 
+    <link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+    
+<link rel="stylesheet" href="css/summary.css">
+<link rel="stylesheet" href="css/branchStep.css">  
+<link rel="stylesheet" href="css/mapInWindow.css">
+<link rel="stylesheet" href="css/permission.css"> 
+<!--use for key validations-->
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+  <div class="wrapper"> 
+    <%- include ('./partials/header'); %>
+    <div class="content-wrapper"> 
+      <div class="containerbg">
+<!-- TO DO List -->
+<div class="col-md-12">
+    <div class="box box-success deptlist">
+        <div class="box-header">
+          <h3 class="box-title">Company Location</h3>
+              <div class="box-tools pull-right">
+                <a href="<%- linkurl.branchLocation  %>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Add Branch</a> 
+                  <a type="button" class="btn btn-box-tool dashboard" data-widget="remove"><i class="fa fa-times"></i></a>
+              </div>          
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="col-md-12">
+          <table id="example1" class="table table-bordered table-striped dt-responsive" width="100%">
+            <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>Branch Name</th>
+              <th>Purpose</th>
+              <th>Telephone</th>
+              <th>Email Id</th> 
+              <th>city</th>
+              <th></th>
+              <th>View</th> 
+            </tr>
+            </thead>            
+          </table>
+        </div>  
+      </div>  
+    </div>  
+    </div>  
+    </div>
+</div></div>
+<script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script> 
+    <script src="js/datatable/dataTables.responsive.min.js"></script>
+    <script src="js/datatable/responsive.bootstrap4.min.js"></script>
+<script src="api/admin/controllers/branchList.js"></script>
+<!-- /.content-wrapper --> 
+<%- include ('./partials/footer'); %>
+</body>
+</html>

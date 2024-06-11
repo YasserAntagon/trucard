@@ -1,0 +1,20 @@
+{
+  "name": "authentication",
+  "main": "notification.js",
+  "scripts": {
+    "start": "notification.js"
+  },
+  "author": "Amit Shinde, Narendra Maru",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.16.3",
+    "helmet": "^4.4.1",
+    "mongoose": "^6.12.8",
+    "morgan": "^1.9.0",
+    "randomatic": "^3.0.0",
+    "request": "^2.88.2"
+  },
+  "description": " Notification API",
+  "version": "1.0.0"
+}

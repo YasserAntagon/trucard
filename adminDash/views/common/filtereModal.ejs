@@ -1,0 +1,69 @@
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <form>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Advance Search</h3>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table
+            class="table table-striped table-bordered table-condensed dt-responsive"
+            cellspacing="0"
+            width="100%"> 
+            <tbody>
+              <tr>
+                <td  colspan="2" style="width: 50%;"><%- include ('./table/options'); %></td> 
+              </tr>
+              <tr>
+                <td colspan="2"><%- include ('./partnerfilter'); %>
+                  <span class = "help-block">
+                    Search by Partner name / mobile no.
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td  colspan="2"><%- include ('./consumerFilter'); %>
+                <span class = "help-block">
+                  Search by consumer name / mobile no.
+                 </span></td>
+              </tr>
+              <tr>
+                <td  style="width: 50%;"><%- include ('./table/tableDateFilter'); %>
+                <td  style="width: 50%;"><%- include ('./table/dropdownFilter'); %></td>
+              </tr>  
+              <tr>
+                <td  style="width: 50%;"><%- include ('./table/mopFilter'); %></td>
+                <td  style="width: 50%;"><%- include ('./table/successFilter'); %></td>
+              </tr>
+              <tr>
+              <td colspan="2"> 
+                <input id="isReceipt" type="checkbox" name="isReceipt" value="T" />
+                <%- include ('./table/receipt'); %>
+                <span class="help-block">Search by Receipt no.</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="return clearClick();">RESET</button>
+          <button type="button"  onclick="return filterClick();" class="btn btn-primary">APPLY FILTER</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

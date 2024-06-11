@@ -1,0 +1,443 @@
+/*
+Credits:
+Code snippet by @maridlcrmn (Follow me on Twitter)
+Images by Nike.com (http://www.nike.com/us/en_us/)
+Logo by Sneaker-mission.com (http://www.sneaker-mission.com/)
+*/
+
+.navbar-brand {
+  width: 70px;
+  height: 50px;
+  background-size: 50px;
+}
+.navbar
+{
+  margin-bottom: 1px;
+}
+.profnameAdmin{
+  color: #000;
+}
+.profname{
+  color: #FFF;
+}
+li.dropdown.mega-dropdown>a:hover {
+  background: #e7e7e7;
+}
+/* Line Style 8 (Left Icon) */
+
+.radius-style button{
+  border-radius:30px;
+}
+
+.radius-btn{
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.icon-btn{ 
+  float:left;
+}
+.btn-pinterest{  
+  color: #fff;
+  background-color: #c41f26;
+  border:none;
+  justify-content: center;
+  align-items: center;
+  display: flex; 
+} 
+.icon-btn button{
+  float:left;
+  margin:6px;
+}
+.btn-gradient {
+  width: 30%;
+  position: relative;
+  display: inline-block;
+  left: -5px;
+  background: rgba(0, 0, 0, 0.15);
+  border-top-right-radius: 60px; 
+  box-shadow: 2px 0px 0px 0px rgba(78, 72, 72, 0.4);
+}
+
+.btn-text{
+  width:60%;
+}
+.nav-tabs {
+  display: inline-block;
+  border-bottom: none;
+  padding-top: 15px;
+  font-weight: bold;
+}
+
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus,
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border: none;
+  border-radius: 0;
+}
+
+.nav-list {
+  border-bottom: px solid #eee;
+}
+
+.nav-list > li {
+  padding: 20px 15px 15px;
+}
+
+.nav-list > li:last-child {
+  border-right: 0px solid #eee;
+}
+
+.nav-list > li > a:hover {
+  text-decoration: none;
+}
+
+.nav-list > li > a > span {
+  display: block;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.mega-dropdown {
+  position: static !important;
+}
+
+.mega-dropdown-menu {
+  padding: 20px 15px 15px;
+}
+
+.mega-dropdown-menu > li > ul {
+  padding: 0;
+  margin: 0;
+}
+
+.mega-dropdown-menu > li > ul > li {
+  list-style: none;
+  text-align: left;
+}
+
+.mega-dropdown-menu > li > ul > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #999;
+  white-space: normal;
+}
+.mega-dropdown-menu > li > ul > li{
+  padding: 2px;
+}
+
+.mega-dropdown-menu > li ul > li > a:hover,
+.mega-dropdown-menu > li ul > li > a:focus {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #367fa9; 
+}
+
+.mega-dropdown-menu .dropdown-header {
+  color: #428bca;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.mega-dropdown-menu form {
+  margin: 3px 20px;
+}
+
+.mega-dropdown-menu .form-group {
+  margin-bottom: 3px;
+}
+
+#login-dp {
+  min-width: 250px;
+  padding: 14px 14px 0;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#login-dp .help-block {
+  font-size: 12px;
+}
+
+#login-dp .bottom {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid #ddd;
+  clear: both;
+  padding: 14px;
+}
+
+#login-dp .social-buttons {
+  margin: 12px 0;
+}
+
+#login-dp .social-buttons a {
+  width: 49%;
+}
+
+#login-dp .form-group {
+  margin-bottom: 10px;
+}
+
+.btn-fb {
+  color: #fff;
+  background-color: #3b5998;
+}
+
+.btn-fb:hover {
+  color: #fff;
+  background-color: #496ebc;
+}
+
+.btn-tw {
+  color: #fff;
+  background-color: #55acee;
+}
+
+.btn-tw:hover {
+  color: #fff;
+  background-color: #59b5fa;
+}
+
+@media (max-width: 768px) {
+  #login-dp {
+    background-color: inherit;
+    color: #fff;
+  }
+  #login-dp .bottom {
+    background-color: inherit;
+    border-top: 0 none;
+  }
+}
+
+.navbar-login {
+  width: 305px;
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
+.navbar-login-session {
+  padding: 10px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.icon-size {
+  font-size: 87px;
+}
+
+.navbar-brand {
+  width: 70px;
+  height: 50px; 
+  background-size: 50px;
+  padding-top: 7px;
+}
+
+.navbar-nav {
+  padding-left: 15px;
+}
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #3c8dbc;
+}
+
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #222d32;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #222d32;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+.marginauto {
+    margin: 10px auto 20px;
+    display: block;
+}
+
+.dropdown-menu {
+  width: 75%;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  z-index: 99;
+  display: none;
+  float: left;
+  min-width: 200px;
+  padding: 5px 0px;
+  margin: 2px 0px 0px;
+  font-size: 14px;
+  list-style: none;
+  background-color: white;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.14902);
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.172549) 0px 6px 12px;
+}
+
+.dropdown-menu-list {
+  min-width: 220px;
+}
+
+.nav-list > li {
+  padding: 20px 15px 15px;
+  border-left: 0px;
+}
+.nav-list > li .nav-list {
+  border-bottom: 0px;
+}
+.nav-list > li .nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  color: white;
+  cursor: default;
+  background-color: #428bca;
+}
+.nav-list > li .nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus { 
+  cursor: default;
+  color: #FFF;
+  background-color: #367fa9; 
+  border: solid black 1px;
+} 
+.navbar-default .navbar-nav > .open > a:hover{
+  cursor: default;
+  color: #FFF;
+  background-color: #367fa9; 
+}
+
+
+#myCarousel .nav a small {
+  display: block;
+}
+#myCarousel .nav {
+  background: #eee;
+}
+.nav-justified > li > a {
+  border-radius: 0px;
+}
+.nav-pills > li[data-slide-to="0"].active a {
+  background-color: #16a085;
+}
+.nav-pills > li[data-slide-to="1"].active a {
+  background-color: #e67e22;
+}
+.nav-pills > li[data-slide-to="2"].active a {
+  background-color: #2980b9;
+}
+.nav-pills > li[data-slide-to="3"].active a {
+  background-color: #8e44ad;
+}
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.breadcrumb.wizard {
+  padding: 0px;
+background: #D4D4D4;
+list-style: none;
+overflow: hidden;
+  margin-top: 20px;
+font-size: 10px;
+}
+.breadcrumb.wizard>li+li:before {
+padding: 0;
+}
+.breadcrumb.wizard li {
+float: left;
+}
+.breadcrumb.wizard li.active a {
+background: brown;                   /* fallback color */
+background: #ffc107 ;
+}
+.breadcrumb.wizard li.completed a {
+background: brown;                   /* fallback color */
+background: hsla(153, 57%, 51%, 1);
+}
+.breadcrumb.wizard li.active a:after {
+border-left: 30px solid #ffc107 ;
+}
+.breadcrumb.wizard li.completed a:after {
+border-left: 30px solid hsla(153, 57%, 51%, 1);
+}
+
+.breadcrumb.wizard li a {
+color: white;
+text-decoration: none;
+padding: 10px 0 10px 45px;
+position: relative;
+display: block;
+float: left;
+}
+.breadcrumb.wizard li a:after {
+content: " ";
+display: block;
+width: 0;
+height: 0;
+border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+border-bottom: 50px solid transparent;
+border-left: 30px solid hsla(0, 0%, 83%, 1);
+position: absolute;
+top: 50%;
+margin-top: -50px;
+left: 100%;
+z-index: 2;
+}
+.breadcrumb.wizard li a:before {
+content: " ";
+display: block;
+width: 0;
+height: 0;
+border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+border-bottom: 50px solid transparent;
+border-left: 30px solid white;
+position: absolute;
+top: 50%;
+margin-top: -50px;
+margin-left: 1px;
+left: 100%;
+z-index: 1;
+}
+.breadcrumb.wizard li:first-child a {
+padding-left: 15px;
+}
+.breadcrumb.wizard li a:hover { background: #ffc107  ; }
+.breadcrumb.wizard li a:hover:after { border-left-color: #ffc107   !important; }
+
+@media screen and (max-width: 400px) {
+  .btn-breadcrumb {
+    visibility: hidden; 
+    display: none;
+  }
+  .mobile{
+    visibility: hidden; 
+    display: none;
+  }
+  .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover{
+
+    color: #FFF;
+    background-color: #222d32;
+}
+}

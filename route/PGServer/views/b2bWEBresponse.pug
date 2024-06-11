@@ -1,0 +1,14 @@
+head
+body(onload="authorizeB2b();")
+  form#frmb2bProduct.col-md-8(method='post' name='frmProduct' action=pgurl.host)
+    input(type='hidden' name='ORDER_ID' value=pgurl.ORDER_ID)
+    input(type='hidden' name='tType' value=pgurl.tType)
+    input(type='hidden' name='RESPONSE_CODE' value=pgurl.RESPONSE_CODE)
+    input(type='hidden' name='RESPONSE_MESSAGE' value=pgurl.RESPONSE_MESSAGE)
+    input(type='hidden' name='STATUS' value=pgurl.STATUS)
+    input(type='hidden' name='output' value=output)
+  script(type='text/javascript').
+    function authorizeB2b()
+    {
+      document.getElementById("frmb2bProduct").submit();
+    }

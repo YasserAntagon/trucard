@@ -1,0 +1,7 @@
+{ 
+    "clusterServer":"http://localhost", 
+    "adminAuth":"http://localhost", 
+    "cdn":"http://localhost:3111", 
+    "txnQueueServer":"http://localhost",
+    "ifscurl":"http://localhost:3111"
+}

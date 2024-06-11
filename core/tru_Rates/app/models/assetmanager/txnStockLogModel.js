@@ -1,0 +1,27 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const DBCon       = require("../dbCon/truassetmanager");
+var sru = { type: String, required: true, unique: true };
+var sr = { type: String, required: true };
+var s = { type: String };
+var d = { type: Schema.Types.Decimal128, required: true };
+var dt = { type: Date, default: Date.now() };
+var txnstocklogschema = new Schema({
+    stockID: sru,
+    truID: sr,
+    againstTruID: sr,
+    rTruID: s,
+    invoice: sr,
+    tType: { type: String, enum: ["buy", "buyCash", "transfer", "redeemCash", "reversal"] },
+    bullionType: sr,
+    Cr: d,
+    Dr: d,
+    currentStock: d,
+    previousStock: d,
+    hash: sr,
+    status: { type: String, enum: ["success", "failure", "pending", "hold", "inprocess", "reversal", "refund"] },
+    createDate: dt,
+})
+
+var txnstocklogschema = DBCon.model('newstocklogs', txnstocklogschema);
+module.exports = txnstocklogschema;

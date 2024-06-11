@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include ('./partials/head'); %> 
+  <link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+<link href="truComponents/bootstrap/dist/css/bootstrap-editable.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/consumer/summary.css">
+<link rel="stylesheet" href="css/consumer/wizard.css">
+  <style>
+      .mg-10:hover {
+          background-color: #ecd7d3 !important;
+      }
+      .mg-10 h3
+      {
+        font-size:24px
+      }
+  </style>
+</head>
+<body class="skin-yellow fixed sidebar-mini sidebar-collapse">
+<div class="wrapper">
+<%- include ('./partials/header'); %>
+<div class="content-wrapper"> 
+ 
+<div class="loaderContainer" style="display:none;">
+  <div class="loader"></div>
+</div>
+<section> 
+<section>
+  <%- include ('./consumerTempList'); %>
+</section>
+</div>
+</div>
+<%- include ('./partials/footer'); %>
+<script src="../js/drawer.js"></script>
+<script src="truComponents/bootstrap/dist/js/bootstrap-editable.min.js"></script>
+<script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="js/datatable/dataTables.responsive.min.js"></script>
+<script src="js/datatable/responsive.bootstrap4.min.js"></script>
+<script src="js/datatable/dataTables.buttons.min.js"></script>
+<script src="js/datatable/buttons.bootstrap4.min.js"></script>
+<script src="js/datatable/jszip.min.js"></script>
+<script src="js/datatable/pdfmake.min.js"></script>
+<script src="js/datatable/vfs_fonts.js"></script>
+<script src="js/datatable/buttons.html5.min.js"></script>
+<script src="js/datatable/buttons.print.min.js"></script>
+<script src="js/datatable/buttons.colVis.min.js"></script>
+<script src="api/admin/controllers/verifyTPIN.js"></script>
+<script src="api/consumerApi/controllers/consumerListExc.js"></script>
+<script src="api/consumerApi/controllers/consumeractive.js"></script>
+<!-- <script src="api/consumerApi/controllers/dashboard.js"></script>  -->
+
+
+</body>
+</html>

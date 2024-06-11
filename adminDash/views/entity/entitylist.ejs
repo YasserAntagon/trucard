@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ('./partials/head'); %>
+    <link
+      rel="stylesheet"
+      href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css"
+    />
+    <link href="truComponents/bootstrap/dist/css/bootstrap-editable.css"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="css/entity/summary.css" />
+    <link rel="stylesheet" href="css/entity/wizard.css" />
+    <style>
+      #myModals .modal-dialog {
+        min-width: 50%;
+      }
+
+      .fileview {
+        padding: 5px 10px;
+        font-size: 1.5em;
+        border-radius: 15px;
+      }
+
+      .small-box h3 {
+        font-size: 24px;
+      }
+
+      .shadow .box-footer {
+        background: #f4f4f4;
+        padding: 1.75rem 2.25rem !important;
+        background-color: #f7f7f9;
+        border-top: 1px solid rgba(0, 0, 0, 0.125);
+      }
+
+      .small-box .icon {
+        top: -5px;
+        font-size: 70px;
+      }
+
+      .small-box:hover .icon {
+        font-size: 75px;
+      }
+
+      .wizard {
+        padding: 0 20px;
+      }
+    </style>
+  </head>
+  <body class="skin-blue fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+      <%- include ('./partials/header'); %>
+      <div class="content-wrapper">
+        <%- include ('./entityTempList'); %>
+      </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-editable.min.js"></script>
+    <script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/datatable/dataTables.responsive.min.js"></script>
+    <script src="js/datatable/responsive.bootstrap4.min.js"></script>
+    <script src="js/datatable/dataTables.buttons.min.js"></script>
+    <script src="js/datatable/buttons.bootstrap4.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="api/entityApi/controllers/PartnerListExc.js"></script>
+    <script src="api/entityApi/controllers/entityverification.js"></script>
+    
+  </body>
+</html>

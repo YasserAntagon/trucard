@@ -1,0 +1,276 @@
+<style>
+  .invoice {
+    padding: 1px;
+  }
+  .modal-header {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .detail-images {
+    width: 40px;
+    height: 91px;
+    text-align: center;
+    color: #8b8b8b;
+  }
+
+  .detail h3 {
+    color: #3b3b3b;
+    margin-left: 60px;
+    margin-top: -100px;
+    font-size: 16px;
+  }
+
+  .detail h4 {
+    color: #8b8b8b;
+    margin-left: 60px;
+    font-size: 13px;
+    font-style: italic;
+    margin-top: -18px;
+  }
+
+  .details {
+    cursor: auto;
+  }
+
+  .table > tbody > tr > td,
+  .table > tfoot > tr > td,
+  .table > thead > tr > td {
+    padding: 10px;
+  }
+
+  .font-12 {
+    font-size: 89%;
+  }
+</style>
+<script id="invoicetmp" type="text/template">
+   {{#data}}
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="mt-0 header-title headerp x_title">
+      <i class="mdi mdi-24px mdi-format-float-right"></i> eReceipt
+      <span class="pull-right"> Date: {{orderdate}}
+     <!--  <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i class="fa fa-print"></i>
+      </a> -->
+      </span></h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="invoice-title">
+    <input id="invoiceno" type="hidden" value="{{invoice}}" />
+      <h3 class="m-t-0">
+      <img src="images/logo/logo.png" alt="logo" height="32" />
+      </h3>
+    </div>
+    <hr>
+    <div class="row">
+      {{#isTransfer}}
+    <div class="col-md-4">
+      <address>
+        <strong>Sender Details: </strong><br>
+      {{/isTransfer}}
+      {{^isTransfer}}
+      <div class="col-md-6">
+        <address>
+          <strong>Receipt To: </strong><br>
+          {{/isTransfer}}
+          {{consumerName}}<br>
+    {{to}}<br>
+    </address>
+    </div>
+    {{#isTransfer}}
+    <div class="col-md-4">
+      <address>
+        <strong>Receiver Details: </strong><br>
+        {{receiverName}}<br>
+        {{receiverTruID}}<br>
+        </address>
+      </div>
+    <div class="col-md-4">
+      {{/isTransfer}}
+      {{^isTransfer}}
+      <div class="col-md-6">
+      {{/isTransfer}}
+    <address class="pull-right">
+    <strong>eReceipt No : {{invoice}}</strong><br>
+    <strong>Transaction Status : <span style = "text-transform:capitalize;">{{status}}</span></strong><br>
+    <strong>Transaction Type: <span style = "text-transform:capitalize;">{{type}}</span></strong><br>
+    {{{GSTIN}}}
+    {{{Paidby}}}
+    </address>
+     </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12" style="padding: 10px;">
+    <h5 class="panel-title font-16 pull-left"><strong>Order summary</strong></h5>
+    </div>
+    <div class="col-md-12">
+    <div class="table-responsive">
+    <table id="invoicecontent" class="table table-bordered">
+      {{#isConversion}}
+      <thead>
+    <tr>
+      <td colspan="4" width="40%"><strong>Bullion</strong>
+      <td class="text-center" width="20%"><strong>Rate/Gram</strong>
+      </td>
+      <td class="text-right" width="20%"><strong>Amount</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td colspan="4">
+       {{{abType}}}
+      </td>
+      <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+      <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+      </tr>
+      </tbody>
+      {{/isConversion}}
+      {{^isConversion}}
+      <thead>
+      <tr>
+        <td colspan="3" width="40%"><strong>Bullion</strong>
+        <td class="text-center" width="20%"><strong>QTY</strong>
+        <td class="text-center" width="20%"><strong>Rate/Gram</strong>
+        </td>
+        <td class="text-right" width="20%"><strong>Amount</strong></td>
+        </tr>
+      </thead>
+    <tbody>
+      {{#product}}
+     <tr>
+       <td colspan="3">
+      <div style="min-height:36px">
+      <img class="trucoinIconInvoice" src="{{path}}">
+      <div class="truCoinText">
+      {{title}}<br>{{assetmanager}} {{from}}
+      </div>
+      </div>
+      </td>
+      <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+      <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+      <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+      </tr>
+      {{/product}}
+      {{/isConversion}}
+    <tr>
+      <td colspan="4" rowspan="3" class="text-success" style="vertical-align:bottom">
+      {{{message}}}
+      {{#isRedeem}}
+      {{{subMessage}}}
+      {{/isRedeem}}
+      </td>
+      {{{subTotal}}}
+      </tr>
+       {{{charges}}}
+      <tr>
+      <td class="no-line text-right">
+      <strong>Total :</strong></td>
+      <td class="no-line text-right text-success">
+      <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{totalAmount}}</h4>
+      </td>
+      </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="row">
+    <div class="col-md-12" style="right: 10px;">
+    <p class="ralignpad pull-right">
+    <b class="pull-right"> eReceipt is prepared by,</b>
+    <br />
+    <span class="text text-info pull-right"> Company Name.
+    </div>
+    </p>
+    </div>
+    </div>
+    </div></div>
+    </div>{{/data}}
+</script>
+<script id="WalletTrans" type="text/template">
+    {{#invoice}}
+    <div class="col-xs-12" id="invoiceprint">
+  <h4 class="mt-0 header-title headerp x_title">
+  <i class="mdi mdi-24px mdi-format-float-right"></i> Summary
+  <span class="pull-right"> Order Date: {{orderdate}}
+  <a href="javascript:void(0)" title="Print" onclick="printDiv('invoiceprint');" class="pull-right">&nbsp<i
+  class="fa fa-print"></i>
+  </a>
+  </span></h4>
+  <div class="col-md-12">
+  <div class="invoice-title">
+    <img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+  </h3>
+  </div>
+  <hr>
+  <div class="row">
+  <div class="col-md-6">
+  <address>
+  <span>To</span><br>
+  <span>{{toAssetManagerName}}</span><br>
+  {{to}}
+  </address>
+  </div>
+  <div class="col-md-6">
+  <address class="pull-right">
+  <span> Receipt No / TXN ID : {{invoice}}</span>
+  <br>
+  <span>Txn Type : {{type}}</span><br />
+  <span>Txn Status : </span><span id="txnstatus"><span>{{status}}</span></span><br>
+  </address>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-12">
+  <div class="p-2">
+  <h5 class="panel-title font-20"><span>Order summary</span></h5>
+  </div>
+  <div class="">
+  <div class="table-responsive">
+  <table id="invoicecontent" class="table table-bordered">
+  <thead>
+  <tr>
+  <td colspan="3" width="50%"><span>Title</span></td>
+    <td class="text-right" width="20%"><span>Amount</span></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td colspan="3">{{title}}</td>
+    <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+    </tr>
+   <!--  vtype -->
+  <td colspan="4" rowspan="4"  style="vertical-align:bottom">
+    {{#hasAc}}
+    {{senderName}}<br />
+     {{senderAccountNumber}}<br />
+     {{/hasAc}}
+     {{bankName}} <br />
+     {{bankTxnID}} <br />
+     {{paidBy}}<br />
+     {{acOrigin}}<br />
+     {{destinationAC}}<br />
+    <span class="text-success">Amount of <i class="mdi mdi-currency-inr"></i>{{amount}} successfully added in your {{wallet}} account</span>
+    </td></tr>
+  </tbody>
+  </table>
+  </div>
+  {{#tranType}}
+  <div class="row">
+    <div class="col-12">
+    <p class="ralignpad text-right"> <span> Receipt is prepared by,
+    </span>
+    <br />
+    <span class="text text-info pull-right"> Company Name.
+    </div>
+    </p>
+    </div>
+  </div>
+  {{/tranType}}
+  </div>
+  </div></div>{{/invoice}}
+</script>
+<span class="invoice" id="invoiceprint"></span>
+<script src="js/html2pdf.bundle.js"></script>
+<script src="js/print.js"></script>

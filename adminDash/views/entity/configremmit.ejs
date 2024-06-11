@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ('./partials/head'); %>
+    <link href="truComponents/bootstrap/dist/css/bootstrap-editable.css" rel="stylesheet" />
+    <link href="truComponents/bootstrap/dist/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/permission.css">
+    <style>
+        .setindvConf>.tab-content {
+            padding: 0px;
+        }
+        .nav-tabs-custom>.nav-tabs {
+            border-bottom-color: #d7d7d7;
+        }
+        .nav-tabs-custom>.nav-tabs>li.active>a {
+            border-left-color: #d7d7d7;
+            border-right-color: #d7d7d7;
+        }
+    </style>
+</head>
+
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <%- include ('./partials/header'); %>
+        <div class="content-wrapper">
+            <div class="containerbg">
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Partner Configuration</h3>
+                    </div>
+                    <div class="box-body pull-left hidden" id="updatedg">
+                    </div>
+                    <div class="box-body pull-right">
+                        <div class="btn-group radio-group">
+                            <label class="btn btn-success btn-sm not-active hidden">KYC Active<input type="radio"
+                                    id="KYC" checked name="kycFlag" onclick="kycFlag(this);" value="KYC"></label>
+                        </div>
+                    </div>
+                    <%- include ('./commonConfiguration'); %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-editable.min.js"></script>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-toggle.min.js"></script>
+    <%- include ('./partials/footer'); %>
+</body>
+
+</html>

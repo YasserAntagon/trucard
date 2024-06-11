@@ -1,0 +1,294 @@
+<style>
+  .main-header .sidebar-brand {
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    padding: 15px 15px;
+    font-family: fontAwesome;
+  }
+  .skin-black .main-header .logo {
+    background-color: #fff;
+    color: #000;
+    border-bottom: 1px solid #f9f0f0;
+    border-right: none;
+  }
+  .sidebarback {
+    display: block;
+  }
+</style>
+<header class="main-header">
+  <a href="<%- linkurl.home  %>" id="dashboard" class="logo">
+    <span class="logo-mini"><b>T</b></span>
+    <span class="logo-lg"
+      ><img src="images/logo/logo.png" height="30px"
+    /></span>
+  </a>
+  <nav class="navbar navbar-static-top">
+    <a
+      href="javascript:;"
+      class="sidebar-toggle"
+      data-toggle="push-menu"
+      role="button"
+    >
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+    <a
+      class="sidebar-brand sidebarback"
+      href="javascript:void(0);"
+      onclick="goBack()"
+    >
+      <button class="btn-pinterest btn btn-sm">
+        <span class="btn-gradient radius-btn">
+          <i class="fa fa-arrow-left"></i>
+        </span>
+        <span class="btn-text">BACK</span>
+      </button>
+    </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li class="dropdown user user-menu">
+          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+            <% if (aData.image =="0") { %>
+            <img src="images/user.png" class="user-image profpic" />
+            <%} else { %>
+            <img
+              src="<%-config.aUrl %><%- aData.image  %>"
+              class="user-image profpic"
+            />
+            <% } %>
+            <span class="hidden-xs"
+              ><span class="profnameAdmin"
+                ><%- aData.fName %> <%- aData.lName %></span
+              ></span
+            >
+          </a>
+          <ul class="dropdown-menu">
+            <li class="user-header">
+              <% if (aData.image =="0") { %>
+              <img src="images/user.png" class="user-image profpic" />
+              <%} else { %>
+              <img
+                src="<%-config.aUrl %><%- aData.image  %>"
+                class="user-image profpic"
+              />
+              <% } %>
+              <p>
+                <span class="profname"></span> <br />
+                <small><span class="email"><%- aData.email %></span></small>
+                <small><%- aData.truID %></small>
+              </p>
+            </li>
+            <li class="user-footer">
+              <div class="pull-left">
+                <a
+                  href="<%- linkurl.profile  %>"
+                  id="profileDetails"
+                  class="btn btn-default btn-flat"
+                  >Profile</a
+                >
+              </div>
+              <div class="pull-right">
+                <a href="/" class="btn btn-default btn-flat">Sign out</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <% if (aData.image =="0") { %>
+        <img src="images/user.png" class="img-circle user-image profpic" />
+        <%} else { %>
+        <img
+          src="<%-config.aUrl %><%- aData.image  %>"
+          class="img-circle user-image profpic"
+        />
+        <% } %>
+      </div>
+      <div class="pull-left info">
+        <p>
+          <span class="profname"><%- aData.fName %> <%- aData.lName %></span>
+        </p>
+        <a href="javascript:;"
+          ><i class="fa fa-circle text-success"></i> Online</a
+        >
+      </div>
+    </div>
+    <% if (aData.department =="development" || aData.isSuperAdmin) { %> 
+    <ul class="sidebar-menu" data-widget="tree">
+      <li>
+        <a href="<%- linkurl.home %>" id="dashboards">
+          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="javascript:;">
+          <i class="fa fa-globe"></i> <span>Portal</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="<%- linkurl.consumerPortal  %>" id="consumerLogin"
+              ><i class="fa fa-circle-o"></i> Consumer Portal</a
+            >
+          </li>
+         <li>
+            <a href="<%- linkurl.entityPortal  %>" id="entityLogin"
+              ><i class="fa fa-circle-o"></i> Partner Portal</a
+            >
+          </li> 
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="javascript:;">
+          <i class="fa fa-th"></i> <span>Accounts</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="<%- linkurl.gsttransaction  %>" id="gsttransaction">
+              <i class="fa fa-key"></i> TXN / GST Report
+            </a>
+          </li>
+          <li>
+            <a href="<%- linkurl.stockReport  %>" id="stockReport">
+              <i class="fa fa-key"></i> Daily Stock Report
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="treeview">
+        <a href="javascript:;">
+          <i class="fa fa-money"></i>
+          <span>Configuration</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="<%- aData.department =='development' || aData.isSuperAdmin ?linkurl.setRateFromAdmin:'javascript:void(0);'  %>" id="setRateFromAdmin">
+              <i class="fa fa-money"></i> <span>Set Bullion Rate</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%- aData.department =='development' || aData.isSuperAdmin ?linkurl.setStockFromAdmin:'javascript:void(0);'  %>" id="setStockFromAdmin">
+              <i class="fa fa-money"></i> <span>Add Bullion Stock</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%- linkurl.charges  %>" id="setCharges">
+              <i class="fa fa-money"></i> <span>Set Charges</span>
+            </a>
+          </li>
+        </ul>
+      </li> 
+      <li>
+        <a href="<%- linkurl.cmpMaster  %>" id="companyMaster">
+          <i class="fa fa-th"></i> <span>Company Master</span>
+        </a>
+      </li>
+      <li>
+        <a href="<%- linkurl.branchList  %>" id="companyLocation">
+          <i class="fa fa-location-arrow"></i> <span>Company Branch</span>
+        </a>
+      </li>
+      <li class="treeview">
+        <a href="javascript:;">
+          <i class="fa fa-address-book-o"></i>
+          <span>Employee Details</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="<%- linkurl.empReg  %>" id="empMaster"
+              ><i class="fa fa-user-plus"></i> Employee Registration</a
+            >
+          </li>
+          <li>
+            <a href="<%- linkurl.empList  %>" id="kycVerification">
+              <i class="fa fa-users"></i> <span>Employee List</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="treeview">
+        <a href="javascript:;">
+          <i class="fa fa-user"></i>
+          <span>Personal Details</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="<%- linkurl.profile  %>" id="profile">
+              <i class="fa fa-user-circle"></i> <span>Profile Details</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%- linkurl.changepassword  %>" id="changePassword">
+              <i class="fa fa-key"></i> <span>Change Password</span>
+            </a>
+          </li>
+          <li>
+            <a href="<%- linkurl.changePIN  %>" id="changePassword">
+              <i class="fa fa-key"></i> <span>Change TPIN</span>
+            </a>
+          </li>
+        </ul>
+      </li> 
+      <li class="header">Important Links</li>
+      <li>
+        <a href="<%- linkurl.home  %>"
+          ><i class="fa fa-circle-o text-red"></i> <span>Go Home</span></a
+        >
+      </li>
+      <li>
+        <a href="/logout"
+          ><i class="fa fa-circle-o text-yellow"></i> <span>Sign Out</span></a
+        >
+      </li>
+    </ul><%} else { %>
+      <ul class="sidebar-menu" data-widget="tree">
+        <li>
+          <a href="<%- linkurl.home %>" id="dashboards">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-th"></i> <span>Accounts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+              <a href="<%- linkurl.gsttransaction  %>" id="gsttransaction">
+                <i class="fa fa-key"></i> TXN / GST Report
+              </a>
+            </li>
+          </ul>
+        </li>
+        </ul>
+     <% } %>
+  </section>
+</aside>
+<div id="loader" class="loaderContainer" style="display: none">
+  <div class="loader"></div>
+</div>

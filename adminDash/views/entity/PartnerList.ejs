@@ -1,0 +1,624 @@
+<link rel="stylesheet" href="css/upload.css" />
+<link rel="stylesheet" href="truComponents/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="truComponents/bootstrap-daterangepicker/daterangepicker.css" />
+<script src="js/pages/tags.js"></script>
+<style>
+      label{display: block;padding: 20px 0 5px 0;}
+      .tagsinput,.tagsinput *{box-sizing:border-box}
+      .tagsinput{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;background:#fff;font-family:sans-serif;font-size:14px;line-height:20px;color:#556270;padding:5px 5px 0;border:1px solid #e6e6e6;border-radius:2px}
+      .tagsinput.focus{border-color:#ccc}
+      .tagsinput .tag{position:relative;background:#556270;display:block;max-width:100%;word-wrap:break-word;color:#fff;padding:5px 30px 5px 5px;border-radius:2px;margin:0 5px 5px 0}
+      .tagsinput .tag .tag-remove{position:absolute;background:0 0;display:block;width:30px;height:30px;top:0;right:0;cursor:pointer;text-decoration:none;text-align:center;color:#ff6b6b;line-height:30px;padding:0;border:0}
+      .tagsinput .tag .tag-remove:after,.tagsinput .tag .tag-remove:before{background:#ff6b6b;position:absolute;display:block;width:10px;height:2px;top:14px;left:10px;content:''}
+      .tagsinput .tag .tag-remove:before{-webkit-transform:rotateZ(45deg);transform:rotateZ(45deg)}
+      .tagsinput .tag .tag-remove:after{-webkit-transform:rotateZ(-45deg);transform:rotateZ(-45deg)}
+      .tagsinput div{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1}
+      .tagsinput div input{background:0 0;display:block;width:100%;font-size:14px;line-height:20px;padding:5px;border:0;margin:0 5px 5px 0}
+      .tagsinput div input.error{color:#ff6b6b}
+      .tagsinput div input::-ms-clear{display:none}
+      .tagsinput div input::-webkit-input-placeholder{color:#ccc;opacity:1}
+      .tagsinput div input:-moz-placeholder{color:#ccc;opacity:1}
+      .tagsinput div input::-moz-placeholder{color:#ccc;opacity:1}
+      .tagsinput div input:-ms-input-placeholder{color:#ccc;opacity:1}
+</style>
+<div class="containerbg">
+    <div class="box box-danger">
+        <div class="loaderContainer" style="display:none;">
+            <div class="loader"></div>
+          </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Partner List</h3>
+            <span class="btn-group pull-right">
+              <button class="btn btn-danger btn-sm" type="button" onclick="return onclear();">
+                <span class="hidden-xs">Clear Data</span>
+                <span class="fa fa-refresh"></span>
+              </button>
+            </span>
+            <div class="btn-group pull-right" style="padding-right: 10px;">
+              <button id="byTime" selectedText="all" class="btn btn-default dropdown-toggle" data-toggle="dropdown">All Time</button>
+              <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+              <ul class="dropdown-menu byTime-menu">
+                <li><a href="javascript:;" data="all">All Time</a></li>
+                <li><a href="javascript:;" data="1">1Hr</a></li>
+                <li><a href="javascript:;" data="6">6Hr</a></li> 
+              </ul>
+            </div>
+        </div> 
+        <div class="col-sm-2 col-xs-6">
+          <div class="box box-info"> 
+              <div class="box-body"> 
+                 <div class="pull-right">
+                  <img src="../images/new/consumer-people.png" height="24" width="24" />      
+                </div>
+                  <div class="inner">
+                    <p style="color: #003443">
+                      <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                      <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="totalPartner">0</span>
+                    </p> 
+                    <p style="color: gray">Total Partner</p>
+                  </div>  
+              </div>                      
+            </div> 
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="box box-warning"> 
+            <div class="box-body">
+               <div class="pull-right">
+<img src="../images/new/gold.png" height="24" width="24" />      
+</div>
+                <div class="inner">
+                  <p style="color: #003443">
+                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                    <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="cstock24k">0</span>
+                  </p> 
+                  <p style="color: gray">TruCoin Gold</p>
+                </div> 
+            </div>                      
+          </div> 
+      </div>
+      <div class="col-sm-2 col-xs-6">
+        <div class="box box-default"> 
+            <div class="box-body">
+              <div class="pull-right">
+<img src="../images/new/silver.png" height="28" width="35" />      
+</div>
+                <div class="inner">
+                  <p style="color: #003443">
+                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                     <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="cstock99p">0</span>
+                  </p> 
+                  <p style="color: gray">TruCoin Silver</p>
+                </div> 
+            </div>                      
+          </div></div> 
+      <div class="col-sm-3 col-xs-6">
+        <div class="box box-success"> 
+            <div class="box-body">
+  <div class="pull-right">
+            <img src="../images/new/wallet.png" height="24" width="24" />      
+          </div>
+                <div class="inner">
+                  <p style="color: #003443">
+                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                    <i class="mdi mdi-currency-inr spinnerVal hidden"></i> <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="walBal">0</span>
+                  </p> 
+                  <p style="color: gray">Total Wallet Balance</p>
+                </div> 
+            </div>                      
+          </div> 
+    </div>
+        <div class="box-body">
+          <div class="col-md-12">
+            <div class="row"> 
+              <%- include ('../common/filterUp'); %> 
+              <div class="col-sm-4 col-xs-12">
+              <%- include ('../common/partnerfilter'); %>
+              </div>  
+              
+              <div class="col-sm-2 col-xs-7">
+                <div class="btn-group pull-right">
+                  <button id="byOptions" selectedText="all" class="btn btn-default dropdown-toggle" data-toggle="dropdown">KYC Status</button>
+                  <button class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu trudropdown-menu">
+                    <li><a href="javascript:;" data="all">All</a></li>
+                    <li><a href="javascript:;" data="active">Active</a></li> 
+                    <li><a href="javascript:;" data="notactive">Not Activated</a></li> 
+                    <li><a href="javascript:;" data="pending">KYC Pending</a></li>
+                    <li><a href="javascript:;" data="holder">ON Hold</a></li>
+                    <li><a href="javascript:;" data="banned">Banned</a></li>
+                    <li><a href="javascript:;" data="blocked">Blocked</a></li>
+                  </ul>
+                </div></div>
+                  <div class="col-sm-2 col-xs-5"> 
+                  <div class="btn-group pull-right">
+                    <button id="bySort" selectedText="desc" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Desc <i class="fa fa-calendar" aria-hidden="true"></i></button>
+                    <button class="btn dropdown-toggle" data-toggle="dropdown">
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu truasc-menu">
+                       <li><a href="javascript:;" title="Wallet balance by descending order" data="walletd"><img src="../images/new/wallet.png" height="24" width="24" /> <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></a></li> 
+                      <li><a href="javascript:;" title="Wallet balance by ascending order" data="walleta"><img src="../images/new/wallet.png" height="24" width="24" /> <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></a></li>
+                      <li><a href="javascript:;" title="TruCoin Gold by descending order" data="goldd"><img src="../images/new/gold.png" height="24" width="24" /> <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></a></li> 
+                      <li><a href="javascript:;" title="TruCoin Gold by ascending order" data="golda"><img src="../images/new/gold.png" height="24" width="24" /> <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></a></li>
+                      <li><a href="javascript:;" title="TruCoin Silver by descending order" data="silverd"><img src="../images/new/silver.png" height="26" width="30" /> <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></a></li> 
+                      <li><a href="javascript:;" title="TruCoin Silver by ascending order" data="silvera"><img src="../images/new/silver.png" height="26" width="30" /> <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></a></li>
+                      <li><a href="javascript:;" title="Create Date by descending order" data="asc">Asc <i class="fa fa-calendar" aria-hidden="true"></i></a></li> 
+                      <li><a href="javascript:;" title="Create Date by ascending order" data="desc">Desc <i class="fa fa-calendar" aria-hidden="true"></i></a></li> 
+                    </ul>
+                  </div>
+              </div> 
+            </div>
+        </div>
+            <div class="col-md-12">
+                <div class="row summarycard">
+                    <div class="col-md-12">
+                        <table id="rQueue" class="table table-bordered table-striped dt-responsive" style="width: 100% !important">
+                            
+                        </table>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModals" data-backdrop="static" data-keyboard="false" style="padding-left: 17px;padding-top: 17px;" >
+    <div class="modal-dialog mymodal-dialogs" style="width: revert;margin: 0px auto;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            Partner KYC
+            <div class="pull-right">
+              <button
+                type="button"
+                class="close text-danger"
+                data-dismiss="modal"
+              >
+                <i class="fa fa-times"></i>
+              </button>
+              <label
+                id="lblstatus"
+                class=" pull-right label label-success"
+                style="margin-top: 4px; margin-right: 5px"
+              >
+                <span id="accountStatus"></span>
+                <input
+                  type="hidden"
+                  id="cdnURL"
+                  value="<%- config.entityDoc  %>"
+                />
+              </label>
+            </div>
+          </h4>
+        </div>
+
+        <div
+          id="entityDetailsLoader"
+          class="loaderContainer"
+          style="display:none;"
+        >
+          <div class="loader"></div>
+        </div>
+        <div class="modal-body">
+          <section>
+            <div class="activation"> 
+              <div class="row">
+                <div class="col-sm-4">
+                  <table
+                    style="clear: both"
+                    class="table table-bordered table-striped"
+                    id="user">
+                    <tbody>
+                    <tr>
+                                                      <td>Company Name :</td>
+                                                      <td width="65%"><a href="javascript:;" id="txtcname" data-type="text"
+                                                              data-pk="1" data-title="Enter username"
+                                                              class="editable editable-click editable-disabled"
+                                                              data-original-title="" title=""></a></td>
+                                                  </tr>
+                      <tr>
+                        <td>First Name :</td>
+                        <td width="65%">
+                          <a
+                            href="#"
+                            id="txtfname"
+                            data-type="text"
+                            data-pk="1"
+                            data-title="Enter username"
+                            class="editable editable-click editable-disabled"
+                            data-original-title=""
+                            title=""
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Middle Name :</td>
+                        <td width="65%">
+                          <a
+                            href="#"
+                            id="txtmname"
+                            data-type="text"
+                            data-pk="1"
+                            data-title="Enter username"
+                            class="editable editable-click editable-disabled"
+                            data-original-title=""
+                            title=""
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Last Name :</td>
+                        <td width="65%">
+                          <a
+                            href="#"
+                            id="txtlname"
+                            data-type="text"
+                            data-pk="1"
+                            data-title="Enter username"
+                            class="editable editable-click editable-disabled"
+                            data-original-title=""
+                            title=""
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Gender :</td>
+                        <td>
+                          <a
+                            href="#"
+                            id="sex"
+                            data-type="select"
+                            data-title="Select sex"
+                            class="editable editable-click editable-disabled"
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Date Of Birth :</td>
+                        <td>
+                          <a
+                            href="#"
+                            id="dob"
+                            data-type="combodate"
+                            data-value=""
+                            data-format="YYYY-MM-DD"
+                            data-viewformat="DD/MM/YYYY"
+                            data-template="D / MMM / YYYY"
+                            data-pk="1"
+                            data-title="Select Date of birth"
+                            class="editable editable-click editable-disabled"
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Mobile No :</td>
+                        <td width="65%">
+                          <a
+                            href="#"
+                            id="txtmobile"
+                            data-type="text"
+                            data-pk="1"
+                            data-title="Enter Mobile no"
+                            class="editable editable-click editable-disabled"
+                            data-original-title=""
+                            title=""
+                          ></a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Email ID :</td>
+                        <td width="65%">
+                          <a
+                            href="#"
+                            id="txtemail"
+                            data-type="text"
+                            data-pk="1"
+                            data-title="Enter Email Id"
+                            class="editable editable-click editable-disabled"
+                            data-original-title=""
+                            title=""
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table
+                    style="clear: both"
+                    class="table table-bordered table-striped"
+                    id="user"
+                  >
+                    <tbody>
+                      <tr>
+                        <td>Contact Address :</td>
+                        <td width="65%">
+                          <a
+                            href="#"
+                            id="txtaddress"
+                            class="editable editable-click editable-disabled"
+                            data-type="address"
+                            data-pk="1"
+                            data-title="Please, fill address"
+                          ></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table
+                    style="clear: both"
+                    class="table table-bordered table-striped"
+                    id="users6">
+                    <tbody>
+                      <tr><td colspan="2">
+                        <div class="btnup">
+                          <div id="progress-wrp">
+                            <div class="progress-bar"></div>
+                            <div class="status">0%</div>
+                          </div>
+                          <div id="output"></div>
+                        </div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="col-sm-8">
+                  <div class="container-fuild">
+                    <div class="row">
+                      <div class="moreupload"></div>
+                      <div class="col-sm-6 dockychide hidden">
+                        <div class="container-fuild">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <div class="row">
+                                <div class="col-12">
+                                  <h5 class="docheader">National ID</h5>
+                                  <p class="small text-danger">
+                                    KYC document should match one of the billing
+                                    / permanent address
+                                  </p>
+                                </div>
+
+                                <div class="col-xs-6">
+                                  <div class="form-group">
+                                    <!-- <div class="input-group"> -->
+                                    <select
+                                      class="form-control subdmitId"
+                                      id="cmbBox"
+                                      type="text"
+                                      name="submitId[]"
+                                      required=""
+                                      placeholder=""
+                                    >
+                                      <option value="0">Select Document</option>
+                                      <option value="AadhaarCard"
+                                        >Aadhaar Card</option
+                                      >
+                                    </select>
+                                    <!--  </div>
+                                                                          <p class="text-danger" id="error_cmbBox"></p> -->
+                                  </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                  <div class="form-group">
+                                    <input
+                                      class="form-control kycdocnum number"
+                                      id="docNumber"
+                                      type="tel"
+                                      name="kycdocnum[]"
+                                      maxlength="12"
+                                      required=""
+                                      placeholder="Enter your Aadhaar number"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                  <div class="row aadhaar">
+                                    <div class="col-sm-6">
+                                      <div class="uploadWrapper">
+                                        <form
+                                          class="imageUploadForm front"
+                                          id="imageUploadForm"
+                                        >
+                                          <span
+                                            class="helpText"
+                                            id="helpText"
+                                          ></span>
+                                          <input
+                                            class="uploadButton kycdoc"
+                                            id="docFrontFile"
+                                            type="file"
+                                            accept="image/*"
+                                            data-type="aadhaarfront"
+                                          />
+                                          <div
+                                            class="uploadedImg"
+                                            id="uploadedImg"
+                                          ></div>
+                                        </form>
+                                        <p class="small text-center">
+                                          Aadhaar front side.
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="uploadWrapper">
+                                        <form
+                                          class="imageUploadForm back"
+                                          id="imageUploadForm1"
+                                        >
+                                          <span
+                                            class="helpText"
+                                            id="helpText1"
+                                          ></span>
+                                          <input
+                                            class="uploadButton kycdoc"
+                                            id="docBackFile"
+                                            type="file"
+                                            name="files[]"
+                                            accept="image/*"
+                                            data-type="aadhaarback"
+                                          />
+                                          <div
+                                            class="uploadedImg"
+                                            id="uploadedImg1"
+                                          ></div>
+                                        </form>
+                                        <p class="small text-center">
+                                          Aadhaar back side.
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <div class="dockychide hidden">
+                                    <input
+                                      type="button"
+                                      value="Upload"
+                                      class="btn btn-danger btn-sm"
+                                      id="uploadKYCDoc"
+                                      onclick="uploadKYCDoc(this);"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6 pandockychide hidden">
+                        <div class="row pan">
+                          <div class="col-12">
+                            <h5 class="docheader">
+                              Tax ID&nbsp;<small>(Optional)</small>
+                            </h5>
+                            <p class="small text-danger">
+                              * For transactions above Rs. 50,000 in cash will
+                              require pan card
+                            </p>
+                          </div>
+                          <div class="col-xs-6">
+                            <div class="form-group">
+                              <select
+                                class="form-control pansubdmitId"
+                                id="cmbpanCard"
+                                type="text"
+                                required=""
+                                disabled=""
+                                name="submitId[]"
+                                placeholder=""
+                              >
+                                <option value="PANCard">PAN Card</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-xs-6">
+                            <div class="form-group">
+                              <input
+                                class="form-control"
+                                id="docNumber1"
+                                type="text"
+                                name="kycdocpan[]"
+                                maxlength="10"
+                                required=""
+                                placeholder="Enter your PAN number"
+                              />
+                            </div>
+                            <p class="text-danger" id="error_docNumber1"></p>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <div class="uploadWrapper">
+                              <form
+                                class="imageUploadForm pan"
+                                id="imageUploadForm2"
+                              >
+                                <span class="helpText" id="helpText2"></span>
+                                <input
+                                  class="uploadButton kycdocpan"
+                                  id="kycdocFile1"
+                                  type="file"
+                                  name="files[]"
+                                  accept="image/*"
+                                  data-type="pan"
+                                />
+                                <div
+                                  class="uploadedImg"
+                                  id="uploadedImg2"
+                                ></div>
+                              </form>
+                              <p class="small text-center">
+                                PAN front side
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="pull-right pandockychide hidden">
+                              <input
+                                type="button"
+                                value="Upload"
+                                class="btn btn-danger btn-sm"
+                                id="uploadKYCPAN"
+                                onclick="uploadKYCPAN(this);"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div> 
+    <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Document Preview</h4>
+        </div>
+        <div class="modal-body">
+          <img src="" id="docviewer" style="width: 100%; height: 264px;" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="mailModal" tabindex="-1" role="dialog" aria-labelledby="mailModalModalLabel" aria-hidden="true" style="padding-left: 17px;padding-top: 17px;">
+    <div class="modal-dialog mymodal-dialogs" style="width: revert;margin: 0px auto;">
+      <div class="modal-content"> 
+        <div class="modal-body">
+            <input type="hidden" id="txEmailClient" />      
+         <button type="button" class="close" onclick="return closeMailModal();">
+            <span aria-hidden="true">&times;</span>
+          </button>      
+          <%- include ('./email.ejs'); %>
+        </div>
+      </div>
+    </div>
+</div> 
+</div>
+<script src="js/magnefying.js"></script>
+<script src="js/upload.js"></script>
+<script src="api/entityApi/filter.js"></script>

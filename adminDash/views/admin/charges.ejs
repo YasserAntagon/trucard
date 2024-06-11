@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include ('./partials/head'); %> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/theme/dracula.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.css">  
+  <script src="https://codemirror.net/mode/javascript/javascript.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.5.0/math.js"></script>   
+  <link rel="stylesheet" href="css/editable.css">
+  <style>
+    table.dataTable>tbody>tr.child span.dtr-title {
+  min-width: 200px
+  }
+  .cm_operator{
+    color: #bd93f9;
+  }
+  .cm_help{
+    color: #ffb86c;
+  }
+  .cm-value{
+    color: #50fa7b;
+  }
+  .container
+  {
+    position: relative;
+  height: 400px;
+  width: 100%;
+  }
+  .CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+  }
+  </style>
+
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+  <div class="wrapper">
+    <%- include ('./partials/header'); %><div class="content-wrapper">
+      <div class="containerbg chargesList">
+        <div class="box box-info">
+          <div id="loader" class="loaderContainer chargesLoader" style="display:none;">
+            <div class="loader"></div>
+          </div>
+          <div class="box-header with-border">
+            <h3 class="box-title">Set Charges - Its applicable for all. (Global Charges)</h3>
+          </div>
+          <div class="box-body lbmaRate no-padding">
+            <div class="col-md-4">
+              <table style="clear: both" class="table table-bordered table-striped" id="txnTable">
+                <thead>
+                  <th>
+                      Title
+                  </th>
+                  <th>
+                    Values
+                  </th>
+                  <th>
+                    Variable
+                  </th>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+  <table style="clear: both" class="table table-bordered table-striped" id="user">
+        <thead>
+          <th>
+              Title
+          </th>
+          <th>
+            Values
+          </th>
+          <th>
+            Variable
+          </th>
+        </thead>
+    <tbody>
+  <tr class="d2d">
+    <td width="80%">Default Partner Revenue Share :<br />
+      <small class="text text-warning">Applicable on Transation Fee & Client Charges</small>
+    </td>
+    <td width="80%"><a href="javascript:;" id="partnerCharges" data-type="text" data-pk="1"
+        data-title="Partner default revenue share charges" class="editable editable-click editable-disabled"
+        data-original-title="" title="">40</a> %</td>
+    <td class="text text-success">pRevShare</td>
+  </tr>
+  <tr class="d2d">
+    <td width="80%">Company Revenue Share :<br />
+      <small class="text text-warning">Applicable on Transation Fee & Client Charges</small> 
+    </td>
+    <td width="80%"><a href="javascript:;" id="txtCompanyShare" data-type="text" data-pk="1"
+        data-title=" default revenue share charge" class="editable editable-click editable-disabled"
+        data-original-title="" title="">30</a> %</td>
+        <td class="text text-success">truRevShare</td>
+  </tr>
+  </tbody></table>
+</div>
+            <div class="col-md-8"> 
+                <div class="row">
+                  <div class="col-sm-12 col-xs-12">
+                    <div class="box box-widget box-widgets">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">All formulae with value
+                            </h3>
+                            <span class="pull-right"> <input type="button" disabled="disabled" onclick="confirmCharges();" class="btn btn-success fa fa-cart pull-right" id="btnSubmit" value="Submit" /></span>
+                        </div>
+                        <div class="box-body">
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                                aria-expanded="true" aria-controls="collapseOne">
+                                                Buy by Bullion  
+                                            </a> 
+                                        </h4>
+                                        
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                        aria-labelledby="headingOne">
+                                        <div class="panel-body"> 
+                                          <div class="col-md-7">
+                                          <div class="box box-widget widget-user-2">
+                                            <div class="box-body box-bodys">
+                                              <h5 class="card-title1">
+                                                Buy Formula :
+                                              </h5>
+                                            </div>
+                                            <div class="box-footer no-padding">  
+                                              <textarea class="CodeMirror" id='editor'>
+                                              </textarea>
+                                            </div> 
+                                                  </div></div><div class="col-md-5">
+                                                      <div class="box box-widget widget-user-2">
+                                                        <div class="box-body box-bodys">
+                                                          <h5 class="card-title1">
+                                                            Result :
+                                                          </h5>
+                                                        </div>
+                                                        <div class="box-footer no-padding">                                                            
+                                                          <div class="box-footer" style="background-color: #282a36;" id="broadcastResult">                                                           
+                                                          </div></div></div></div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                  <div class="panel-heading" role="tab" id="headingtwo">
+                                      <h4 class="panel-title">
+                                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                                              aria-expanded="false" aria-controls="collapseTwo">
+                                              Sell
+                                          </a> 
+                                      </h4>                                      
+                                  </div>
+                                  <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
+                                      aria-labelledby="headingtwo">
+                                      <div class="panel-body"> 
+                                        <div class="col-md-7">
+                                        <div class="box box-widget widget-user-2">
+                                          <div class="box-body box-bodys">
+                                            <h5 class="card-title1">
+                                              Sell Formula :
+                                            </h5>
+                                          </div>
+                                          <div class="box-footer no-padding">  
+                                            <textarea class="CodeMirror" id='editorSell'>
+                                            </textarea>
+                                          </div> 
+                                                </div> 
+                                              </div> <div class="col-md-5">
+                                                    <div class="box box-widget widget-user-2">
+                                                      <div class="box-body box-bodys">
+                                                        <h5 class="card-title1">
+                                                          Result :
+                                                        </h5>
+                                                      </div>
+                                                      <div class="box-footer no-padding">                                                            
+                                                        <div class="box-footer" style="background-color: #282a36;" id="broadcastSellResult">                                                           
+                                                        </div></div></div> </div> 
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingthree">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseThree">
+                                            Transfer
+                                        </a> 
+                                    </h4>                                      
+                                </div>
+                              <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel"
+                                      aria-labelledby="headingthree">
+                                      <div class="panel-body"> 
+                                        <div class="col-md-7">
+                                        <div class="box box-widget widget-user-2">
+                                          <div class="box-body box-bodys">
+                                            <h5 class="card-title1">
+                                              Transfer Formula :
+                                            </h5>
+                                          </div>
+                                          <div class="box-footer no-padding">  
+                                            <textarea class="CodeMirror" id='editorTransfer'>
+                                            </textarea>
+                                          </div> 
+                                                </div></div> <div class="col-md-5">
+                                                    <div class="box box-widget widget-user-2">
+                                                      <div class="box-body box-bodys">
+                                                        <h5 class="card-title1">
+                                                          Result :
+                                                        </h5>
+                                                      </div>
+                                                      <div class="box-footer no-padding">                                                            
+                                                        <div class="box-footer" style="background-color: #282a36;" id="broadcastTransferResult">                                                           
+                                                        </div></div></div></div> 
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>   
+  <script src="js/globalVal.js" type="text/javascript"></script>
+  <script src="js/edit.js" type="text/javascript"></script>
+  <script src="api/admin/controllers/verifyTPIN.js"></script>
+  <script src="api/admin/controllers/chargesnew.js?v=2" type="text/javascript"></script>
+  <script src="api/admin/controllers/chargesControl.js"></script>
+  <%- include ('./partials/footer'); %>
+</body>
+</html>

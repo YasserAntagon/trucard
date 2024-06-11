@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/head'); %>
+    <link rel="stylesheet" href="truComponents/bootstrap-daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+    <link href="css/entity/summary.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/entity/certi.css">
+    <link rel="stylesheet" href="css/tags.css" />
+    <style>
+        .roundedsearch {
+            border: 1px solid #d2d6de;
+            border-radius: 25px;
+            padding: 2px 12px;
+        }
+
+        #txtsearch {
+            border: none;
+        }
+
+        .btn-flat {
+            background-color: transparent;
+        }
+
+        .invoice {
+            margin: 0;
+        }
+
+        #myModals .modal-dialog {
+            min-width: 60%;
+        }
+
+        #myModals th:nth-child(1) {
+            width: 24%;
+        }
+
+        #myModals th:nth-child(2) {
+            width: 37%;
+        }
+        #myModals th:nth-child(3) {
+            width: 37%;
+        }
+    </style> 
+    <%- include ('./partials/lHeader'); %>
+    <%- include ('./../common/partnerAdminHeader'); %>   
+    <%- include ('./../common/consumerReport'); %>
+</div>
+</div>
+</div>
+    <%- include ('./partials/lfooter'); %>
+    <script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/datatable/dataTables.responsive.min.js"></script>
+    <script src="js/datatable/responsive.bootstrap4.min.js"></script>
+    <script src="js/datatable/dataTables.buttons.min.js"></script>
+    <script src="js/datatable/buttons.bootstrap4.min.js"></script>
+    <script src="js/datatable/jszip.min.js"></script>
+    <script src="js/datatable/pdfmake.min.js"></script>
+    <script src="js/datatable/vfs_fonts.js"></script>
+    <script src="js/datatable/buttons.html5.min.js"></script>
+    <script src="js/datatable/buttons.print.min.js"></script>
+    <script src="js/datatable/buttons.colVis.min.js"></script>
+    <script src="js/entity/mustache.min.js"></script>
+    <script src="js/html2pdf.bundle.js"></script>  
+     <script src="js/tags.js"></script>
+    <script src="api/admin/controllers/paymentRefund.js"></script> 
+    <script src="api/viewinvoicenew.js"></script>
+    <script src="api/consumerApi/controllers/filterModal.js"></script>
+    <script src="api/consumerApi/controllers/gstTransaction.js"></script>
+    <script src="api/consumerApi/controllers/walletTrasaction.js"></script> 
+    <script src="js/moment.js"></script>
+</body>
+</html>

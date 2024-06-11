@@ -1,0 +1,105 @@
+<div class="col-md-12 hidden showstock">
+    <div class="box box-widget box-widgets">
+      <section class="invoice">
+        <!-- title row -->
+        <div class="row no-print">
+          <div class="col-xs-12">
+            <a title="close preview" href="javascript:;" class="pull-right btnstohide" style="margin-right: 5px;">
+              <i class="fa fa-2x fa-times text text-danger"></i>
+            </a>
+          </div>
+        </div>
+        <div class="target-output"></div>
+        <div class="target-payment"></div>
+        <div class="row no-print">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-danger pull-right btnstohide" style="margin-right: 5px;">
+              Close
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="modal fade" id="bankmodel" data-keyboard="false">
+    <div class="modal-dialog modal-dialogs">
+      <div class="modal-content">
+        <div class="modal-body">
+          <strong>Bank Transaction Status</strong>
+          <button type="button" class="close text-danger" data-dismiss="modal">
+            <i class="fa fa-times"></i>
+          </button>
+          <br />
+          <hr style="margin-top:10px;" />
+          <div id="txnload" style="text-align: center;">
+            <div id="overlay"><img src="images/reloader.gif" alt="Be patient..." />
+              <div class="text">Please wait....</div>
+            </div>
+          </div>
+          <div id="txnSuccess" class="hidden">
+            <table class="table table-bordered">
+              <tr>
+                <td id="utr"></td>
+                <td id="btransactionID"></td>
+              </tr>
+              <tr>
+                <td>Amount</td>
+                <td id="bamount"></td>
+              </tr>
+              <tr>
+                <td>Account No.</td>
+                <td id="baccno"></td>
+              </tr>
+              <tr>
+                <td>Mode of Payment</td>
+                <td id="bmop"></td>
+              </tr>
+              <tr>
+                <td>Transaction Time</td>
+                <td id="dtxnDate"></td>
+              </tr>
+              <tr>
+                <td>Transaction Status</td>
+                <td id="bstatus"></td>
+              </tr>
+              <tr>
+                <td>Bank Txn Status</td>
+                <td id="btxnStatus"></td>
+              </tr>
+              <tr class="amtcount hidden">
+                <td>Beneficiary Received ? ( Only In NEFT)</td>
+                <td id="breceived"></td>
+              </tr>
+              <tr>
+                <td colspan="3" id="etxnstat" class="text-red"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModalInvoice" data-bs-focus="false" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-dialogs">
+      <div class="modal-content"> 
+        <%- include ('./viewinvoicenew'); %>
+        <div class="modal-body">
+          <div class="col-md-12">
+          <div class="target-payment"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModals" data-bs-focus="false" data-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-dialogs">
+      <div class="modal-content">  
+        <div class="modal-body">
+          <span class="wallet-output"></span>
+          <div class="col-md-12">
+            <div class="target-payment"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>

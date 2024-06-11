@@ -1,0 +1,15 @@
+{
+    "router":"http://localhost",
+    "clusterServer":"http://localhost",
+    "emailServer":"http://localhost",
+    "otpServer":"http://localhost",
+    "adminRouter":"http://localhost",
+    "adminAuth":"http://localhost",
+    "adminCore":"http://localhost",
+    "notifyServer":"http://localhost",
+    "adminPartner":"http://localhost",
+    "cdn":"http://localhost:3111",
+    "pgServer":"http://localhost:3117", 
+    "ifscurl":"http://localhost:3111",
+    "randomOTP": false
+}

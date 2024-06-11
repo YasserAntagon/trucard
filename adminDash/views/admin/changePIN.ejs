@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head><%- include ('./partials/head'); %>
+  <body class="skin-blue fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+      <%- include ('./partials/header'); %><div class="content-wrapper">
+        <div class="containerbg">
+          <div>
+            <div class="login-box">
+              <div class="login-logo">
+
+                <!--   <a href="javascript:;"><img src="images/logo/logo.png" width="150px"/> </a> -->
+              </div>
+              <!-- /.login-logo -->
+              <div class="login-box-body">
+                <div id="changetPinLoader" class="loaderContainer" style="display:none;">
+                  <div class="loader"></div>
+                </div>
+                <img src="images/notifyicon/lock.png" class="center" />
+                <p class="login-box-msg">Change your Transaction PIN Here...</p>
+
+                <form method="post">
+                  <div class="form-group has-feedback">
+                    <input type="password" id="txttpin" maxlength="6" class="form-control" placeholder="Enter TPIN">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <div class="text-danger" id="error_pass"></div>
+                  </div>
+
+                  <div class="form-group has-feedback">
+                    <input type="password" id="txtctpin" maxlength="6" class="form-control"
+                      placeholder="Enter confirm TPIN">
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <div class="text-danger" id="error_cpass"></div>
+                  </div>
+
+                  <div class="row">
+                    <!-- /.col -->
+                    <div class="col-xs-6">
+                      <button type="submit" id="btnChange" disabled class="btn btn-primary btn-block btn-flat">Change
+                        TPIN</button>
+                    </div>
+                  </div>
+                  <br>
+                </form>
+                <!--    <button type="button" id="btnLoki" class="btn btn-primary btn-block btn-flat">Add Loki</button> -->
+                <!-- /.social-auth-links -->
+
+
+
+              </div>
+            </div>
+            <!-- /.login-box -->
+
+            <script src="api/admin/controllers/changeTPIN.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+  </body>
+</html>

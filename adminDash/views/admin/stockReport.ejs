@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ('./partials/head'); %>
+<link rel="stylesheet" href="css/upload.css" />
+<link rel="stylesheet" href="truComponents/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="truComponents/bootstrap-daterangepicker/daterangepicker.css" />
+<script src="js/pages/tags.js"></script>
+<style>
+       label{display: block;padding: 20px 0 5px 0;}
+      .tagsinput,.tagsinput *{box-sizing:border-box}
+      .tagsinput{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;background:#fff;font-family:sans-serif;font-size:14px;line-height:20px;color:#556270;padding:5px 5px 0;border:1px solid #e6e6e6;border-radius:2px}
+      .tagsinput.focus{border-color:#ccc}
+      .tagsinput .tag{position:relative;background:#556270;display:block;max-width:100%;word-wrap:break-word;color:#fff;padding:5px 30px 5px 5px;border-radius:2px;margin:0 5px 5px 0}
+      .tagsinput .tag .tag-remove{position:absolute;background:0 0;display:block;width:30px;height:30px;top:0;right:0;cursor:pointer;text-decoration:none;text-align:center;color:#ff6b6b;line-height:30px;padding:0;border:0}
+      .tagsinput .tag .tag-remove:after,.tagsinput .tag .tag-remove:before{background:#ff6b6b;position:absolute;display:block;width:10px;height:2px;top:14px;left:10px;content:''}
+      .tagsinput .tag .tag-remove:before{-webkit-transform:rotateZ(45deg);transform:rotateZ(45deg)}
+      .tagsinput .tag .tag-remove:after{-webkit-transform:rotateZ(-45deg);transform:rotateZ(-45deg)}
+      .tagsinput div{-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1}
+      .tagsinput div input{background:0 0;display:block;width:100%;font-size:14px;line-height:20px;padding:5px;border:0;margin:0 5px 5px 0}
+      .tagsinput div input.error{color:#ff6b6b}
+      .tagsinput div input::-ms-clear{display:none}
+      .tagsinput div input::-webkit-input-placeholder{color:#ccc;opacity:1}
+      .tagsinput div input:-moz-placeholder{color:#ccc;opacity:1}
+      .tagsinput div input::-moz-placeholder{color:#ccc;opacity:1}
+      .tagsinput div input:-ms-input-placeholder{color:#ccc;opacity:1}
+</style>
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+  <div class="wrapper">
+      <%- include ('./partials/header'); %>
+      <div class="content-wrapper">
+        <div class="containerbg">
+    <div class="box box-danger">
+        <div class="loaderContainer" style="display:none;">
+            <div class="loader"></div>
+          </div>
+        <div class="box-header with-border">
+            <h3 class="box-title">Daily Stock Report</h3> 
+            <span class="btn-group pull-right">
+              <button class="btn btn-danger btn-sm" type="button" onclick="return onclear();">
+                <span class="hidden-xs">Clear Data</span>
+                <span class="fa fa-refresh"></span>
+              </button>
+            </span>
+        </div>  
+         <div class="box-body">
+          <div class="col-sm-12 col-xs-12">
+            <div class="box-body">
+                <div class="row"> 
+                  <%- include ('../common/filterUp'); %> 
+                  <div class="col-sm-4 col-xs-12">
+                    <%- include ('../common/partnerfilter'); %>
+                  </div> 
+                  <div class="col-sm-4 col-xs-12">
+                    <%- include ('../common/consumerFilter'); %>
+                  </div>
+                </div>   </div></div>
+               
+                <div class="box-body">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">TOTAL DEBIT / CREDIT</h3>   
+                </div> 
+                <div class="row"> 
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box box-info"> 
+                          <div class="box-body">
+                          <div class="pull-right">
+                              <img src="../images/new/gold.png" height="36" width="36" />      
+                          </div>
+                          <div class="inner">
+                              <p style="color: #003443">
+                                  <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                  <span style="font-size: 14px; font-weight: bold" id="g24kdebit" class="spinnerVal"></span>
+                              </p>
+                              <p style="color: gray;text-transform: capitalize">Total Debited</p>
+                          </div>
+                          </div>                      
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box box-info"> 
+                          <div class="box-body">
+                          <div class="pull-right">
+                              <img src="../images/new/gold.png" height="36" width="36" />      
+                          </div>
+                          <div class="inner">
+                              <p style="color: #003443">
+                                  <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                  <span style="font-size: 14px; font-weight: bold" id="g24kcredit" class="spinnerVal"></span>
+                              </p>
+                              <p style="color: gray;text-transform: capitalize">Total Credited</p>
+                          </div>
+                          </div>                      
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                      <div class="box box-info"> 
+                          <div class="box-body">
+                          <div class="pull-right">
+                              <img src="../images/new/silver.png" height="36" width="36" />      
+                          </div>
+                          <div class="inner">
+                              <p style="color: #003443">
+                                  <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                  <span style="font-size: 14px; font-weight: bold" id="s99pdebit" class="spinnerVal"></span>
+                              </p>
+                              <p style="color: gray;text-transform: capitalize">Total Debited</p>
+                          </div>
+                          </div>                      
+                      </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="box box-info"> 
+                            <div class="box-body">
+                            <div class="pull-right">
+                                <img src="../images/new/silver.png" height="36" width="36" />      
+                            </div>
+                            <div class="inner">
+                                <p style="color: #003443">
+                                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                    <span style="font-size: 14px; font-weight: bold" id="s99pcredit" class="spinnerVal"></span>
+                                </p>
+                                <p style="color: gray;text-transform: capitalize">Total Credited</p>
+                            </div>
+                            </div>                      
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-body"> 
+          <div class="box-header with-border">
+            <h3 class="box-title">CONSUMER</h3>   
+          </div> 
+          <div  id="dailystockid"> 
+          </div>
+        </div>
+      <!--   <div class="box-body"> 
+          <div class="box-header with-border">
+            <h3 class="box-title">Partner (SELF)</h3>   
+          </div> 
+          <div  id="dailystockid"> 
+          </div>
+        </div> -->
+</div></div></div></div>
+<%- include ('./partials/footer'); %> 
+<script src="api/admin/controllers/dailyStockReport.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Company Admin Login</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      name="viewport" />
+    <!-- Bootstrap 3.3.7 -->
+    <link
+      rel="stylesheet"
+      href="truComponents/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/icons.css" />
+    <!-- Ionicons -->
+    <!--   <link rel="stylesheet" href="truComponents/Ionicons/css/ionicons.min.css"> -->
+    <!-- Theme style -->
+    <link rel="stylesheet" href="css/skins/_all-skins.min.css" />
+    <link rel="stylesheet" href="css/AdminLTE.css" />
+    <link rel="stylesheet" href="css/loader.css" />
+    <!-- Google Font -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"
+    />
+    <style>
+      .digit-group {
+        text-align: center;
+      }
+      .digit-group > input {
+        width: 50px;
+        height: 50px;
+        border: none;
+        text-align: center;
+        font-size: 24px;
+        font-family: "Raleway", sans-serif;
+        font-weight: 200;
+        margin: 0 2px;
+        border: 1px solid #ccc;
+      }
+
+      .splitter {
+        padding: 0 5px;
+        color: white;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+
+  <body class="hold-transition login-page">
+    <div id="loader" class="loaderContainer" style="display: none">
+      <div class="loader"></div>
+    </div>
+    <div class="login-box">
+      <div class="login-logo"></div>
+      <div class="login-box-body">
+        <img src="images/notifyicon/lock.png" class="center" />
+        <p class="login-box-msg">Verify your device using mobile</p>
+
+        <h5 class="login-box-msg text-info">
+          We sent otp on your registered mobile number i.e. <b>XXXXXXXXXX54</b>
+        </h5>
+        <div>
+          <h2 class="login-box-msg">Please enter OTP</h2>
+          <form
+            id="form"
+            class="digit-group"
+            data-group-name="digits"
+            data-autosubmit="false"
+            autocomplete="off"
+          >
+            <input autofocus
+              maxlength="1"
+              type="text"
+              id="digit-1"
+              name="digit-1"
+              data-next="digit-2"
+            />
+            <input
+              maxlength="1"
+              type="text"
+              id="digit-2"
+              name="digit-2"
+              data-next="digit-3"
+              data-previous="digit-1"
+            />
+            <input
+              type="text"
+              id="digit-3"
+              name="digit-3"
+              data-next="digit-4"
+              data-previous="digit-2"
+            />
+            <input
+              maxlength="1"
+              type="text"
+              id="digit-4"
+              name="digit-4"
+              data-next="digit-5"
+              data-previous="digit-3"
+            />
+            <input
+              maxlength="1"
+              type="text"
+              id="digit-5"
+              name="digit-5"
+              data-next="digit-6"
+              data-previous="digit-4"
+            />
+            <input
+              maxlength="1"
+              type="text"
+              id="digit-6"
+              name="digit-6"
+              data-previous="digit-5"
+            />
+          </form>
+          <hr />
+          <div class="wait">
+            Didn&apos;t receive OTP? Wait for
+            <span class="text text-danger"
+              ><span class="text text-danger" id="counter">00:00</span>
+              seconds!</span
+            >
+          </div>
+          <div id="resendOTP" class="hidden">
+            <div>Didn&apos;t receive OTP?</div>
+            <a id="resendLink" href="#" title="resend pin">Resend OTP</a>
+          </div>
+          <div class="text-danger hidden" id="limitex">
+            You have exceeded your sent OTP limit. Please try after some
+            time..!!
+          </div>
+        </div>
+        <hr />
+        <footer>
+          <center>
+            <strong
+              >Copyright &copy; 2021-2025
+              <a href="javascript:;">Company Name</a>.</strong
+            >
+            <br />All rights reserved.
+          </center>
+        </footer>
+      </div>
+    </div>
+    <script src="./truComponents/jquery/dist/jquery.min.js"></script>
+    <script src="truComponents/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/alertify.js"></script>
+    <script src="js/alertify-init.js"></script>
+    <script src="api/admin/controllers/verifyOTP.js"></script>
+  </body>
+</html>

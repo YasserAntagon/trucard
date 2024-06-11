@@ -1,0 +1,231 @@
+<link href="truComponents/bootstrap/dist/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link href="truComponents/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<link rel="stylesheet" href="truComponents/bootstrap/dist/css/bootstrap-editable.css">
+<link rel="stylesheet" href="css/entity/entity.css">
+<link rel="stylesheet" href="css/permission.css">
+<link rel="stylesheet" href="css/entity/report.css">
+<link rel="stylesheet" href="css/megaMenu.css">
+<link rel="stylesheet" href="css/breadcrumb.css">
+<script src="api/copyText.js"></script>
+</head>
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+	<%- include ('./header'); %>
+	<div class="content-wrapper">
+		<div>
+			<input type="hidden" id="txteTruid" value="<%- eData.truID  %>">
+			<input type="hidden" id="txtcrnno" value="<%- eData.CRNNo  %>">
+			<input type="hidden" id="txtisParent" value="<%- eData.isParent  %>">
+			<input type="hidden" id="eMID" value="<%- eData.MID  %>" />
+			<div id="cdetails">
+				<nav class="navbar navbar-default" role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-collapse style= collapse in" id="bs-megadropdown-tabs"
+							style="padding-left: 0px;">
+							<ul class="nav navbar-nav"> 
+								<!-- <li class="dropdown mega-dropdown">
+									<a href="/openPartnerDash?id=<%- eData.truID  %>" class="dropdown-toggle"> <i
+											class="fa fa-home"></i> Home </a> 
+										</a>
+								</li> -->
+								<li class="dropdown mega-dropdown">
+									<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i
+											class="fa fa-bars"></i> MENU <span class="caret"></span></a>
+									<ul class="dropdown-menu mega-dropdown-menu row">
+										<li class="col-sm-4">
+											<ul class="dropdown-menu-list">
+												<li class="dropdown-header">Partner Details</li>
+												<div id="myCarousel" class="carousel" data-ride="carousel">
+													<div class="box box-widget box-widgets">
+														<div class="box-body box-profile">
+															<p style="align-self: center;text-align: center;"> 
+																<% if (eData.brandLogo) { %>
+																	<img style="height: 50px;max-width: 150px;"
+																	src="<%- config.brandLogo  %><%- eData.brandLogo  %>"
+																	alt="User profile picture" />
+																<%} else if (eData.image =="0") { %>
+																	<img style="height: 80px;width: 80px;"
+																		class="img-fluid img-circle" id="consumerProImg"
+																		src="images/user.png" alt="User profile picture">
+																	<%} else { %>
+																	<img style="height: 80px;width: 80px;"
+																		class="img-fluid img-circle"
+																		src="<%- config.entityUrl  %><%- eData.image  %>"
+																		alt="User profile picture">
+																	<% } %></p>
+
+															<h3 class="profile-username text-center"><span
+																	id="txtname"><%- eData.companyName.replace('null','') %></span>
+															</h3>
+															<h5 class="text-center">
+																<strong><span id="txttruid"><%- eData.truID  %></span></strong>
+															</h5>
+															<h5 class="text-center">
+																<% if (eData.KYCFlag == "active") {%>
+																<label id="lblstatuss"
+																	class="label label-success">Active
+																</label>
+																<% } else if (eData.KYCFlag == "notactive") {%>
+																<label id="lblstatuss"
+																	class="label label-danger">Activation Pending
+																</label>
+																<% } else if (eData.KYCFlag == "blocked") {%>
+																<label id="lblstatuss"
+																	class="label label-danger">Blocked
+																</label>
+																<% } else if (eData.KYCFlag == "pending") {%>
+																<label id="lblstatuss"
+																	class="label label-warning">Pending
+																</label>
+																<% } else if (eData.KYCFlag == "banned") {%>
+																<label id="lblstatuss" class="label label-danger">Banned</label>
+																<% } else if (eData.KYCFlag == "holder") {%>
+																<label id="lblstatuss" class="label label-primary">Account On Hold</label>
+																<% }%>
+															</h5> 
+															<p class="text-muted text-center">
+																<% if(eData.address){ %>
+																<%- eData.address.houseNumber  %>
+																<%- eData.address.streetNumber  %> <br>
+																<%- eData.address.landmark  %>
+																<%- eData.address.city  %><br>
+																<%- eData.address.state  %>
+																<%- eData.address.country  %><br>
+																<%- eData.address.pin  %>
+																<% } %>
+															</p>
+															<input type="hidden" id="accountStatus"
+																value="<%- eData.KYCFlag  %>">
+														</div>
+													</div>
+											</ul>
+										</li>
+										<li class="col-sm-4">
+											<ul class="dropdown-menu-list">
+												<li class="dropdown-header">Personal
+													Details</li>
+												<li><a href="<%- linkurl.entityProfile %>"><i
+															class="fa fa-user"></i> Profile Details </a></li>
+												<li><a href="<%- linkurl.KYCDoc %>" id="dlrKYC"><i
+															class="fa fa-file-text-o"></i> KYC Document</a></li>
+												<li><a href="<%- linkurl.entityAddress %>" id="dlrAddress"><i
+															class="fa fa-address-book-o"></i> Address Details</a>
+												</li>
+												<li class="divider"></li>
+												<li class="dropdown-header">Analysis</li>
+												<li><a href="<%- linkurl.gstBreakup %>"><i class="fa fa-archive"></i>
+													GST Report</a></li>
+												 <li><a href="<%- linkurl.walletManagment %>"><i class="fa fa-archive"></i>Wallet Managment</a></li>
+																			
+
+																
+												<li class="divider"></li>
+												<li class="dropdown-header">Transactions</li>
+												<li><a href="<%- linkurl.transactions %>"><i class="fa fa-pie-chart"></i> Transaction History</a></li>
+												
+											</ul>
+										</li>
+										<li class="col-sm-4">
+											<ul class="dropdown-menu-list">
+												<li class="dropdown-header"><% if(eData.isParent){ %><% } %>Consumer List</li>
+												<li><a href="<%- linkurl.enconsumerlist %>"><i class="fa fa-users"></i>
+														Consumer List </a></li>
+												<li class="divider"></li>
+												<li class="dropdown-header">Authorization</li>
+												<li><a href="<%- linkurl.accessPermission %>"><i class="fa fa-key"></i>
+														Access Permissions </a>
+												</li>
+													<li class="dropdown-header">Bulk Email</li>
+													<li><a href="<%- linkurl.eBulkEmail %>">
+															<i class="fa fa-address-book-o text-info"></i> Bulk Email</a>
+													</li>
+											</ul>
+										</li>
+									</ul>
+
+								</li>
+							</ul>
+
+							<div class="navbar-custom-menu pull-right hidden-xs">
+								<ul class="nav navbar-nav">
+									<li> 
+										<label title="Company ID" style="cursor: pointer;margin-right: 10px;padding: 10px;" class="statusLabel label label-default lblstatus" onclick='copyTargetText(this)' data-val="<%- eData.truID  %>"><i class='fa fa-user'></i> <%- eData.truID  %> <i class='fa fa-copy'></i></label>
+									</li>
+									<li> 
+										<label title="Merchant ID" style="cursor: pointer;margin-right: 10px;padding: 10px;" class="statusLabel label label-default lblstatus" onclick='copyTargetText(this)' data-val="<%- eData.CRNNo  %>"><i class='fa fa-user'></i> <%- eData.CRNNo  %> <i class='fa fa-copy'></i></label>
+									</li>
+									<li> 
+										<label title="secret key for api" style="cursor: pointer;margin-right: 10px;padding: 10px;" class="statusLabel label label-default lblstatus" onclick='copyTargetText(this)' data-val="<%- eData.MD5  %>"><i class='fa fa-key'></i> <%- eData.MD5  %> <i class='fa fa-copy'></i></label>
+									</li>
+									<li> 
+									<div class="btn-group" id="ID<%- eData.truID  %>" style="cursor: pointer;margin-right: 10px;padding: 10px;padding-top: 15px;"> 
+										<% if (eData.KYCFlag == "active") {%>
+											<button class="btn btn-sm btn-success">Active</button>
+											<button class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu"> 
+												<li><a tabindex="-1" href="javascript:void(0);" onclick="entityLoking('blocked')">Block account</a></li>
+												<li><a tabindex="-1" tabindex="-1" href="javascript:void(0);" onclick="entityLoking('holder')">OnHold account</a></li>
+											</ul>
+										<% } else if (eData.KYCFlag == "pending") {%>
+											<button class="btn btn-warning">Pending</button>
+										<% } else if (eData.KYCFlag == "notactive") {%>
+											<button class="btn btn-warning">Not Activated</button>
+										<% } else if (eData.KYCFlag == "blocked") {%>
+											<button class="btn btn-danger">Blocked</button>
+										<% } else if (eData.KYCFlag == "banned") {%>
+											<button class="btn btn-danger">Banned</button>
+										<% } else if (eData.KYCFlag == "stopTrading") {%>
+											<button class="btn btn-danger">Stop Trading</button>
+										<% } else if (eData.KYCFlag == "holder") {%>
+											<button class="btn btn-warning">On Hold</button>
+										<% }%>
+										<% if (eData.KYCFlag == "active") {%>
+										<% } else {%>
+										<button class="btn dropdown-toggle" data-toggle="dropdown">
+											<span class="caret"></span>
+										</button>
+										<ul class="dropdown-menu"> 
+											<li><a tabindex="-1" href="javascript:void(0);" onclick="entityLoking('active')">Active account</a></li> 
+										</ul><% }%>
+									</div>
+									</li>
+									<li class="user user-menu">
+										<a href="javascript:;">
+											<span class="hidden-xs"><span
+													class="profname"><%- eData.companyName.replace('null','')  %>
+												</span></span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<!-- /.navbar-collapse -->
+					</div>
+					<!-- /.container-fluid -->
+				</nav>
+						<div class="col-lg-12"> 
+						  <div class="box box-warning">  
+						   <div class="box-body">  
+							<div class="onoffswitch5 tliveratetour"><input class="onoffswitch5-checkbox" id="myonoffswitch5" type="checkbox" name="onoffswitch5" checked=""><label class="onoffswitch5-label" for="myonoffswitch5"><span class="onoffswitch5-inner"><span class="onoffswitch5-active"><div class="breaking-news-ticker bn-effect-scroll bn-direction-ltr" id="newsTicker5" style="height: 40px; line-height: 38px; border-radius: 2px; border-width: 1px;"><div class="bn-news" style="right: 90px;"><ul style="width: 1442px; margin-left: -12px;"><li><a href="javascript:;"><span class="newsheading"><span style="padding: 1px;border-radius: 10px;font-size: 16px">BUY :</span></span></a></li><li><a href="javascript:;"><span class="bn-seperator" style="background-image: url(&quot;images/new/gold.png&quot;); width: 30px;"></span>TruCoin - 24K Gold : <span class="text text-danger"><i class="fa fa-inr">&nbsp;</i><span class="rateg24kclient">0</span></span></a></li><li><a href="javascript:;"><span class="bn-seperator" style="background-image: url(&quot;images/new/silver.png&quot;); width: 38px;"></span>TruCoin - 99%  Pure Silver : <span class="text text-danger"><i class="fa fa-inr">&nbsp;</i><span class="rates99pclient">0</span></span></a></li><li><a href="javascript:;"><span class="newsheading"><span style="padding: 1px;border-radius: 10px;font-size: 16px;">SELL :</span></span></a></li><li><a href="javascript:;"><span class="bn-seperator" style="background-image: url(&quot;images/new/gold.png&quot;); width: 30px;"></span>TruCoin - 24K Gold : <span class="text text-danger"><i class="fa fa-inr">&nbsp;</i><span class="srateg24kclient">0</span></span></a></li><li><a href="javascript:;"><span class="bn-seperator" style="background-image: url(&quot;images/new/silver.png&quot;); width: 38px;"></span>TruCoin - 99%  Pure Silver : <span class="text text-danger"><i class="fa fa-inr">&nbsp;</i><span class="srates99pclient">0</span></span></a></li></ul></div><div class="bn-controls"><button><span class="bn-arrow bn-prev"></span></button><button><span class="bn-action bn-pause"></span></button><button><span class="bn-arrow bn-next"></span></button></div></div><span class="onoffswitch5-switch"><span style="color: #003443;padding-left: 10px;"><img src="images/dashicon/Liverate.png" style="display: revert !important;" height="20px" /> Client <i class="fa fa-chevron-right"></i></span></span></span></span></label></div>
+						 </div>
+					</div></div>
+				<!-- Profile Image -->
+				<div class="box box-widget box-widgets">
+				</div> 
+								<div class="box-body box-profile">
+									<% if (breadcrumbs) {%>
+									<div class="btn-group btn-breadcrumb breadcrumb-default scp-breadcrumb">
+										<% breadcrumbs.forEach(function(crumbs, index){ %>
+											<% if (index == 0) { %>
+											<a href="/openPartnerDash?id=<%- eData.truID  %>" class="btn btn-default"><i class="fa fa-home"></i> <%- crumbs.name %></a>
+											<%} else if (index == breadcrumbs.length - 1) { %>
+												<div class="btn btn-info"><b><%- crumbs.name %></b></div>
+											<%} else { %>
+												<a href="/openPartnerDash?id=<%- eData.truID  %>" class="btn btn-default"><%- crumbs.name %></a>
+											<% } %>
+											<% }) %>
+									</div>
+									<% } %>
+								</div>
+			</div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ('./partials/head'); %>
+<link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css">
+</head>
+  <body class="skin-green fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+      <%- include ('./partials/header'); %>
+      <div class="content-wrapper">
+
+<div class="containerbg">
+
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Consumer Summary</h3>
+
+            <div class="box-tools pull-right">
+                <!--  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>-->
+                <a type="button" class="btn btn-box-tool dashboard" data-widget="remove"><i class="fa fa-times"></i></a>
+
+            </div>
+        </div>
+        <!-- /.box-header -->
+
+        
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="col-lg-12">
+                    <table id="example" class="table table-bordered table-striped">
+                        
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+      
+
+    </div>
+</div>
+</div> 
+    </div>
+    <%- include ('./partials/footer'); %>
+
+<script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="api/entityApi/controllers/consumersummary.js"></script>
+</body>
+</html>

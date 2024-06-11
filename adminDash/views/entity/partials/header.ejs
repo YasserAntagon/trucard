@@ -1,0 +1,135 @@
+<style>
+  .main-header .sidebar-brand {
+  float: left;
+  background-color: transparent;
+  background-image: none;
+  padding: 15px 15px;
+  font-family: fontAwesome;
+}
+.skin-black .main-header .logo {
+  background-color: #FFF;
+  color: #000;
+  border-bottom: 1px solid #f9f0f0;
+  border-right: none;
+}
+</style>
+<div class="wrapper">
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="<%- linkurl.ehome  %>" id="dashboard" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><b>T</b></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><img src="images/logo/logo.png" height="30px" /></span> 
+    </a>
+
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="javascript:;" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+      <!-- <a class="sidebar-brand"> 
+        <span style="font-size: 18px;color: black;">Admin</span>
+      </a> -->
+      <a class="sidebar-brand" href="javascript:void(0);" onclick="goBack()"> 
+        <button class="btn-pinterest btn btn-sm">
+          <span class="btn-gradient radius-btn">
+            <i class="fa fa-arrow-left"></i>
+          </span>
+          <span class="btn-text">BACK</span>
+        </button>
+      </a>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+              <% if (aData.image =="0") { %>
+              <img src='images/user.png' class="user-image profpic">
+              <%} else { %>
+                <img src='<%-config.aUrl %><%- aData.image  %>' class="user-image profpic">
+                <% } %>
+              <span class="hidden-xs"><span class="profnameAdmin"><%- aData.fName  %> <%- aData.lName  %></span></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+             <li class="user-header">
+              <% if (aData.image =="0") { %>
+                <img src='images/user.png' class="user-image profpic">
+                <%} else { %>
+                  <img src='<%-config.aUrl %><%- aData.image  %>' class="user-image profpic">
+                  <% } %>
+                <p>
+                  <span class="profnameAdmin"></span> <br> <small><span class="email"><%- aData.email %></span></small>
+                  <small><%- aData.truID %></small>
+                </p>
+              </li>
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="<%- linkurl.profile  %>" id="profileDetails" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="/" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+          <li>
+            <a href="javascript:;" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar"> 
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <% if (aData.image =="0") { %>
+            <img src='images/user.png' class="img-circle user-image profpic">
+            <%} else { %>
+              <img src='<%-config.aUrl %><%- aData.image  %>' class="img-circle user-image profpic">
+              <% } %>
+        </div>
+        <div class="pull-left info">
+          <p><span class="profname"><%- aData.fName  %> <%- aData.lName  %></span></p>
+          <a href="javascript:;"><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div> 
+      <ul class="sidebar-menu" data-widget="tree">
+        <li>
+          <a href="<%- linkurl.ehome  %>" class="dashboard">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
+          </a>
+        </li>
+        <li>
+          <a href="<%- linkurl.createEntity  %>">
+            <i class="fa fa-user"></i> <span>Create Partner</span>
+          </a>
+        </li><li>
+          <a href="<%- linkurl.entitylist  %>">
+            <i class="fa fa-list"></i> <span>Partner List</span>
+          </a>
+        </li> 
+        <li>
+          <a href="<%- linkurl.configremmit  %>">
+            <i class="fa fa-cogs"></i> <span>Partner Configuration</span>
+          </a>
+        </li>
+        <li class="header">Important Links</li> 
+        <li><a href="<%- linkurl.home  %>"><i class="fa fa-circle-o text-red"></i> <span>Go Home</span></a></li>
+        <li><a href="/logout"><i class="fa fa-circle-o text-yellow"></i> <span>Sign Out</span></a></li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+  <div id="loader" class="loaderContainer" style="display:none;">
+    <div class="loader"></div>
+  </div> 
+  

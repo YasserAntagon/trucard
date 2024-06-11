@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/head'); %>
+    <link rel="stylesheet" href="css/entity/summary.css">
+    <link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="css/entity/wallet.css?v=1">
+    <link rel="stylesheet" href="css/entity/cuprofile.css">
+    <link rel="stylesheet" href="css/entity/certi.css">
+    <%- include ('./partials/lheader'); %> 
+    <div class="row">
+        <div class="walletHistory content">
+            <div class="col-md-12">
+                <div class="col-sm-6 col-xs-12">
+                    <div class="form-group"> 
+                      <div class="box box-warning">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Wallet Breakup</h3>
+                          <div class="box-tools pull-right">
+                            <div class="btn-group radio-group">
+                              <div class="input-daterange input-group input-group-sm" id="config-demo1">
+                                <i class="input-group-addon b-0">
+                                  <i class="fa fa-calendar"></i>
+                                </i>
+                                <span class="form-control"></span>
+                              </div>
+                            </div>  
+                          </div>
+                        </div>
+                        <div class="box-body">
+                          <table id="rTableRevenue" class="table table-bordered table-striped  dt-responsive" style="width:100%">                                    
+                            <thead> 
+                              <tr>
+                                <th>Wallet Consumptions</th>
+                                <th>Wallet Balances (INR)</th>
+                              </tr>
+                            </thead>
+                              <tbody>
+                                <tr>  
+                                  <td  style="width: 60%">
+                                   Total Wallet
+                                  </td>
+                                  <td style="width: 40%">
+                                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                    <span class="spinnerVal hidden" id="fwalletAdded">0</span>
+                                  </td> 
+                            </tr>
+                          <tr>  
+                            <td colspan="2">
+                             <strong>* Wallet Balances in above date range.</strong>
+                            </td> 
+                      </tr>
+                      <tr>  
+                        <td  style="width: 60%">
+                            Wallet Added
+                        </td>
+                        <td style="width: 40%">
+                          <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                          <span class="spinnerVal hidden" id="fwalletAddedOn">0</span>
+                        </td> 
+                  </tr>
+                  
+                  <tr>  
+                    <td  style="width: 60%">
+                        Wallet Opening Balance
+                    </td>
+                    <td style="width: 40%">
+                      <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                      <span class="spinnerVal hidden" id="fwalletOpening">0</span>
+                    </td> 
+              </tr> 
+                          <tr>  
+                              <td  style="width: 60%">
+                                Wallet Closing Balance
+                              </td>
+                              <td style="width: 40%">
+                                <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                <span class="spinnerVal hidden" id="fwalletClosing">0</span>
+                              </td> 
+                        </tr>
+                                <tr>
+                                      <td style="width: 60%">
+                                   Buy
+                                      </td>
+                                      <td style="width: 40%">
+                                        <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                        <span class="spinnerVal hidden text text-danger" id="fBuy">0</span>
+                                      </td> 
+                                </tr>
+                                <tr>  
+                                  <td  style="width: 60%">
+                                    Sell
+                                  </td>
+                                  <td style="width: 40%">
+                                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                    <span class="spinnerVal hidden" id="fsell">0</span>
+                                  </td> 
+                            </tr> 
+                            <tr>  
+                              <td  style="width: 60%">
+                                Transfer
+                              </td>
+                              <td style="width: 40%">
+                                <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                <span class="spinnerVal hidden text text-danger" id="ftransfer">0</span>
+                              </td> 
+                        </tr>  
+          <tr>
+            <td  style="width: 60%">
+              Partner Revenue
+            </td>
+            <td style="width: 40%">
+              <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+              <span class="spinnerVal hidden" id="totalRevenue">0</span>
+            </td> 
+        </tr> 
+              <tr>
+                <td  style="width: 60%">
+                  Account Status
+                </td>
+                <td style="width: 40%">
+                  <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                  <span class="spinnerVal hidden" id="fstatus">0</span>
+                </td> 
+          </tr>
+            </tbody>
+                        </table>
+                        </div>
+                      </div>
+                  </div></div>
+                  <div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="box box-warning">
+                            <div class="box-header pull-right">
+                                <a href="<%- linkurl.walletManagment %>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                            <div class="box-body">
+                              <a href="<%- linkurl.walletManagment %>"  class="small-box">
+                                <div class="inner">
+                                  <p style="color: #003443">
+                                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                    <span style="font-size: 18px; font-weight: bold" class="spinnerVal hidden" id="walletbalance">0</span>
+                                  </p>
+                                  <p style="color: black">Wallet Balance</p>
+                                  <p style="color: gray" class="hidden-xs">Total Wallet Balance</p>
+                                </div> 
+                              </a>
+                            </div>                      
+                          </div> 
+                    </div> 
+
+                    <div class="col-sm-6 col-xs-12">
+                      <div class="box box-warning">
+                        <div class="box-header with-border">  
+                        <h3 class="box-title">Add Wallet Advance : </h3>
+                      </div>
+                      <div class="box-body">
+                        <div class="col-sm-12 col-xs-12">
+                  <div class="form-group">  
+                    <label>Wallet Amount : <i class="text text-danger">*</i></label>
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                      <input type="text" id="txtWalletamt" class="form-control numeric" maxlength="9" required placeholder="Wallet Amount" />
+                    </div>
+                    <p class="text-danger" id="error_txnAmt"></p>
+                    <p class="text-info" id="inwords"></p>
+                    
+                  </div></div>
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-group">
+                      <label>UTR Number :</label>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                        <input type="text" id="txtUTRNo" class="form-control" maxlength="20" required placeholder="UTR Number (optional)" />
+                      </div>
+                    </div></div>
+                    <div class="col-sm-6 col-xs-12">
+                      <div class="form-group">
+                        <label>Bank Account Origin / Bank Name :</label> 
+                          <%- include ('../common/bankFilter'); %>  
+                      </div></div>
+                      <div class="col-sm-6 col-xs-12">
+                        <div class="form-group">
+                          <label>Origin A/c Name :</label>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                            <input type="text" id="acorigin" class="form-control" maxlength="20" required placeholder="Origin A/c Name (optional)" />
+                          </div>
+                        </div></div>
+                        <div class="col-sm-6 col-xs-12">
+                          <div class="form-group">
+                            <label>Destination A/c :</label>
+                            <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                              <input type="text" id="txtDestination" class="form-control" maxlength="20" required placeholder="Destination A/c (optional)" />
+                            </div>
+                          </div></div>
+                          <div class="col-sm-6 col-xs-12">
+                            <div class="form-group">
+                              <label>Destination A/c : <i class="text text-danger">*</i></label>
+                              <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file"></i></span>  
+                                <select class="form-control form-control-sm" id="mode"> 
+                                  <option value="bankTransfer">Bank Transfer</option>
+                                  <option value="Cheque">Cheque</option>
+                                  <option value="Other">Other</option>
+                                </select>
+                              </div>
+                            </div></div>
+                            <div class="col-sm-6 col-xs-12">
+                              <div class="form-group">
+                                <label>Fund Status : <i class="text text-danger">*</i></label>
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="fa fa-file"></i></span>  
+                                  <select class="form-control form-control-sm" id="fundStatus"> 
+                                    <option value="addMoney">Add Wallet Balance</option> 
+                                    <option value="refund">Refund</option> 
+                                  </select>
+                                </div>
+                              </div></div>
+                  <div class="col-md-12">
+                    <button type="button" id="btnAddLimit" class="btn btn-sm btn-primary pull-right" disabled>Add Wallet</button>
+                  </div></div>
+                </div></div>
+                    
+                  </div>
+                  
+            <div class="col-lg-12">
+                <div class="box box-widget box-widgets stockList">
+                    <div id="entityWalHistoryLoader" class="loaderContainer" style="display:none;">
+                        <div class="loader"></div>
+                    </div>
+
+                    <!-- Widget: user widget style 1 -->
+                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                    <div class="box-body">
+                        <h3 class="profile-username">Wallet Transaction Summary 
+                          <span class="pull-right">
+                            <button class="btn btn-danger btn-sm" type="button" onclick="return onclear();">
+                              <span class="hidden-xs">Clear Data</span>
+                              <span class="fa fa-refresh"></span>
+                            </button>
+                          </span>
+                        </h3>
+                        <hr>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4"> 
+                                    <div class="input-daterange input-group" id="config-demo"><i class="input-group-addon b-0"><i class="fa fa-calendar"></i></i><span class="form-control"></span></div><span class="pdf"></span>
+                               
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group"><select class="form-control" id="xDropStatus">
+                                        <option value="0">Fliter</option>
+                                        <option value="addMoney">Add Money</option>
+                                        <option value="walletToBank">Wallet To Bank</option>
+                                        <option value="buy">Buy</option>
+                                        <option value="redeemCash">Sell</option> 
+                                        <option value="transfer">Transfer</option>  
+                                        <option value="revenue">Revenue</option> 
+                                    </select></div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="input-group"><select class="form-control" id="sortBy" name="sortBy">
+                                        <option value="0">Sort By</option>
+                                        <option value="datetimeasc">DateTime - Oldest First</option>
+                                        <option value="datetimedec">DateTime - Newest First </option>
+                                    </select></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" id="selfbtn"><span class="hidden" id="ladda-label">Processing... <i class="fa fa-spinner fa-2x fa-spin"></i></span></div>
+                        </div>
+                        <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <table id="rQueue" class="table table-striped table-bordered dt-responsive nowrap"
+                                cellspacing="0" width="100%">
+                              <thead>
+                                    <tr>
+                                        <th>Sr No.</th>
+                                        <th>Transaction ID</th>
+                                        <th>DateTime</th> 
+                                        <th>Txn Type</th>
+                                        <th class="all">Txn Amount</th>                                             
+                                        <th class="all">Particular</th>
+                                        <th>Debit / Credit</th>    
+                                        <th class="all">Txn Status</th>  
+                                        <th class="all">View</th>  
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div></div>
+                    </div>
+                </div> 
+            </div>
+            <%- include ('../common/invoiceContainer'); %></div> 
+        </div> 
+    </div> 
+    </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/datatable/dataTables.responsive.min.js"></script>
+    <script src="js/datatable/responsive.bootstrap4.min.js"></script> 
+    <script src="js/datatable/dataTables.buttons.min.js"></script>
+    <script src="js/datatable/buttons.bootstrap4.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/entity/mustache.min.js"></script> 
+    <script src="js/entity/walletsearch.js"></script>
+    <script src="api/viewinvoicenew.js"></script>
+    <script src="api/admin/controllers/bankList.js"></script> 
+    <script src="api/entityApi/controllers/walletMoneyNew.js?v=1"></script>
+    <script src="api/entityApi/controllers/walletdata.js"></script>
+    <script src="api/entityApi/controllers/addWallet.js?v=3"></script> 

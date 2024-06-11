@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ('./partials/head'); %>
+    <link rel="stylesheet" href="css/adminDash.css" />  
+    <script id="report" type="text/template">
+        {{#report}}
+        <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                <div class="box box-warning">
+                    <div class="box-header pull-right">
+                        <a href="<%- linkurl.enconsumerlist %>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                    <div class="box-body">
+                      <a href="<%- linkurl.enconsumerlist  %>" class="small-box">
+                        <div class="inner">
+                          <p style="color: #003443">
+                            <span
+                              class="fa fa-user"
+                              style="font-size: 16px; font-weight: bold"
+                            ></span>
+                            <span style="font-size: 16px; font-weight: bold" class="count" id="consCount">{{consumerCount}}</span>
+                          </p>
+                          <p style="color: black">Total Consumer</p>
+                          <p style="color: gray">Total no of Consumer</p>
+                        </div> 
+                      </a>
+                    </div>                      
+                  </div> 
+            </div> 
+                <div class="col-sm-6 col-xs-12">
+                    <div class="box box-warning">
+                        <div class="box-header pull-right">
+                            <a href="<%- linkurl.enconsumerlist %>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                      <div class="box-body">
+                        <a href="<%- linkurl.enconsumerlist  %>" class="small-box">
+                          <div class="inner">
+                            <p style="color: #003443">
+                              <span class="fa fa-shopping-basket" style="font-size: 16px; font-weight: bold" ></span>
+                              <span style="font-size: 16px; font-weight: bold" class="count" id="goldStock">0</span>
+                              /
+                              <span class="fa fa-shopping-basket" style="font-size: 16px; font-weight: bold"></span>
+                              <span style="font-size: 16px; font-weight: bold" class="count" id="silverStock" >0</span>
+                            </p>
+                            <p style="color: black">24K Gold / 99%  Pure Silver</p>
+                            <p style="color: gray">Total Stock in consumer a/c in gms</p>
+                            
+                          </div> 
+                        </a>
+                      </div>                      
+                    </div></div> 
+            </div>
+        </div>
+         
+          
+        <div class="col-sm-12"> 
+            <div class="row" style="padding:10px">
+                <div class="col-sm-2 col-xs-2 pull-right">
+                    <div class="btn-group radio-group">             
+                      <label class="btn btn-warning btn-sm not-active" title="Last 1 Hr"><span style="font-size: 12px;font-weight:bold">Last 1hr</span>
+                        <input style="border: none" id="last1hr" type="radio" value="all" name="lastDay" onclick="callHR('1');" />
+                      </label>   
+                    </div>
+                  </div>
+                <div class="col-sm-4 col-xs-12 pull-right" style="min-width: 300px;">
+                    <div class="input-daterange input-group input-group-sm" id="config-date">
+                        <i class="input-group-addon b-0">
+                            <i class="fa fa-calendar"></i>
+                        </i>
+                        <span class="form-control"></span>
+                    </div>
+                    <p></p>
+                </div>         
+            </div>
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <div class="row">
+                <div class="box">        
+                <div>
+                    <!-- small box -->
+                    <div class="small-box mg-10 ">
+                        <div class="inner">
+                            <span style="font-size: 16px; font-weight: bold">{{txnCount}}</span><br />
+                            <span>Total Transactions</span>
+                        </div>
+                    </div>
+                </div>
+                <div> 
+                    <div class="small-box mg-10 ">
+                        <div class="inner">
+                            <span style="font-size: 16px; font-weight: bold">&#8377; {{totalAmount}}</span><br />
+                            <span>Total Transactions Amount</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <!-- small box -->
+                    <div class="small-box mg-10 ">
+                        <div class="inner">
+                            <span style="font-size: 16px; font-weight: bold">&#8377; {{totalTAX}}</span><br />
+                            <span>Total GST / TAX</span>
+                        </div>
+                    </div>
+        
+                </div></div></div>
+                <div class="row">  
+                    <div class="box">
+                      <div class="box-header with-border">
+                        <h3 class="box-title">Revenue</h3> 
+                        <div class="box-tools pull-right">
+                          <div class="btn-group radio-group">
+                              <label  title="Company earning from {{entityName}}" class="btn btn-warning btn-sm"> Earning<input type="radio" checked value="partner" name="revenueTxnFor" onclick="revenueTxnFor(this);" ></label>
+                              <label title="{{entityName}} earnings" class="btn btn-warning btn-sm  not-active">Partner Earning<input type="radio" value="clientEarning" name="revenueTxnFor" onclick="revenueTxnFor(this);" ></label>
+                           </div>  
+                        </div>
+                      </div>  
+                      <div class="box-body">
+                        <table id="rTableRevenue" class="table table-bordered table-striped  dt-responsive" style="width:100%">
+                          
+                          <thead> 
+                            <tr>
+                              <th>Time Period</th>
+                              <th>Revenue in (INR)</th> 
+                            </tr></thead>
+                            <tbody><tr>
+                                  
+                                    <td style="width: 60%">
+                                      Today
+                                    </td>
+                                    <td style="width: 40%">
+                                      <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                      <span class="spinnerVal hidden todayRevenue">0</span>
+                                    </td> 
+                              </tr>
+                              <tr>  
+                                  <td  style="width: 60%">
+                                    Yesterday
+                                  </td>
+                                  <td style="width: 40%">
+                                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                    <span class="spinnerVal hidden yesterdayRevenue">0</span>
+                                  </td> 
+                            </tr>
+                            <tr>  
+                                <td  style="width: 60%">
+                                  This Week
+                                </td>
+                                <td style="width: 40%">
+                                  <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                  <span class="spinnerVal hidden weekRevenue">0</span>
+                                </td> 
+                          </tr>
+                          <tr>  
+                              <td  style="width: 60%">
+                                This Month
+                              </td>
+                              <td style="width: 40%">
+                                <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                <span class="spinnerVal hidden monthRevenue">0</span>
+                              </td> 
+                        </tr>
+                        <tr>  
+                          <td  style="width: 60%">
+                            Total Revenue
+                          </td>
+                          <td style="width: 40%">
+                            <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                            <span class="spinnerVal hidden totalRevenue">0</span>
+                          </td> 
+                    </tr> 
+                          </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <div class="box box-widget box-widgets">
+                    <div class="box-header with-border bg-light-blue">
+                        <h5 class="box-title">Total Number of Amount and Quantity of Following Transactions</h5>
+                    </div>
+                    <div class="box-body">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                            Buy by Bullion
+                                            <span class="pull-right">Total Amount : {{buyTotalAmt}}</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="text-right">Qty</th>
+                                                    <th class="text-right">Amount</th>
+        
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="javascript:;">24K Gold</a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>{{buy.g24kTotalQTY}} gm</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>&#8377; {{buy.g24kTotalAmount}}</span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a href="javascript:;">99% Silver</a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>{{buy.s99pTotalQTY}} gm</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>&#8377; {{buy.s99pTotalAmount}}</span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+        
+                                        </table>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Sell
+                                            <span class="pull-right">Total Amount : {{redeemCashTotalAmt}}</span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                
+                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                    aria-labelledby="headingThree">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="text-right">Qty</th>
+                                                    <th class="text-right">Amount</th>
+        
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="javascript:;">24K Gold</a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>{{redeemCash.g24kTotalQTY}} gm</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>&#8377; {{redeemCash.g24kTotalAmount}}</span>
+                                                        </span>
+                                                    </td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>
+                                                        <a href="javascript:;">99% Silver</a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>{{redeemCash.s99pTotalQTY}} gm</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>&#8377; {{redeemCash.s99pTotalAmount}}</span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+        
+                                        </table>
+                                </div>
+                            </div>
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingThree">
+                                    <h5 class="panel-title">
+                                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                            href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Transfer Bullion
+                                            <span class="pull-right">Total Revenue : {{transferTotalAmt}}</span>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th class="text-right">Qty</th>
+                                                    <th class="text-right">Paid Charges</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a href="javascript:;">24K Gold</a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>{{transfer.g24kTotalQTY}} gm</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>&#8377; {{transfer.g24kTotalAmount}}</span>
+                                                        </span>
+                                                    </td>
+                                                </tr> 
+                                                <tr>
+                                                    <td>
+                                                        <a href="javascript:;">99% Silver</a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>{{transfer.s99pTotalQTY}} gm</span>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="pull-right">
+                                                            <span>&#8377; {{transfer.s99pTotalAmount}}</span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div></div>
+        {{/report}}
+        </script>
+    <%- include ('./partials/lheader'); %> 
+    <div>
+        <div class="col-md-12 stockList">
+            <div class="box box-widget box-widgets">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Partner Dashboard 
+                    </h3>   
+                    <span class="pull-right"> 
+                        <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                        Wallet Balance : <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="fWalletBalance">0</span>
+               
+                  </span>
+                </div>
+                <div class="box-body">
+                    <div id="entityDashRepoLoader" class="loaderContainer" style="display:none;">
+                        <div class="loader"></div>
+                    </div> 
+                    <div id="reportmustache">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    </div>
+    </div>
+    </div>
+    </div> 
+    <%- include ('./partials/footer'); %>
+    <script src="js/entity/mustache.min.js"></script>
+    <script src="api/entityApi/controllers/entityReport.js"></script>
+    <script src="api/entityApi/controllers/partnerRevenue.js"></script>

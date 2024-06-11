@@ -1,0 +1,21 @@
+{
+  "name": "tru_admin",
+  "version": "1.0.0",
+  "description": "Authentication API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Company Name",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.16.3",
+    "helmet": "^4.4.1",
+    "md5": "^2.2.1",
+    "mongoose": "^6.12.8",
+    "morgan": "^1.9.0",
+    "randomatic": "^3.0.0",
+    "request": "^2.88.2"
+  }
+}

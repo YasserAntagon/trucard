@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ('./partials/head'); %>
+    <link rel="stylesheet" href="truComponents/bootstrap-daterangepicker/daterangepicker.css" />
+    <link href="css/entity/summary.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/entity/certi.css">
+     <link rel="stylesheet" href="css/entity/wallet.css">
+    <style>
+        .roundedsearch {
+            border: 1px solid #d2d6de;
+            border-radius: 25px;
+            padding: 2px 12px;
+        }
+
+        #txtsearch {
+            border: none;
+        }
+
+        .btn-flat {
+            background-color: transparent;
+        }
+
+        .invoice {
+            margin: 0;
+        }
+
+        #myModals .modal-dialog {
+            min-width: 60%;
+        }
+
+        #myModals th:nth-child(1) {
+            width: 24%;
+        }
+
+        #myModals th:nth-child(2) {
+            width: 37%;
+        }
+
+        #myModals th:nth-child(3) {
+            width: 37%;
+        }
+    </style>
+    <%- include ('./partials/lHeader'); %>
+<div class="row content">
+    <div class="col-md-12"> 
+            <div class="box box-widget box-widgets">
+              <div class="box-header with-border">
+                <h3 class="box-title">GST Report</h3> 
+                <span class="btn-group pull-right">
+                  <button class="btn btn-danger btn-sm" type="button" onclick="return onclear();">
+                    <span class="hidden-xs">Clear Data</span>
+                    <span class="fa fa-refresh"></span>
+                  </button>
+                </span>
+              </div>
+    <div class="box-body">
+        <div class="col-sm-4 col-xs-6">
+          <div class="box box-info"> 
+              <div class="box-body"> 
+                 <div class="pull-right">
+                  <img src="../images/new/consumer-people.png" height="24" width="24" />      
+                </div>
+                  <div class="inner">
+                    <p style="color: #003443">
+                      <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                      <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="cTotalTxn">0</span>
+                    </p> 
+                    <p style="color: gray">Total Txn Amount</p>
+                  </div>  
+              </div>                      
+            </div> 
+      </div>
+      <div class="col-sm-4 col-xs-6">
+        <div class="box box-warning"> 
+            <div class="box-body">
+               <div class="pull-right">
+                  <img src="../images/new/gold.png" height="24" width="24" />      
+                </div>
+                <div class="inner">
+                  <p style="color: #003443">
+                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                    <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="cTotalGST">0</span>
+                  </p> 
+                  <p style="color: gray">Total GST</p>
+                </div> 
+            </div>                      
+          </div> 
+      </div> 
+                  <div class="col-sm-4 col-xs-6">
+                    <div class="box box-success"> 
+                        <div class="box-body">
+                           <div class="pull-right">
+                        <img src="../images/new/wallet.png" height="24" width="24" />      
+                      </div>
+                            <div class="inner">
+                              <p style="color: #003443">
+                                <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                                <i class="mdi mdi-currency-inr spinnerVal hidden"></i> <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="walBal">0</span>
+                              </p> 
+                              <p style="color: gray">Total Wallet Balance</p>
+                            </div> 
+                        </div>                      
+                      </div> 
+                </div>
+                <div class="col-md-12">
+                  <div class="btn-group radio-group pull-right" style="padding-right: 10px;">
+                    <div class="input-daterange input-group input-group-sm" id="config-demo">
+                      <i class="input-group-addon b-0"><i class="fa fa-calendar"></i></i>
+                      <span class="form-control"></span>
+                    </div>
+                  </div>     
+                <div class="btn-group pull-right" style="padding-right: 10px;">
+                  <button id="byTime" selectedText="all" class="btn btn-default dropdown-toggle" data-toggle="dropdown">All Time</button>
+                  <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                  <ul class="dropdown-menu byTime-menu">
+                    <li><a href="javascript:;" data="all">All Time</a></li>
+                    <li><a href="javascript:;" data="1">1Hr</a></li>
+                    <li><a href="javascript:;" data="6">6Hr</a></li> 
+                  </ul>
+                </div> 
+              <div class="col-md-12">  
+                <%- include ('../admin/partials/invoice'); %>
+                <%- include ('../common/invoiceContainer'); %>   
+              </div>
+            </div>
+            
+    </div>
+</div></div></div>
+<%- include ('./partials/lfooter'); %>  
+<script src="js/entity/mustache.min.js"></script>
+<script src="js/moment.js"></script>
+<script src="api/consumerApi/controllers/gstBreakup.js"></script>
+</body>
+</html>

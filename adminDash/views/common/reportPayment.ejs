@@ -1,0 +1,25 @@
+                    <%- include ('./filterUp'); %>
+                    <div class="col-md-4">
+                      <%- include ('./partnerfilter'); %> 
+                     </div>
+                    <div class="col-md-5">
+                      <div class="pull-right summarycardfiltre">
+                        <div class="btn-group radio-group"> 
+                            <label class="btn btn-info btn-sm" title="Transaction by partner & consumer direct network">Consumer
+                            <input style="border: none" id="consumer" type="radio" checked="true" value="consumer" name="self" onclick="self(this);" /></label>
+                            <label class="btn btn-info btn-sm not-active" title="Partner Self Trasactions">Partner Account
+                            <input type="radio" id="self" value="self" name="self" onclick="self(this);" /></label>
+                        </div>
+                    </div> 
+                    <div class="pull-right" style="padding-right: 1px;">
+                      <div class="btn-group radio-group"> 
+                        <label class="btn btn-info btn-sm" title="All Operation">All
+                          <input style="border: none" id="allOP" type="radio" checked="true" value="all" name="wallet" onclick="operations(this);" /></label>
+                          <label class="btn btn-info btn-sm not-active" title="Wallet Operation">Wallet Operation
+                          <input style="border: none" id="walletOP" type="radio" value="wallet" name="wallet" onclick="operations(this);" /></label>
+               
+                      </div>
+                  </div>
+                  </div> 
+                  <%- include ('./paymentView'); %> 
+                  <%- include ('./invoiceContainer'); %>

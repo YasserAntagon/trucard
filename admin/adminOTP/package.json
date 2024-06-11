@@ -1,0 +1,20 @@
+{
+  "name": "authentication",
+  "main": "customerAuth.js",
+  "scripts": {
+    "start": "customerAuth.js"
+  },
+  "author": "Amit Shinde && Narendra Maru",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "ip": "^1.1.5",
+    "mongoose": "^6.12.8",
+    "morgan": "^1.9.0",
+    "randomatic": "^3.0.0",
+    "request": "^2.88.2"
+  },
+  "description": "Authentication API",
+  "version": "1.0.0"
+}

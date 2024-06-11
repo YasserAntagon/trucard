@@ -1,0 +1,29 @@
+doctype html
+body
+                  form#frmProduct(action=pgurl.host method='post',name='frmProduct', )
+                    input(type='hidden', name='ahost', value=pgurl.ahost)
+                    input(type='hidden', name='login', value=pgurl.alogin)
+                    input(type='hidden', name='pass', value=pgurl.apass)
+                    input(type='hidden', name='ttype', value=pgurl.attype)
+                    input(type='hidden', name='prodid', value=pgurl.aprodid)
+                    input(type='hidden', name='amt', value=pgurl.aamt)
+                    input(type='hidden', name='txncurr', value=pgurl.atxncurr)
+                    input(type='hidden', name='txnscamt', value=pgurl.atxnscamt)
+                    input(type='hidden', name='clientcode', value=pgurl.aclientcode)
+                    input(type='hidden', name='txnid', value=pgurl.atxnid)
+                    input(type='hidden', name='date', value=pgurl.adate)
+                    input(type='hidden', name='custacc', value=pgurl.acustacc)
+                    input(type='hidden', name='udf1', value=pgurl.audf1)
+                    input(type='hidden', name='udf2', value=pgurl.audf2)
+                    input(type='hidden', name='udf3', value=pgurl.audf3)
+                    input(type='hidden', name='udf4', value=pgurl.audf4)
+                    input(type='hidden', name='udf9', value=pgurl.audf9)
+                    input(type='hidden', name='ru', value=pgurl.aru)
+                    input(type='hidden', name='signature', value=pgurl.asignature)                        
+script(type='text/javascript').
+   function authorizec()
+   { 
+     document.getElementById("frmProduct").submit();
+   }
+  window.onload = authorizec;
+                                       

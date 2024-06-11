@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/head'); %>
+    <%- include ('./partials/lheader'); %>
+
+    <div class="row content">
+        <div class="col-md-12">
+            <div class="box box-widget box-widgets">
+                <div class="box-body">
+                    <h3 class="profile-username">Partner Access Permission
+
+                    </h3>
+                    <hr>
+                </div>
+                <div class="box-body">
+                    <div id="entityAccessLoader" class="loaderContainer" style="display:none;">
+                        <div class="loader"></div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Merchant ID</label>
+                            <span class="text-danger">*</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" id="txtmerchant" class="form-control alphanum" maxlength="100"
+                                    required placeholder="Merchant Id" />
+                            </div>
+                            <p class="text-danger" id="error_merchant"></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <span class="text-danger">*</span>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" id="txtCat" class="form-control alphanum" maxlength="100" required
+                                    placeholder="Category" />
+                            </div>
+                            <p class="text-danger" id="error_Cat"></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <%- include ('./accesscontrol'); %>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" id="btnsetpermission"
+                            class="btn btn-sm btn-primary pull-right">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-editable.min.js"></script>
+    <script src="js/entity/accesscontrol.js"></script>
+    <script src="api/entityApi/controllers/accesscontrol.js"></script>
+    </body>
+
+</html>

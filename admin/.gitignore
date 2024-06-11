@@ -1,0 +1,7 @@
+# Node artifact files
+node_modules/
+.vscode/
+package-lock.json
+dbCon.json
+confServers.json 
+connection.js 

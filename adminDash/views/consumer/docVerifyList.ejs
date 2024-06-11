@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ('./partials/head'); %>
+<link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+<link href="truComponents/bootstrap/dist/css/bootstrap-editable.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/consumer/summary.css">
+<link rel="stylesheet" href="css/consumer/wizard.css">
+<style>
+     #myModals .modal-dialog {
+        width: 50%;
+    }
+    .small-box h3 {
+        font-size: 24px;
+    }
+    .small-box .icon {
+        top: -5px;
+        font-size: 70px;
+    }
+    .small-box:hover .icon {
+        font-size: 75px;
+    }
+  .wizard{
+    padding: 0 20px;
+  }
+  .cDate{
+      display: none;
+  }
+</style>
+</head>
+<body class="skin-yellow fixed sidebar-mini sidebar-collapse">
+  <div class="wrapper">
+    <%- include ('./partials/header'); %>
+    <div class="content-wrapper">
+<div class="containerbg">
+
+    <div class="box box-warning">
+        <div class="loaderContainer" style="display:none;">
+            <div class="loader"></div>
+          </div>
+          
+        <div class="box-header with-border">
+            <h3 class="box-title">Consumer Document Verify Pending List</h3>
+
+            <div class="box-tools pull-right">
+                <!--  <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>-->
+                <a type="button" class="btn btn-box-tool dashboard" data-widget="remove"><i class="fa fa-times"></i></a>
+
+            </div>
+        </div>
+        <!-- /.box-header -->
+
+
+        <!-- /.box-header -->
+        <!-- <div class="box-body pull-right">
+                <div class="btn-group radio-group">
+                    <label class="btn btn-warning btn-sm">KYC Pending <input type="radio" value="pending" id="pending" checked
+                            onclick="pendingClick(this);" name="pending"></label>
+                    <label class="btn btn-success btn-sm not-active">Active<input type="radio" id="active" name="pending"
+                            onclick="pendingClick(this);" value="active"></label>
+                    <label class="btn btn-info btn-sm not-active">ON Hold <input type="radio" onclick="pendingClick(this);"
+                            id="hold" value="holder" name="pending"></label>
+                    <label class="btn btn-danger btn-sm not-active">Banned<input type="radio" onclick="pendingClick(this);"
+                            id="banned" value="banned" name="pending"></label>
+                </div>
+            </div> -->
+        <div class="box-body">
+            <div class="col-lg-12">
+                <table id="rQueue" class="table table-bordered table-striped dt-responsive" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Consumer Name</th>
+                            <th>Company ID</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>City</th>
+                            <th>Create Date</th>  
+                            <th>Reference By</th>
+                            <th>KYC Status</th>
+                            <th>View</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <!-- /.box-body -->
+
+
+    </div>
+    <div class="modal fade" id="myModals" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialogs">
+                <div class="modal-content">
+                    <div id="custActiveLoader" class="loaderContainer" style="display:none;">
+                        <div class="loader"></div>
+                      </div>
+                    <div class="modal-body">
+    
+                        <button type="button" class="close text-danger" data-dismiss="modal"><i
+                                class="fa fa-times"></i></button>
+                        <label id="lblstatus" class=" pull-right label label-success" style="margin-top: 4px; margin-right: 5px">
+                            <span id="accountStatus"></span>
+                        </label>
+                        <br>
+                        <hr style="margin-top:10px;">
+                        <form method="post" action='' id="login_form">
+    
+                            <section>
+                                <div class=" wizard">
+    
+                                    <div class="wizard-inner">
+                                        <div class="connecting-line"></div>
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" id="initstep1" class="active">
+                                                <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab"
+                                                    title="Consumer Details">
+                                                    <span class="round-tab">
+                                                        <i class="glyphicon glyphicon-user"></i>
+                                                    </span>
+                                                </a>
+                                                <p>Consumer Deatails</p>
+                                            </li>
+                                            <li role="presentation" class="">
+                                                <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab"
+                                                    title="Addresses">
+                                                    <span class="round-tab">
+                                                        <i class="glyphicon glyphicon-globe"></i>
+                                                    </span>
+                                                </a>
+                                                <p>Address</p>
+                                            </li>
+                                            <li role="presentation" class="">
+                                                <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab"
+                                                    title="KYC Document">
+                                                    <span class="round-tab">
+                                                        <i class="glyphicon glyphicon-file"></i>
+                                                    </span>
+                                                </a>
+                                                <p>KYC Documents</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+    
+                                    <form role="form" id="kycForm" data-toggle="validator">
+                                        <input type="hidden" id="txtcTruid" value="0">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" role="tabpanel" id="step1">
+    
+                                                <table style="clear: both" class="table table-bordered table-striped"
+                                                    id="user">
+                                                    <tbody>
+                                                      
+                                                        <tr>
+                                                            <td>First Name :</td>
+                                                            <td width="65%"><a href="javascript:;" id="txtfname" data-type="text"
+                                                                    data-pk="1" data-title="Enter username"
+                                                                    class="editable editable-click editable-disabled"
+                                                                    data-original-title="" title=""></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Middle Name :</td>
+                                                            <td width="65%"><a href="javascript:;" id="txtmname" data-type="text"
+                                                                    data-pk="1" data-title="Enter username"
+                                                                    class="editable editable-click editable-disabled"
+                                                                    data-original-title="" title=""></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Name :</td>
+                                                            <td width="65%"><a href="javascript:;" id="txtlname" data-type="text"
+                                                                    data-pk="1" data-title="Enter username"
+                                                                    class="editable editable-click editable-disabled"
+                                                                    data-original-title="" title=""></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Gender :</td>
+                                                            <td>
+                                                                <a href="javascript:;" id="sex" data-type="select"
+                                                                    data-title="Select sex"
+                                                                    class="editable editable-click editable-disabled"></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Date Of Birth :</td>
+                                                            <td>
+                                                                <a href="javascript:;" id="dob" data-type="combodate" data-value=""
+                                                                    data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY"
+                                                                    data-template="D / MMM / YYYY" data-pk="1"
+                                                                    data-title="Select Date of birth"
+                                                                    class="editable editable-click editable-disabled"></a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Mobile No :</td>
+                                                            <td width="65%"><a href="javascript:;" id="txtmobile" data-type="text"
+                                                                    data-pk="1" data-title="Enter Mobile no"
+                                                                    class="editable editable-click editable-disabled"
+                                                                    data-original-title="" title=""></a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Email ID :</td>
+                                                            <td width="65%"><a href="javascript:;" id="txtemail" data-type="text"
+                                                                    data-pk="1" data-title="Enter Email Id"
+                                                                    class="editable editable-click editable-disabled"
+                                                                    data-original-title="" title=""></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+    
+                                                <div class="row">
+                                                    <ul class="list-inline pull-right">
+                                                        <li><button type="button" id="submit_step1"
+                                                                class="btn btn-warning next-step">
+                                                                <i></i> Verify and continue</button>
+                                                        </li>
+                                                        <input type="checkbox" id="endetails" class="hidden" />
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" role="tabpanel" id="step2">
+    
+                                                <table style="clear: both" class="table table-bordered table-striped"
+                                                    id="user">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Contact Address :</td>
+                                                            <td width="65%">
+                                                                <a href="javascript:;" id="txtaddress"
+                                                                    class="editable editable-click editable-disabled"
+                                                                    data-type="address" data-pk="1"
+                                                                    data-title="Please, fill address"></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <ul class="list-inline pull-right">
+                                                        <!-- <li><button type="button" class="btn btn-default prev-step">Previous</button>
+                                      </li> -->
+                                                        <li><button type="button" id="submit_step2"
+                                                                class="btn btn-warning next-step">
+                                                                <i></i> Verify
+                                                                and
+                                                                continue</button>
+                                                        </li>
+                                                        <input type="checkbox" id="emAddress" class="hidden" />
+                                                    </ul>
+                                                </div>
+                                            </div>
+    
+                                            <div class="tab-pane" role="tabpanel" id="complete">
+                                                <div class="row setup-content" id="step-3">
+                                                    <div class="col-sm-12">
+                                                        <div class="container-fuild">
+                                                            <div class="row dockychide">
+                                                                <div class="col-lg-12">
+                                                                    <p class="text text-info hidden"> Please upload kyc
+                                                                        document
+                                                                        here... </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row moreupload "> </div>
+                                                            <div class="viewer hidden">
+                                                                <div class="card m-b-20">
+                                                                    <div class="card-body">
+                                                                        <h4 class="mt-0 header-title headerp x_title"><i
+                                                                                class="fa fa-file-text-o"></i> KYC Document
+                                                                            <span class="pull-right">
+                                                                                <button type="button"
+                                                                                    class="btn btn-danger btn-sm viewClose"
+                                                                                    id="viewClose">X</button>
+                                                                            </span>
+                                                                            <hr />
+                                                                        </h4>
+                                                                        <img class="img-responsive" id="docviewer"
+                                                                            height="500px" width="100%" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="docxviewer hidden">
+                                                                <div class="card m-b-20">
+                                                                    <div class="card-body">
+                                                                        <h4 class="mt-0 header-title headerp x_title"><i
+                                                                                class="fa fa-file-text-o"></i> KYC Document
+                                                                            <span class="pull-right">
+                                                                                <button type="button"
+                                                                                    class="btn btn-danger btn-sm viewClose"
+                                                                                    id="ss">X</button>
+                                                                            </span>
+                                                                            <hr />
+                                                                        </h4>
+                                                                        <iframe src="" id="iframe" height="600px"
+                                                                            width="100%"></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row dockychide">
+                                                                <div class="form-group add pull-right">
+                                                                    <!-- <a class="btn btn-primary btn-sm mdi mdi-plus hidden"
+                                                                        data-toggle="modal" href="#myModals"
+                                                                        id="btnadddoc">Add KYC
+                                                                        Doc</a> -->
+                                                                    <input type="button" disabled
+                                                                        class="btn btn-primary btn-sm" id="btnSubmit"
+                                                                        value="Activate" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="btnup">
+                                                                <div id="progress-wrp">
+                                                                    <div class="progress-bar"></div>
+                                                                    <div class="status">0%</div>
+                                                                </div>
+                                                                <div id="output"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
+    
+                        </form>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+</div><%- include ('./partials/footer'); %>
+<script src="truComponents/bootstrap/dist/js/bootstrap-editable.min.js"></script>
+<script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="js/datatable/dataTables.responsive.min.js"></script>
+<script src="js/datatable/responsive.bootstrap4.min.js"></script>
+<script src="js/datatable/dataTables.buttons.min.js"></script>
+<script src="js/datatable/buttons.bootstrap4.min.js"></script>
+<script src="js/datatable/jszip.min.js"></script>
+<script src="js/datatable/pdfmake.min.js"></script>
+<script src="js/datatable/vfs_fonts.js"></script>
+<script src="js/datatable/buttons.html5.min.js"></script>
+<script src="js/datatable/buttons.print.min.js"></script>
+<script src="js/datatable/buttons.colVis.min.js"></script>
+<script src="api/admin/controllers/verifyTPIN.js"></script>
+<script src="api/consumerApi/controllers/consumerDoclist.js"></script>
+<script src="api/consumerApi/controllers/consumeractive.js"></script>
+</body>
+</html>

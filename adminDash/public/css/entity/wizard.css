@@ -1,0 +1,193 @@
+.wizard {
+    /* margin: 20px auto; */
+    padding: 0px 50px;
+    background: #fff;
+}
+.getdob{
+    background-color: #fff !important;
+}
+.moreupload .box{
+    border: 1px solid #d2d6de;
+  }
+/* .box
+{
+    margin-top:20px;
+}
+ */
+    .wizard .nav-tabs {
+        width: 100%;
+        position: relative;
+        margin: 0px auto;
+        margin-bottom: 0;
+        border-bottom-color: #e0e0e0;
+    }
+
+    .wizard > div.wizard-inner {
+        position: relative;
+    }
+    .nav-tabs p{
+        text-align: center;
+        margin: 0 0 15px
+    }
+
+.connecting-line {
+    height: 1px;
+    background: #5bc0de;
+    position: absolute;
+    width: 90%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 38px;
+    z-index: 1;
+}
+
+.wizard .nav-tabs > li.active > a, .wizard .nav-tabs > li.active > a:hover, .wizard .nav-tabs > li.active > a:focus {
+    color: #555555;
+    cursor: default;
+    border: 0;
+    border-bottom-color: transparent;
+}
+
+span.round-tab {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    display: inline-block;
+    border-radius: 100px;
+    background: #999999;
+    border: 2px solid #999999;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    font-size: 25px;
+}
+span.round-tab i{
+    color:#fff;
+}
+.wizard li.active span.round-tab {
+    background: #5bc0de;
+    border: 2px solid #5bc0de;
+    
+}
+.wizard li.active span.round-tab i{
+    color: #fff;
+}
+
+/* span.round-tab:hover {
+    color: #333;
+    border: 2px solid #333;
+} */
+
+.enreg .nav-tabs > li {
+    width: 50%;
+}
+.activation .nav-tabs > li {
+    width: 33.33%;
+}
+
+.wizard li:after {
+    content: " ";
+    position: absolute;
+    left: 48%;
+    opacity: 0;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 5px solid transparent;
+    border-bottom-color: #5bc0de;
+    transition: 0.1s ease-in-out;
+}
+#myModals .wizard li:after {
+    left: 46%;
+}
+
+#map
+{
+    margin: 0;
+    padding: 0;
+    height: 558px;
+    width: 100%;
+    max-width: none;
+}
+#map img 
+{
+    max-width: none !important;
+}
+.wizard li.active:after {
+    content: " ";
+    position: absolute;
+    left: 48%;
+    opacity: 1;
+    margin: 0 auto;
+    bottom: 0px;
+    border: 10px solid transparent;
+    border-bottom-color: #5bc0de;
+}
+#myModals .wizard li.active:after {
+    left: 46%;
+}
+
+.wizard .nav-tabs > li a {
+    width: 60px;
+    height: 60px;
+    margin: 5px auto;
+    border-radius: 100%;
+    padding: 0;
+}
+
+    .wizard .nav-tabs > li a:hover {
+        background: transparent;
+    }
+
+.wizard .tab-pane {
+    position: relative;
+    padding-top: 50px;
+}
+
+.wizard h3 {
+    margin-top: 0;
+}
+
+@media( max-width : 1328px ) {
+    .wizard li:after {
+        left: 46%;
+    }
+    .wizard li.active:after {
+        left: 46%;
+    }
+    #myModals .wizard li:after {
+        left: 44%;
+    }
+    #myModals .wizard li.active:after {
+        left: 44%;
+    }
+}
+@media( max-width : 785px ) {
+    .wizard li:after {
+        left: 42%;
+    }
+    .wizard li.active:after {
+        left: 42%;
+    }
+    #myModals .wizard li:after {
+        left: 40%;
+    }
+    #myModals .wizard li.active:after {
+        left: 40%;
+    }
+}
+@media( max-width : 585px ) {
+    .wizard li:after {
+        left: 40%;
+    }
+    .wizard li.active:after {
+        left: 40%;
+    }
+    #myModals.wizard li:after {
+        left: 38%;
+    }
+    #myModals.wizard li.active:after {
+        left: 38%;
+    }
+}

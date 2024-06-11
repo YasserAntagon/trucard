@@ -1,0 +1,22 @@
+
+.modal-dialogs {
+    max-width: 1000px !important;
+    width: auto !important;
+    margin: 1px auto !important;;
+  }
+  .modal-backdrop{
+    z-index: 999;
+  }
+  #myModalInvoice {
+     padding-top: 10%;
+     padding-left: 50%;
+  }
+  #myModals {
+    padding-top: 15%;
+    padding-left: 50%;
+  }
+  
+  .modal-body {
+    height: 100%;
+    overflow: hidden;
+  }

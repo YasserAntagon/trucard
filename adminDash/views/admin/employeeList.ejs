@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include ('./partials/head'); %>
+  <link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+
+  <link rel="stylesheet" href="css/summary.css">
+
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+  <div class="wrapper">
+    <%- include ('./partials/header'); %><div class="content-wrapper">
+      <div class="containerbg">
+        <!-- TO DO List -->
+        <div class="col-md-12">
+          <div class="box box-success">
+            <div id="empListLoader" class="loaderContainer" style="display:none;">
+              <div class="loader"></div>
+            </div>
+            <div class="box-header">
+              <h3 class="box-title">Employee List</h3>
+              <div class="box-tools pull-right">
+                <div class="col-xs-4 input-group pull-right">
+                  <div class="input-group-addon">
+                      <i class="fa fa-bank"></i>
+                  </div>
+                  <select class="form-control select2" id="cmbBranch">
+                  </select>
+              </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              
+              <input type="hidden" name="" id="imgpath" value="<%-config.aUrl %>">
+              <table id="example1" class="table table-bordered table-striped dt-responsive" width="100%">
+                <thead>
+                  <tr>
+                    <th>Sr.No</th>
+                    <th></th>
+                    <th>Employee Code</th>
+                    <th>Employee Name</th>
+                    <th>Email Id</th>
+                    <th>Address</th>
+                    <th></th>
+                    <th>Account Status</th>
+                    <th>View</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="js/datatable/dataTables.responsive.min.js"></script>
+  <script src="js/datatable/responsive.bootstrap4.min.js"></script>
+  <script src="api/admin/controllers/empList.js"></script>
+  <%- include ('./partials/footer'); %>
+</body>
+
+</html>

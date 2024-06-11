@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/head'); %>
+    <link rel="stylesheet" href="truComponents/bootstrap/dist/css/bootstrap-editable.css">
+    <link rel="stylesheet" href="css/entity/cuprofile.css">
+
+    <%- include ('./partials/lheader'); %>
+    <div class="row content">
+        <div class="col-md-12">
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget box-widgets">
+                <div id="entityProfLoader" class="loaderContainer" style="display:none;">
+                    <div class="loader"></div>
+                </div>
+                <div class="box-header">
+                    <h3 class="box-title"> <i class="fa fa-list"></i> Profile
+                    </h3>
+                    <div class="box-tools pull-right">
+                        <a id="updateProf" class="hidden" type="button" title="update profile information"
+                            class="btn btn-box-tool"><i class="fa fa-2x fa-floppy-o"></i></a>
+                        <a type="button" id="btnedit" title="edit profile information" class="btn btn-box-tool"><i
+                                class="fa fa-2x fa-pencil"></i></a>
+                    </div>
+                    <hr>
+                </div>
+                <div class="box-body">
+                    <div class="">
+                        <div class="cards">
+                            <table style="clear: both" class="table table-bordered table-striped" id="user">
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="pull-right">
+                                            <div id="profile-container">
+                                                <% if (eData.brandLogo) { %>
+                                                    <img alt="Upload brand Logo" id="profileImage" 
+                                                    src="<%- config.brandLogo  %><%- eData.brandLogo  %>"
+                                                    alt="User profile picture" />
+                                                <%} else { %>
+                                                    <img alt="Upload brand Logo" id="profileImage" src="/images/logo/logo.png" />
+                                                   
+                                                    <% } %>
+                                             </div>
+                                             <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                                            <span style="font-size: 14px;margin-top: 5px;" class="text text-info"><i class="fa fa-hand-o-up"></i> Upload company brand logo from here...</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Company Name :</td>
+                                        <td width="65%"><a href="javascript:;" id="txtcname" data-type="text" data-pk="1"
+                                                data-title="Enter username"
+                                                class="editable editable-click editable-disabled" data-original-title=""
+                                                title=""></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>First Name :</td>
+                                        <td width="65%"><a href="javascript:;" id="txtfname" data-type="text" data-pk="1"
+                                                data-title="Enter username"
+                                                class="editable editable-click editable-disabled" data-original-title=""
+                                                title=""></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Middle Name :</td>
+                                        <td width="65%"><a href="javascript:;" id="txtmname" data-type="text" data-pk="1"
+                                                data-title="Enter username"
+                                                class="editable editable-click editable-disabled" data-original-title=""
+                                                title=""></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name :</td>
+                                        <td width="65%"><a href="javascript:;" id="txtlname" data-type="text" data-pk="1"
+                                                data-title="Enter username"
+                                                class="editable editable-click editable-disabled" data-original-title=""
+                                                title=""></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender :</td>
+                                        <td>
+                                            <a href="javascript:;" id="sex" data-type="select" data-title="Select sex"
+                                                class="editable editable-click editable-disabled"
+                                                style="color: rgb(152, 166, 173);"></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date Of Birth :</td>
+                                        <td>
+                                            <a href="javascript:;" id="dob" data-type="combodate" data-value=""
+                                                data-format="YYYY-MM-DD" data-viewformat="DD/MM/YYYY"
+                                                data-template="D / MMM / YYYY" data-pk="1"
+                                                data-title="Select Date of birth"
+                                                class="editable editable-click editable-disabled"></a>
+                                        </td>
+                                    </tr>
+                                    <!-- <tr>
+                                    <td>Country Code :</td>
+                                    <td>
+                                        <a href="javascript:;" id="ccode" data-type="select" data-title="Select Country Code"
+                                            class="editable editable-click editable-disabled"
+                                            style="color: rgb(152, 166, 173);"></a>
+                                    </td>
+                                </tr> -->
+                                    <tr>
+                                        <td>Mobile No :</td>
+                                        <td width="65%"><a href="javascript:;" id="txtmobile" data-type="text" data-pk="1"
+                                                data-title="Enter Mobile no"
+                                                class="editable editable-click editable-disabled" data-original-title=""
+                                                title=""></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email ID :</td>
+                                        <td width="65%"><a href="javascript:;" id="txtemail" data-type="text" data-pk="1"
+                                                data-title="Enter Email Id"
+                                                class="editable editable-click editable-disabled" data-original-title=""
+                                                title=""></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script src="api/entityApi/controllers/entityProfile.js"></script>
+    </body>
+
+</html>

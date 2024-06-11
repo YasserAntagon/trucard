@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Consumer Portal</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="truComponents/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <!-- <link rel="stylesheet" href="truComponents/font-awesome/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="dist/css/icons.css">
+  <!-- Ionicons -->
+  <!--   <link rel="stylesheet" href="truComponents/Ionicons/css/ionicons.min.css"> -->
+  <!-- jvectormap -->
+  <!--   <link rel="stylesheet" href="truComponents/jvectormap/jquery-jvectormap.css"> -->
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/select2.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="dist/css/custom.css">
+  <link rel="stylesheet" type="text/css" href="dist/css/bootstrap-drawer.css">
+  <link rel="stylesheet" type="text/css" href="dist/css/sweetalert2.min.css">
+  <style>
+    /* .html2canvas-container {
+      width: 3000px !important;
+      height: 3000px !important;
+    } */
+    .content-wrapper,.main-footer{
+      margin-right:0
+    }
+  </style>
+  <!-- Google Font -->
+  <script id="message-response-template" type="text/x-handlebars-template">
+    <li>
+      <div class="message-data">
+        <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+        <span class="message-data-time">{{time}}, Today</span>
+      </div>
+      <div class="message my-message">
+        {{response}}
+      </div>
+    </li>
+  </script>
+
+  <script id="message-template" type="text/x-handlebars-template">
+  <li class="clearfix">
+    <div class="message-data align-right">
+      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
+      <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+    </div>
+    <div class="message other-message float-right">
+      {{messageOutput}}
+    </div>
+  </li>
+</script>
+</head>
+
+<body class="skin-yellow sidebar-mini fixed sidebar-collapse">
+  <div class="wrapper">
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="javascript:void();" id="dashboard" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>T</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b></b> Admin</span>
+      </a>
+
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="javascript:;" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown tasks-menu">
+              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="cardrate">
+                  <img src="images/country/small/flagindia.png" class="ratedashimg" />
+                  <i class="mdi mdi-currency-inr"></i> <span id="india"></span>
+                </span>
+                <!--   <i class="fa fa-flag-o"></i> -->
+                <span class="label label-danger">India</span>
+              </a>
+            </li>
+            <!-- Notifications: style can be found in dropdown.less -->
+            <li class="dropdown notifications-menu">
+              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-warning">0</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header">You have 0 notifications</li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu">
+                   <!--  <li>
+                      <a href="javascript:;">
+                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                      </a>
+                    </li> --> 
+                  </ul>
+                </li>
+                <li class="footer"><a href="javascript:;">View all</a></li>
+              </ul>
+            </li>
+            <!-- Tasks: style can be found in dropdown.less -->
+
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="dist/img/user2-160x160.jpg" class="user-image profpic" alt="User Image">
+                <span class="hidden-xs"><span class="profname"></span></span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="dist/img/user2-160x160.jpg" class="img-circle profpic" alt="User Image">
+                  <p>
+                    <span class="profname"></span> <br> <small><span class="email"></span></small>
+                    <small>Member since Nov. 2012</small>
+                  </p>
+                </li>
+                <!-- Menu Body -->
+                <!-- <li class="user-body">
+                  <div class="row">
+                    <div class="col-xs-4 text-center">
+                      <a href="javascript:;">Followers</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="javascript:;">Sales</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="javascript:;">Friends</a>
+                    </div>
+                  </div> 
+                </li> -->
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="javascript:void()" id="profileDetails" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="index.html" class="btn btn-default btn-flat">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <!-- Control Sidebar Toggle Button -->
+            <li>
+              <a href="javascript:;" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            </li>
+          </ul>
+        </div>
+
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="dist/img/user2-160x160.jpg" class="img-circle profpic" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p><span class="profname"></span></p>
+            <a href="javascript:;"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </form> 
+        <ul class="sidebar-menu" data-widget="tree"> 
+            <li>
+              <a href="javascript:void();" id="consumerlist">
+                <i class="fa fa-list"></i><span>Consumer Details</span>
+              </a>
+            </li>  
+          <li class="header">Important Link</li>
+          <li><a href="pageContainer.html"><i class="fa fa-home text-red"></i> <span>Go Home</span></a></li>
+          <li><a href="index.html"><i class="fa fa-lock text-yellow"></i> <span>Sign Out</span></a></li>
+        </ul>
+      </section>
+      <!-- /.sidebar -->
+    </aside> 
+    <div class="content-wrapper">
+      <div id="pageContainer">
+      </div>
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 0.0.1
+      </div>
+      <strong>Copyright &copy; 2021-2025 <a href="javascript:;">Company Name</a></strong> All rights reserved.
+    </footer>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Create the tabs -->
+      <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+      </ul>
+      </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+
+  </div>
+  <div id="printcontent" class="hidden">
+  </div>
+  <!-- ./wrapper -->
+  <!-- ./wrapper -->
+
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; };</script>
+  <script>window.$ = window.jQuery = require('./truComponents/jquery/dist/jquery.min.js');</script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="truComponents/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- FastClick -->
+  <script src="truComponents/fastclick/lib/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/adminlte.min.js"></script>
+
+  <!-- SlimScroll -->
+  <script src="truComponents/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+  <!-- AdminLTE for demo purposes -->
+  <script src="dist/js/consumerSkin.js"></script>
+  <script src="consumerApi/urlRouter/urlrouter.js"></script>
+  <script src="dist/js/handlebars.min.js"></script>
+  <script src="dist/js/list.min.js"></script>
+  <script src="dist/js/drawer.js"></script>
+  <script src="dist/js/sweetalert2.min.js"></script>
+  <script src="dist/js/sweet-alert.init.js"></script>
+  <script src="dist/js/chat.js"></script>
+  <script src="dist/js/select2.min.js"></script>
+  <script src="consumerApi/db/db.js"></script>
+  <script src="dist/js/globalVal.js"></script>
+  <script src="dist/js/moment.js"></script>
+  <!-- Google Map API -->
+ <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRmRo8ElSePXCZTrP7gfSMVGsxP0o_iko&libraries=places"
+    async defer></script>
+ -->
+  <!--Database Initialise-->
+<!--   <script src="dist/js/select2.min.js"></script> -->
+  <script src="consumerApi/db/db.js"></script>
+  <script src="consumerApi/js/cust_profile.js"></script>
+  <script src="dist/js/alertify.js"></script>
+  <script src="dist/js/alertify-init.js"></script>
+
+</body>
+
+
+</html>

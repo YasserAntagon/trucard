@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include ('./partials/head'); %>
+    <link rel="stylesheet" href="truComponents/bootstrap-daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+    <link rel="stylesheet" href="css/entity/summary.css" />
+    <link rel="stylesheet" href="css/entity/certi.css" />
+    <link rel="stylesheet" href="css/consumer/cuprofile.css" />
+    <link rel="stylesheet" href="css/tags.css" />
+    <style> 
+    .btn-group,.btn-group-vertical{
+      padding-top: 0px;
+    }
+    .title_box {
+      left :10; 
+      border: 1px solid #ccc;
+    }
+    .title_box #title {
+      position: relative;
+      top: -0.5em;
+      margin-left: 1em;
+      padding: 5px;
+      display: inline;
+      background-color: white;
+    }
+
+    .title_box #content {
+      padding-top:10px;
+      padding-left:10px;
+      padding-bottom: 10px;
+    }
+    </style>
+    <%- include ('./partials/paymentStatus'); %>
+</head>
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+  <div id="loader" class="loaderContainer" style="display:none;">
+    <div class="loader"></div>
+  </div>
+  <div class="wrapper">
+    <%- include ('./partials/header'); %>
+    <%- include ('./../common/admintxnHeader'); %>
+    <div class="row pull-right">
+      <div class="col-sm-6 col-xs-6">
+        <div class="btn-group">
+          <button id="byTime" selectedText="all" class="btn btn-default dropdown-toggle" data-toggle="dropdown">All Time</button>
+          <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+          <ul class="dropdown-menu byTime-menu">
+            <li><a href="javascript:;" data="all">All Time</a></li>
+            <li><a href="javascript:;" data="1">1Hr</a></li>
+            <li><a href="javascript:;" data="6">6Hr</a></li>
+          </ul>
+          </div>
+        </div>
+            <div class="col-sm-3 col-xs-6"> 
+            <div class="btn-group">
+              <button id="bySort" selectedText="desc" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Desc <i class="fa fa-calendar" aria-hidden="true"></i></button>
+              <button class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu truasc-menu">
+                <li><a href="javascript:;" title="Txn Amount by descending order" data="txnD"><i class="fa fa-inr" aria-hidden="true"></i> <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></a></li> 
+                <li><a href="javascript:;" title="Txn Amount by ascending order" data="txnA"><i class="fa fa-inr" aria-hidden="true"></i> <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></a></li> 
+                <li><a href="javascript:;" title="TruCoin Gold by descending order" data="goldd"><img src="../images/new/gold.png" height="24" width="24" /> <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></a></li> 
+                <li><a href="javascript:;" title="TruCoin Gold by ascending order" data="golda"><img src="../images/new/gold.png" height="24" width="24" /> <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></a></li>
+                <li><a href="javascript:;" title="TruCoin Silver by descending order" data="silverd"><img src="../images/new/silver.png" height="26" width="30" /> <i class="fa fa-sort-numeric-desc" aria-hidden="true"></i></a></li> 
+                <li><a href="javascript:;" title="TruCoin Silver by ascending order" data="silvera"><img src="../images/new/silver.png" height="26" width="30" /> <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></a></li>
+                <li><a href="javascript:;" title="Create Date by descending order" data="asc">Asc <i class="fa fa-calendar" aria-hidden="true"></i></a></li> 
+                <li><a href="javascript:;" title="Create Date by ascending order" data="desc">Desc <i class="fa fa-calendar" aria-hidden="true"></i></a></li> 
+              </ul>
+        </div> 
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-md-12"  id="selfbtn"><span class="hidden" id="ladda-label">Processing... <i class="fa fa-spinner fa-2x fa-spin"></i></span></div>
+      </div>
+      <%- include ('./../common/report'); %>
+  </div>
+</div>
+</div>
+  <%- include ('./partials/footer'); %>
+    <script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/datatable/dataTables.responsive.min.js"></script>
+    <script src="js/datatable/responsive.bootstrap4.min.js"></script>
+    <script src="js/datatable/dataTables.buttons.min.js"></script>
+    <script src="js/datatable/buttons.bootstrap4.min.js"></script>
+    <script src="js/entity/mustache.min.js"></script>
+    <script src="js/tags.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="api/admin/controllers/gstTransaction.js?v=2"></script>
+    <script src="api/admin/controllers/walletMoneyNew.js?v=1"></script>
+    <script src="api/admin/controllers/walletHistory.js?v=1"></script>
+    <script src="api/admin/controllers/verifyTPIN.js"></script>
+    <script src="api/admin/controllers/paymentRefund.js"></script> 
+    <script src="api/admin/filter.js"></script>
+    <script src="api/viewinvoicenew.js"></script>
+</body>
+</html>

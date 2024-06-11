@@ -1,0 +1,55 @@
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Consumer Portal - <%- title  %></title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../truComponents/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../css/icons.css">
+  <link rel="shortcut icon" href="../images/icon/tlogo.ico">
+  <!--   <link rel="stylesheet" href="../css/offline-theme-dark.css">
+  <link rel="stylesheet" href="../css/OfflineEnglish.css"> -->
+  <link rel="stylesheet" href="../css/select2.min.css" />
+  <link rel="stylesheet" href="../css/AdminLTE.css" />
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../css/alertify.css">
+  <link rel="stylesheet" href="../css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../css/custom.css">
+  <link rel="stylesheet" href="../css/loader.css">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap-drawer.css">
+  <link rel="stylesheet" type="text/css" href="../css/sweetalert2.min.css">
+  <style>
+    .content-wrapper,
+    .main-footer {
+      margin-right: 0
+    }
+  </style>
+  <script src="../truComponents/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="../truComponents/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../truComponents/bootstrap-daterangepicker/daterangepicker.css" />
+  <script id="message-response-template" type="text/x-handlebars-template">
+    <li>
+      <div class="message-data">
+        <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+        <span class="message-data-time">{{time}}, Today</span>
+      </div>
+      <div class="message my-message">
+        {{response}}
+      </div>
+    </li>
+  </script>
+
+  <script id="message-template" type="text/x-handlebars-template">
+  <li class="clearfix">
+    <div class="message-data align-right">
+      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
+      <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+    </div>
+    <div class="message other-message float-right">
+      {{messageOutput}}
+    </div>
+  </li>
+</script>

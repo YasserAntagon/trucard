@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ('./partials/head'); %> 
+    <!-- x-editable (bootstrap version) -->
+    <link
+      href="truComponents/bootstrap/dist/css/bootstrap-editable.css"
+      rel="stylesheet"
+    />
+    <link
+      href="truComponents/bootstrap/dist/css/bootstrap-toggle.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="truComponents/bootstrap-daterangepicker/daterangepicker.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="skin-blue fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+      <%- include ('./partials/header'); %>
+      <div class="content-wrapper">
+        <div class="containerbg">
+          <% if (msg) {%>
+            <input type="hidden" id="errorMsg" value="<%- msg.message %>">
+          <% } %>
+          <div class="box box-danger" id="csearch">
+            <div class="loaderContainer" style="display:none;">
+              <div class="loader"></div>
+            </div>
+            <div class="box-header with-border">
+              <h3 class="box-title">Search Partner</h3>
+
+              <!-- <div class="box-tools pull-right">
+                <a
+                  type="button"
+                  class="btn btn-box-tool dashboard"
+                  data-widget="remove"
+                  ><i class="fa fa-times"></i
+                ></a>
+              </div> -->
+            </div>
+            <div class="box-body">
+              <div class="wizard">
+                <div class="row">
+                <input type="hidden" id="formSys" value="<%- linkurl.entityDetails%>" />
+                  <div class="col-lg-12">
+                    <div class="input-form">
+                      <div class="input-group roundedsearch">
+                          <input
+                            type="text"
+                            value=""
+                            id="txtsearch"
+                            class="form-control"
+                            placeholder="Search Partner..."
+                          />
+                          <span class="input-group-btn">
+                            <button
+                              type="submit"
+                              name="search"
+                              id="btnsearch"
+                              class="btn btn-flat">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </span> 
+                      </div>
+                      <small class="text-danger" id="err_req">* here you can search by TruID, Mobile No & Email Id...</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-editable.min.js"></script>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-toggle.min.js"></script>
+    <script src="truComponents/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="api/entityApi/controllers/searchEntity.js"></script>
+    <script src="js/entity/searchValidation.js"></script> 
+  </body>
+</html>

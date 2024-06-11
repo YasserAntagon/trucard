@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Company Admin Login</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="truComponents/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="css/icons.css">
+  <!-- Ionicons -->
+<!--   <link rel="stylesheet" href="truComponents/Ionicons/css/ionicons.min.css"> -->
+  <!-- Theme style -->
+  <link rel="stylesheet" href="css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="css/AdminLTE.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition login-page">
+
+<!-- /.login-box -->
+<div class="login-box">
+  <div class="login-logo">
+
+    <!--   <a href="javascript:;"><img src="images/logo/logo.png" width="150px"/> </a> -->
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <img src="images/notifyicon/lock.png" class="center" />
+    <p class="login-box-msg">Reset your password here...</p>
+
+    <form action="pageContainer.html" method="post">
+      <div class="form-group has-feedback">
+        <input type="email" id="txtemail" class="form-control" placeholder="Enter Email Id">
+        <span class="fa fa-envelope form-control-feedback"></span>
+        <div class="text-danger" id="error_email"></div>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" id="txtpassword" class="form-control" placeholder="Enter password">
+        <span class="fa fa-lock form-control-feedback"></span>
+        <div class="text-danger" id="error_pass"></div>
+      </div>
+
+      <div class="form-group has-feedback">
+        <input type="password" id="txtcpassword" class="form-control" placeholder="Enter confirm password">
+        <span class="fa fa-lock form-control-feedback"></span>
+        <div class="text-danger" id="error_cpass"></div>
+      </div>
+
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-xs-6">
+          <button type="button" id="btnChange" disabled class="btn btn-primary btn-block btn-flat">Change
+            Password</button>
+        </div>
+        <div class="col-xs-6">
+          <a class="pull-right" href="/">Sign In</a><br>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+    <!--    <button type="button" id="btnLoki" class="btn btn-primary btn-block btn-flat">Add Loki</button> -->
+    <!-- /.social-auth-links -->
+<hr>
+ <footer>
+     <!--  <div class="pull-right">
+        <b>Version</b> 0.0.1
+      </div> -->
+    <center>  <strong>Copyright &copy; 2021-2025 <a href="javascript:;">Company Name</a>.</strong> <br>All rights
+      reserved.</center>
+    </footer>
+
+  </div>
+</div>
+<script src='./truComponents/jquery/dist/jquery.min.js'></script>
+<script src="truComponents/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/alertify.js"></script>
+<script src="js/alertify-init.js"></script>
+<script src="api/admin/controllers/resetPass.js"></script>
+</body>
+</html>

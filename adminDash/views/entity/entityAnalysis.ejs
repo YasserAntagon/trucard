@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/head'); %>
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="truComponents/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+
+    <%- include ('./partials/lheader'); %>
+    <div class="row content">
+        <div class=" trans_details ">
+            <div class="col-md-12 stockList">
+                <div class="box box-widget box-widgets">
+                    <div id="entityChartLoader" class="loaderContainer" style="display:none;">
+                        <div class="loader"></div>
+                    </div>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Consumer Chart
+
+                        </h3>
+                    </div>
+
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+
+
+                            <!-- input-group -->
+
+                            <span class="col-md-12 ">
+                                <div class="form-group">
+                                    <div class="col-md-4 pull-right" style="min-width: 300px;">
+                                        <div class="input-daterange input-group input-group-sm" id="config-date">
+                                            <i class="input-group-addon b-0">
+                                                <i class="fa fa-calendar"></i>
+                                            </i>
+                                            <span class="form-control">
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </span>
+
+                        </div>
+                        </br>
+                        <div class="col-lg-12">
+                            <div class="chart">
+                                <canvas id="canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script src="js/entity/Chart.bundle.js"></script>
+    <script src="truComponents/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        var today = new Date();
+        var today = moment(today).format('DD/MM/YYYY');
+        // $('#txtDate').val(today);
+        $('#txtDate').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy'
+        })
+        $('#txtDate').datepicker('setDate', today);
+        //Date picker
+
+
+        // radio button
+        $('.radio-group label').on('click', function () {
+            $(this).removeClass('not-active').siblings().addClass('not-active');
+        });
+
+    </script>
+    <script src="api/entityApi/controllers/entityanalisys.js"></script>
+    </body>
+</html>

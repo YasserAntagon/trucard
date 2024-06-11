@@ -1,0 +1,243 @@
+<!-- Latest compiled and minified CSS -->
+<body style='font-size: 14px;font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #292b2c;
+    background-color: #fff'>
+  <div class="container" style="width: auto;
+padding-left: 10px;
+padding-right: 10px;">
+    <h5 style="padding:0.5em;text-align:center">Thank you for being with us.</h5>
+	<div style="border: 1px solid #e6e9ed;">
+		<div style="padding: 15px;">
+            <h4 class="mt-0 header-title headerp x_title" style="border-bottom: 2px solid #e6e9ed; padding: 10px 6px;">
+                eReceipt
+                <span style="float: right;"> Date: {{resource.orderdate}}</span></h4>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="invoice-title">
+                    <input id="invoiceno" type="hidden" value="{{resource.invoice}}" /> 
+                    {{#resource.isbrandLogo}}
+                        <h3 class="m-t-0">
+                            <img class="clientLogo" src="{{resource.isbrandpath}}" alt="logo" height="24" />
+                        </h3>
+                        <hr style="margin-top: 1rem;margin-bottom: 1rem;border: 0;border-top-color: currentcolor;border-top-style: none;border-top-width: 0px;border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                        <small class="poweredcss">Powered by</small>
+                        <br>
+                        <img src='https://company.com/images?url=logo.png' alt="logo" height="32" /> 
+                    {{/resource.isbrandLogo}}
+                    {{^resource.isbrandLogo}}
+                        <h3 class="m-t-0"> 
+                            <img src='https://company.com/images?url=logo.png' alt="logo" height="32" /> 
+                        </h3>
+                    {{/resource.isbrandLogo}} 
+                </div>
+                <hr style="margin-top: 1rem;margin-bottom: 1rem;border: 0;border-top-color: currentcolor;border-top-style: none;border-top-width: 0px;border-top: 1px solid rgba(0, 0, 0, 0.1);">
+                <div class="row" style="display: flex;">
+                    {{#resource.isTransfer}}
+                        <div style="width: 33.33%;position: relative;">
+                        <span style="font-style: normal;line-height: inherit;">
+                            <strong>Sender Details: </strong><br>
+                        {{/resource.isTransfer}}
+                        {{^resource.isTransfer}}
+                        <div style="width: 50%;position: relative;">
+                            <span style="font-style: normal;line-height: inherit;">
+                                <strong>Receipt To: </strong><br>
+                                {{/resource.isTransfer}}
+                                {{resource.consumerName}}<br>
+                                {{resource.to}}<br> 
+                            </span>
+                        </div>
+                        {{#resource.isTransfer}}
+                        <div style="width: 33.33%;position: relative;">
+                            <span style="font-style: normal;line-height: inherit;">
+                                <strong>Receiver Details: </strong><br>
+                                {{resource.receiverName}}<br>
+                                {{resource.receiverTruID}}<br>
+                            </span>
+                        </div>
+                        <div style="width: 33.33%;position: relative;">
+                        {{/resource.isTransfer}}
+                        {{^resource.isTransfer}}
+                        <div style="width: 50%;position: relative;">
+                        {{/resource.isTransfer}}
+                        <span style="float: right;font-style: normal;line-height: inherit;">
+                        <strong>eReceipt No : {{resource.invoice}}</strong><br>
+                        <strong>Transaction Status : <span style = "text-transform:capitalize;">{{resource.status}}</span></strong><br>
+                        <strong>Transaction Type: <span style = "text-transform:capitalize;">{{resource.type}}</span></strong><br> 
+                        {{{resource.GSTIN}}}
+                        {{{resource.Paidby}}}                        
+                        </span>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div style="-webkit-box-flex: 0;-webkit-flex: 0 0 100%;-ms-flex: 0 0 100%;flex: 0 0 100%;max-width: 100%;">
+                <div class="panel panel-default">
+                    <div class="p-2">
+                        <h5 style="font-size: 18px;font-weight: bolder;font-family: inherit;"><strong>Order summary</strong></h5>
+                    </div>
+                    <div class="">
+                        <div class="table-responsive">
+                            <table id="invoicecontent" class="table table-bordered" style="border:1px solid #eceeef;border-collapse: collapse;width:100%;font-size:14px">
+                                {{#resource.isConversion}}
+                                <thead>
+                                    <tr> 
+                                        <td style="padding:10px;border: 1px solid #eceeef;" colspan="4" width="40%"><strong>Bullion</strong> </td> 
+                                        <td style="padding:10px;border: 1px solid #eceeef;text-align: center;" class="text-center" width="20%"><strong>Rate/Gram</strong></td> 
+                                        <td style="padding:10px;border: 1px solid #eceeef;" class="text-right" width="20%"><strong style="float:right">Amount</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody>  
+                                    <tr>
+                                        <td style="padding:10px;border: 1px solid #eceeef;" colspan="4">
+                                         {{{abType}}}
+                                        </td> 
+                                        <td style="padding:10px;border: 1px solid #eceeef;text-align: center;" class="text-center" style="vertical-align: middle;">₹&nbsp;{{rate}}</td>
+                                        <td style="padding:10px;border: 1px solid #eceeef;" class="text-right" style="vertical-align: middle;">₹&nbsp;{{amount}}</td>
+                                    </tr>
+                                </tbody>
+                                {{/resource.isConversion}}
+                                {{^resource.isConversion}}
+                                <thead>
+                                    <tr> 
+                                        <td style="padding:10px;border: 1px solid #eceeef;" colspan="3" width="40%"><strong>Bullion</strong></td>
+                                        <td style="padding:10px;border: 1px solid #eceeef;text-align: center;" class="text-center" width="20%"><strong>QTY</strong></td>
+                                        <td style="padding:10px;border: 1px solid #eceeef;text-align: center;" class="text-center" width="20%"><strong>Rate/Gram</strong></td> 
+                                        <td style="padding:10px;border: 1px solid #eceeef;" class="text-right" width="20%"><strong style="float:right">Amount</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    {{#resource.product}}
+                                    <tr>
+                                        <td style="padding:10px;border: 1px solid #eceeef;" colspan="3">
+                                            <div style="min-height:36px">
+                                                <img style="height: 24px;position: absolute;" src="{{path}}">
+                                                <div style="position: absolute;left: 80px;">
+                                                    {{title}}<br>{{assetmanager}} <small>({{from}})</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td style="padding:10px;border: 1px solid #eceeef;text-align: center;" class="text-center" style="vertical-align: middle;">{{qty}}&nbsp;gms</td> 
+                                        <td style="padding:10px;border: 1px solid #eceeef;text-align: center;" class="text-center" style="vertical-align: middle;">₹&nbsp;{{rate}}</td>
+                                        <td style="padding:10px;border: 1px solid #eceeef;" class="text-right" style="vertical-align: middle;"><span style="float: right;">₹&nbsp;{{amount}}</span></span></td>
+                                    </tr>
+                                    {{/resource.product}}
+                                    {{/resource.isConversion}} 
+                                    <tr>
+                                      <td style="padding:10px;border: 1px solid #eceeef;" colspan="4" rowspan="3" class="text-success" style="vertical-align:bottom">
+                                      {{{resource.message}}}
+                                      {{#resource.isRedeem}}
+                                      {{{resource.subMessage}}}
+                                      {{/resource.isRedeem}}
+                                      </td>
+                                       {{{resource.subTotal}}}
+                                      </tr> 
+                                       {{{resource.charges}}}
+                                    <tr>
+                                      <td style="padding:10px;border: 1px solid #eceeef;" class="no-line text-right">
+                                      <strong style="float: right;font-size: 20px;">Total :</strong></td>
+                                      <td style="padding:10px;border: 1px solid #eceeef;" class="no-line text-right text-success">
+                                      <strong class="m-0 intotal" style="float: right;font-size: 22px;color: #047b04;">₹&nbsp;{{resource.totalAmount}}</h4>
+                                      </td>
+                                    </tr>
+                                    {{{resource.infavour}}}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div><b>Disclaimer:</b> This is an acknowledgement of the Order and not an actual invoice. Details mentioned above including the rates and taxes (as applicable) are as provided by the assetmanager. Responsibility of charging (or not charging) taxes lies with the  Company disclaims any liability that may arise in this respect.</div>
+    <div><p style="color: #000;padding-left: 20px; padding:0.5em;text-align:center">For any query fill free to contact us - <a href="mailto:{{enquiryMail}}">{{enquiryMail}}</a></p></div>
+    <div style='background-color:#40b2cc;margin:0!important;padding:0!important'>
+        <table bgcolor='#40b2cc' border='0' cellspacing='0' cellpadding='0' width='100%'>
+            <tbody>
+                <tr>
+                    <td align='center' style='border-collapse:collapse;padding:0px 0px 0px 0px'>
+
+                        <table align='center' bgcolor='#40b2cc' border='0' cellspacing='0' cellpadding='0'
+                            width='100%' style='max-width:100%'>
+                            <tbody>
+                                <tr>
+                                    <td bgcolor='#e2e2e2' style='background-color:#40b2cc'>
+                                        <table align='center' cellspacing='0' cellpadding='0' border='0'
+                                            width='100%'>
+                                            <tbody>
+                                                <tr>
+                                                    <td align='center' style='padding:15px 0 15px 0'>
+                                                        <table width='100%' cellspacing='0' cellpadding='0'
+                                                            border='0'>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align='right' valign='middle'>
+                                                                        <a href='https://play.google.com/store/apps/details?id=YOUR_APP_ID&hl=en_IN'
+                                                                            style='display:inline-block;color:#000;text-decoration:none'
+                                                                            target='_blank'>
+                                                                            <img src='https://docs.google.com/uc?export=download&id=1tttAW_53cj8Ithqjedmj4OwE_DCY77T5'
+                                                                                alt='google store' width='150'
+                                                                                height='50'
+                                                                                style='display:inline-block;vertical-align:middle;outline:none;text-decoration:none;padding:0 5px 0 5px'>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td align='left' valign='middle'>
+                                                                        <a href='#'
+                                                                            onclick="return alert('Coming Soon....')"
+                                                                            style='display:inline-block;color:#000;text-decoration:none'>
+                                                                            <img src='https://docs.google.com/uc?export=download&id=1CHh04j9DqvUNG-4m7Fm5SzK4Rtnb7Qag'
+                                                                                alt='Apple store' width='150'
+                                                                                height='50'
+                                                                                style='display:inline-block;vertical-align:middle;outline:none;text-decoration:none;padding:0 5px 0 5px'>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td align='center' style='padding:30px 0 30px 0'>
+                                                        <table width='100%' cellspacing='0' cellpadding='0'
+                                                            border='0'>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align='center'
+                                                                        style='color:#000;font-family:Tahoma Helvetica Neue,Helvetica,Helvetica, Arial,
+                                                                        sans-serif;font-size:12px;font-weight:500;line-height:1.6'>
+                                                                        <strong>© 2023 Company Name
+                                                                            </strong> All right
+                                                                        reserved.
+                                                                        <br /><a target='_blank'
+                                                                            href='https://company.com/terms-and-conditions/'
+                                                                            style='color:#000;text-decoration:underline'>Terms
+                                                                            of Use</a> - <a target='_blank'
+                                                                            href='https://company.com/privacy-policy/'
+                                                                            style='color:#000;text-decoration:underline'>Privacy
+                                                                            Statement</a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+  <!-- Latest compiled and minified JavaScript -->
+  </div>
+</body>

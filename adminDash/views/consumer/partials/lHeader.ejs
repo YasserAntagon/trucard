@@ -1,0 +1,209 @@
+<link rel="stylesheet" href="css/consumer/consumer.css">
+<link href="truComponents/bootstrap/dist/css/bootstrap-editable.css" rel="stylesheet" />
+<link href="truComponents/bootstrap/dist/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link href="truComponents/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<link rel="stylesheet" href="css/permission.css">
+<link rel="stylesheet" href="css/consumer/addresses.css">
+<link rel="stylesheet" href="css/megaMenu.css">
+<link rel="stylesheet" href="css/breadcrumb.css"> 
+</head>
+
+<body class="skin-yellow fixed sidebar-mini sidebar-collapse">
+	<%- include ('./header'); %>
+	<div class="content-wrapper">
+		<div class="">
+			<input type="hidden" id="txtcTruid" value="<%- cData.truID  %>">
+			<input type="hidden" id="txtcrnno" value="<%- cData.CRNNo  %>">
+			<input type="hidden" id="accountStatus" value="<%- cData.KYCFlag  %>">
+			<div id="cdetails">
+				<div id="consumerDetailsLoader" class="loaderContainer" style="display:none;">
+					<div class="loader"></div>
+				</div>
+				<nav class="navbar navbar-default fixed" role="navigation">
+					<div class="container-fluid">
+						<div class="navbar-collapse style= collapse in" id="bs-megadropdown-tabs"
+							style="padding-left: 0px;">
+							<ul class="nav navbar-nav"> 
+								<li class="dropdown mega-dropdown hidden-xs">
+									<a href="/openConsumerDash?id=<%- cData.truID  %>" class="dropdown-toggle"> <i class="fa fa-home"></i>
+										Home </a>
+									</a>
+								</li>
+								<li class="dropdown mega-dropdown">
+									<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"> <i
+											class="fa fa-bars"></i> MENU <span class="caret"></span></a>
+									<ul class="dropdown-menu mega-dropdown-menu row">
+										<li class="col-sm-5">
+											<ul class="dropdown-menu-list">
+												<li class="dropdown-header">Consumer Details</li>
+												<div id="myCarousel" class="carousel" data-ride="carousel">
+													<div class="box box-widget box-widgets">
+														<div class="box-body box-profile">
+															<p style="align-self: center;text-align: center;">
+																<% if (cData.image =="0") { %>
+																<img style="height: 80px;width: 80px;"
+																	class="img-fluid img-circle" id="consumerProImg"
+																	src="images/user.png" alt="User profile picture">
+																<%} else { %>
+																<img class="img-circle"
+																	style="height: 80px;width: 80px;"
+																	src="<%- config.custUrl  %><%- cData.image  %>"
+																	alt="User profile picture">
+																<% } %></p>
+															<h3 class="profile-username text-center"><span
+																	id="txtname"><%- cData.fName  %>
+																	<%- cData.lName  %></span></h3>
+															<h5 class="text-center"><strong><span
+																		id="txttruid"><%- cData.truID  %></span></strong>
+															</h5>
+															<div class="text-center h5">
+															<% if (cData.KYCFlag=="blocked") { %>
+																<label id="docstatus"
+																	class="text-center label label-danger">
+																	<span id="docVerified">KYC Status : Account Blocked
+																	</span></label>&nbsp;
+															<% } else if (cData.docVerified) { %>
+																<label id="docstatus"
+																	class="text-center label label-success">
+																	<span id="docVerified">KYC Status : Verified
+																	</span></label>&nbsp;
+																<%} else { %>
+																<label id="docstatus"
+																	class="text-center label label-warning">
+																	<span id="docVerified">KYC Status : Pending
+																	</span></label>&nbsp;
+																<% } %>
+															</div>
+															<p id="cAddress" class="text-muted text-center">
+																<% if(cData.permanentAddress){ %>
+																<%- cData.permanentAddress.houseNumber  %>
+																<%- cData.permanentAddress.streetNumber  %> <br>
+																<%- cData.permanentAddress.landmark  %>
+																<%- cData.permanentAddress.city  %><br>
+																<%- cData.permanentAddress.state  %>
+																<%- cData.permanentAddress.country  %><br>
+																<%- cData.permanentAddress.pin  %>
+																<% } %>
+															</p>
+														</div>
+													</div>
+											</ul>
+										</li>
+
+
+
+
+
+										<li class="col-sm-7">
+											<ul class="dropdown-menu-list">
+												<li class="dropdown-header">Personal
+													Details</li>
+												<li><a href="<%- linkurl.cprofile %>"><i class="fa fa-user"></i>
+														Profile Details </a></li> 
+												<li><a href="<%- linkurl.consumerAddress %>" id="dlrAddress"><i
+															class="fa fa-address-book-o"></i> Address Details</a>
+												</li> 
+												<li class="divider"></li> 
+												<li class="dropdown-header">Transactions</li>
+												<li><a href="<%- linkurl.Transactions %>"><i
+															class="fa fa-address-book-o"></i> Transaction
+														History</a></li>
+												<li><a href="<%- linkurl.cphome %>"><i class="fa fa-address-book-o"></i>
+														Stock Details</a></li>
+														<li><a href="<%- linkurl.gstcBreakup %>"><i class="fa fa-archive"></i>
+															GST Report</a></li>
+														 
+												<li class="divider"></li>
+												<li class="dropdown-header">Authorization</li>
+												<li><a href="<%- linkurl.individualConfiguration %>"><i class="fa fa-key"></i> Permissions</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul> 
+							<div class="navbar-custom-menu pull-right  hidden-xs">
+								<ul class="nav navbar-nav">
+									<li> 
+										<% if (cData.KYCFlag=="blocked") { %>
+											<label id="docstatus" style="margin-right: 10px;"
+												class="statusLabel label label-danger">
+												<span id="docVerified">KYC Status : Account Blocked
+												</span></label>
+										<% } else if (cData.docVerified) { %>
+											<label id="docstatus" style="margin-right: 10px;"
+												class="statusLabel label label-success">
+												<span id="docVerified">KYC Status : Verified
+												</span></label>
+											<%} else { %>
+											<label id="docstatus" style="margin-right: 10px;"
+												class="statusLabel label label-warning">
+												<span id="docVerified">KYC Status : Pending
+												</span></label>
+											<% } %></li>
+											<li> 
+												<div class="btn-group" id="ID<%- cData.truID  %>" style="cursor: pointer;margin-right: 10px;padding: 10px;padding-top: 15px;"> 
+													<% if (cData.KYCFlag == "active") {%>
+														<button class="btn btn-sm btn-success">Active</button>
+														<button class="btn btn-sm dropdown-toggle" data-toggle="dropdown">
+															<span class="caret"></span>
+														</button>
+														<ul class="dropdown-menu"> 
+															<li><a tabindex="-1" href="javascript:void(0);" onclick="consumerActivationBC('blocked')">Block account</a></li>
+															<li><a tabindex="-1" tabindex="-1" href="javascript:void(0);" onclick="consumerActivationBC('holder')">OnHold account</a></li>
+														</ul>
+													<% } else if (cData.KYCFlag == "pending") {%>
+														<button class="btn btn-warning">Pending</button>
+													<% } else if (cData.KYCFlag == "notactive") {%>
+														<button class="btn btn-warning">Not Activated</button>
+													<% } else if (cData.KYCFlag == "blocked") {%>
+														<button class="btn btn-danger">Blocked</button>
+													<% } else if (cData.KYCFlag == "banned") {%>
+														<button class="btn btn-danger">Banned</button>
+													<% } else if (cData.KYCFlag == "stopTrading") {%>
+														<button class="btn btn-danger">Stop Trading</button>
+													<% } else if (cData.KYCFlag == "holder") {%>
+														<button class="btn btn-warning">On Hold</button>
+													<% }%>
+													<% if (cData.KYCFlag == "active") {%>
+													<% } else {%>
+													<button class="btn dropdown-toggle" data-toggle="dropdown">
+														<span class="caret"></span>
+													</button>
+													<ul class="dropdown-menu"> 
+														<li><a tabindex="-1" href="javascript:void(0);" onclick="consumerActivationBC('active')">Active account</a></li> 
+													</ul><% }%>
+												</div>
+												</li>
+									<li class="user user-menu">
+										<a href="javascript:;">
+											<% if (cData.image =="0") { %>
+											<img src='images/user.png' class="user-image profpic">
+											<%} else { %>
+											<img src='<%- config.custUrl  %><%- cData.image  %>'
+												class="user-image profpic">
+											<% } %>
+											<span class="hidden-xs"><span class="profname"><%- cData.fName  %>
+													<%- cData.lName  %></span></span>
+										</a>
+									</li>
+
+								</ul>
+							</div>
+
+						</div>
+					</div>
+				</nav>
+				<div class="box-body box-profile">
+					<% if (breadcrumbs) {%>
+					<div class="btn-group btn-breadcrumb breadcrumb-default scp-breadcrumb">
+						<% breadcrumbs.forEach(function(crumbs, index){ %>
+							<% if (index == 0) { %>
+							<a href="<%- crumbs.url %>" class="btn btn-default"><i class="fa fa-home"></i> <%- crumbs.name %></a>
+							<%} else if (index == breadcrumbs.length - 1) { %>
+								<div class="btn btn-info"><b><%- crumbs.name %></b></div>
+							<%} else { %>
+								<a href="<%- crumbs.url %>" class="btn btn-default"><%- crumbs.name %></a>
+							<% } %>
+							<% }) %>
+					</div>
+					<% } %>

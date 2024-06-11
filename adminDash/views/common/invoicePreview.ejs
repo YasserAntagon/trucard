@@ -1,0 +1,656 @@
+<script id="invoicetmp" type="text/template">
+   {{#invoice}}
+   <div class="col-md-12">
+   <div class="card m-b-20">
+   <div class="card-block">
+   <h4 class="mt-0 header-title headerp x_title"><i class="mdi mdi-24px mdi-format-float-right"></i>
+   {{#issuccess}}
+   eReceipt
+   {{/issuccess}}
+   {{^issuccess}}
+   ESTIMATION
+   {{/issuccess}}
+   <span class="pull-right invoice-box" > Date: {{orderdate}}</span>
+   </h4>
+   </span>
+   <div class="row">
+
+   <div class="col-12">
+   <div class="invoice-title">
+   <input id="invoiceno" type="hidden" value="{{orderno}}" />
+    {{#issuccess}}
+   <div class="details pull-right animat pulse" title="Click to show assetstore certificate &amp; location" data-toggle="modal" data-target=".bs-example-modal-lg">
+   <img class="float-left " height="38px"  src="/a3b74f27304cd?url={{cimage}}" alt="Picture">
+   <div class="float-right certidetails">
+   <span><strong>AssetStore Name: {{assetstorename}}</strong></span><br>
+   <span style="color:gray"><strong><i>City : {{ccity}}</i></strong></span>
+   </div>
+   </div>
+   {{/issuccess}}
+   <h5 class="pull-right" style="margin:1;font-size:14px">
+   </h5>
+   <h3 class="m-t-0">
+   <img src="images/logo/trulogo.png" alt="logo" height="32" />
+   <!--<small class="poweredcss">Powered by <strong></strong></small>-->
+   {{#issuccess}}
+   <div class="pull-right animatearrow">
+   <a href="javascript:;">Click Here To View Ceritificate <span class="arrow"><span></span></span></a>
+   </div>
+   {{/issuccess}}
+   </h3>
+   </div>
+   <hr>
+   <div class="row">
+   <div class="col-12">
+   {{#self}}
+   <div class="row">
+   {{^transRedeem}}
+   <div class="col-6">
+   {{/transRedeem}}
+   {{#transRedeem}}
+   {{#issuccess}}
+   <div class="col-4">
+   {{/issuccess}}
+   {{^issuccess}}
+   <div class="col-6">
+   {{/issuccess}}
+   {{/transRedeem}}
+   <address>
+   <strong>Buyer Details:</strong><br>
+   {{entityName}}<br>
+   {{entityID}}<br>
+   {{address}}<br>
+   {{address1}}<br>
+   {{address2}}
+   </address>
+   </div>
+
+   {{#transRedeem}}
+   {{#issuccess}}
+   <div class="col-4">
+   <div class="col-lg-12 offset-lg-2" style="padding:0">
+    <strong>Store Details:</strong><br>
+   {{store.companyName}}<br>
+   {{storeTruID}}<br>
+   <!--{{store.mobile}} / {{store.landLine}}<br>
+   {{store.email}}<br>-->
+   {{store.companyRegisteredAddress.houseNumber}},
+   {{store.companyRegisteredAddress.streetNumber}},<br>
+   {{store.companyRegisteredAddress.landmark}}, {{store.companyRegisteredAddress.city}},<br>
+   {{store.companyRegisteredAddress.state}}, {{store.companyRegisteredAddress.country}} - {{store.companyRegisteredAddress.pin}}
+   </div>
+   </div>
+   {{/issuccess}}
+   {{/transRedeem}}
+
+   {{^transRedeem}}
+   <div class="col-6">
+   {{/transRedeem}}
+   {{#transRedeem}}
+   {{#issuccess}}
+   <div class="col-4">
+   {{/issuccess}}
+   {{^issuccess}}
+   <div class="col-6">
+   {{/issuccess}}
+   {{/transRedeem}}
+   <address class="pull-right">
+   <strong>eReceipt No / TXN ID.: {{orderno}}</strong><br>
+   {{#transBuy}}
+   <strong>GSTIN: 07AAFCT6383H2ZZ </strong><br>
+   {{/transBuy}}
+   {{#transBuy}}
+   <strong>Transaction Type: Buy</strong><br>
+   {{/transBuy}}
+   {{#transRedeem}}
+   <strong>Transaction Type: Swap</strong><br>
+   {{/transRedeem}}
+   {{#transSell}}
+   <strong>Transaction Type: Sell</strong><br>
+   {{/transSell}}
+   {{#issuccess}}
+   {{#mop}}
+   {{^transSell}}
+    <br>
+    <strong>Bank TXN ID : {{bankTXNID}} </strong> <br>
+    <strong>Paid by : {{payBy}} </strong><br>
+   {{/transSell}}
+   {{/mop}}
+   {{^mop}}
+    <strong>Paid by:  {{amtpayby}} </strong><br>
+   {{/mop}}
+   {{/issuccess}}
+   </address>
+   </div>
+   </div>
+   {{/self}}
+   {{^self}}
+   <div class="row">
+   {{^transRedeem}}
+   <div class="col-6">
+   {{/transRedeem}}
+   {{#transRedeem}}
+   {{#issuccess}}
+   <div class="col-4">
+   {{/issuccess}}
+   {{^issuccess}}
+   <div class="col-6">
+   {{/issuccess}}
+   {{/transRedeem}}
+   <address>
+   <strong>Receipt Issued By Entity In Favor of:</strong><br>
+   {{entityName}}<br>
+   {{entityID}}<br>
+   {{address}}<br>
+   {{address1}}<br>
+   {{address2}}
+   </address>
+   </div>
+
+   {{#transRedeem}}
+   {{#issuccess}}
+   <div class="col-4">
+   <div class="col-lg-12 offset-lg-2" style="padding:0">
+    <strong>Store Details:</strong><br>
+   {{store.companyName}}<br>
+   {{storeTruID}}<br>
+   <!--{{store.mobile}} / {{store.landLine}}<br>
+   {{store.email}}<br>-->
+   {{store.companyRegisteredAddress.houseNumber}},
+   {{store.companyRegisteredAddress.streetNumber}},<br>
+   {{store.companyRegisteredAddress.landmark}}, {{store.companyRegisteredAddress.city}},<br>
+   {{store.companyRegisteredAddress.state}}, {{store.companyRegisteredAddress.country}} - {{store.companyRegisteredAddress.pin}}
+   </div>
+   </div>
+   {{/issuccess}}
+   {{/transRedeem}}
+
+   {{^transRedeem}}
+   <div class="col-6">
+   {{/transRedeem}}
+   {{#transRedeem}}
+   {{#issuccess}}
+   <div class="col-4">
+   {{/issuccess}}
+   {{^issuccess}}
+   <div class="col-6">
+   {{/issuccess}}
+   {{/transRedeem}}
+   <address class="pull-right">
+   <strong>eReceipt No / TXN ID.: {{orderno}}</strong><br>
+   {{#transBuy}}
+   <strong>GSTIN: 07AAFCT6383H2ZZ </strong><br>
+   {{/transBuy}}
+   {{#transSell}}
+   <strong>GSTIN: 07AAFCT6383H2ZZ </strong><br>
+   {{/transSell}}
+   {{#transBuy}}
+   <strong>Transaction Type: Buy</strong><br>
+   {{/transBuy}}
+   {{#transRedeem}}
+   <strong>Transaction Type: Swap</strong><br>
+   {{/transRedeem}}
+   {{#transSell}}
+   <strong>Transaction Type: Sell</strong><br>
+   {{/transSell}}
+   {{#issuccess}}
+   {{#mop}}
+   {{^transSell}}
+    <strong>Bank TXN ID : {{bankTXNID}} </strong> <br>
+    <strong>Paid by : {{payBy}} </strong><br>
+   {{/transSell}}
+   {{/mop}}
+   {{^mop}}
+    <strong>Paid by:  {{amtpayby}} </strong><br>
+   {{/mop}}
+   {{/issuccess}}
+   <strong>Consumer Details:</strong><br>
+   {{fname}}<br>
+   {{to}}<br>
+   {{custaddress}}<br>
+   {{custaddress1}}<br>
+   {{custaddress2}}
+   </address>
+
+   </div>
+   </div>
+   {{/self}}
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>
+   <div class="">
+   <div class="col-12">
+   <div class="panel panel-default">
+   <div class="p-2">
+   <h5 class="panel-title font-16" style="text-align:left"><strong>Order Summary</strong></h5>
+   </div>
+   <div class="">
+   <div class="table-responsive">
+   <table class="table table-bordered">
+   <thead>
+   <tr>
+   <!--<td><strong>Product</strong></td> -->
+   <td colspan="3" width="50%"><strong>TruCoin</strong>
+   <td class="text-center" width="15%"><strong>QTY</strong>
+   <td class="text-center" width="15%"><strong>Rate/Gram</strong>
+   </td>
+  <!-- <td class="text-right"><strong>GST ({{taxper}})</strong>-->
+   <td class="text-right" width="20%"><strong>Amount</strong></td>
+   </tr>
+   </thead>
+   <tbody>
+   <!-- foreach ($order->lineItems as $line) or some such thing here -->
+
+   {{#productlist}}
+   <tr>
+   <!--<td>{{productname}}</td>-->
+   <td colspan="3">
+   <div style="min-height:36px">
+   {{#isSilver}}
+   <img class="trucoinIconInvoice" src="images/silver.png">
+   {{/isSilver}}
+   {{^isSilver}}
+   <img class="trucoinIconInvoice" src="images/gold.png">
+   {{/isSilver}}
+   <div class="truCoinText">
+   {{productname}}<br>By {{assetmanager}}
+   </div>
+   </div>
+   </td>
+   <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+   <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+   <!--<td class="text-right"><i class="mdi mdi-currency-inr"></i>{{tax}}</td>-->
+   <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+   </tr>
+   {{/productlist}}
+   <!-- <tr>
+   <td colspan="4"></td>
+   <td class="no-line text-right">
+   <strong>Entity Charges :</strong></td>
+   <td class="no-line text-right"><i class="mdi mdi-currency-inr"></i> {{remitcharges}}</td>
+   </tr>
+   -->
+   {{#transSell}}
+   <tr>
+   <td colspan="4" rowspan="4" class="text-success" style="vertical-align:bottom">
+   {{#issuccess}}
+   {{#mop}}
+   <strong>Amount in process will be credited to your bank account.<br> Txn Id is {{transID}}</strong><br>
+   <!--<strong><i class="fa fa-inr"></i> {{total}} Your redeem cash request is in process.</strong><br>
+   <strong> We will be nofity once transaction is completed successfully.</strong>
+   <strong> <i class="fa fa-inr"></i> {{total}} Amount will be credited to your bank account.</strong><br>-->
+
+   {{/mop}}
+   {{^mop}}
+   <strong><i class="fa fa-inr"></i> {{total}} Amount successfully credited into your wallet</strong>
+   {{/mop}}
+   {{/issuccess}}
+   </td>
+   <td class="no-line text-right font-12">
+   <strong>Subtotal&nbsp;:</strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+   </td>
+   {{#istaxapplicable}}
+   </tr>
+   <tr>
+   <td class="no-line text-right font-12">
+   <strong>GST/TAX&nbsp;Rate&nbsp;({{taxper}})&nbsp;:</strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{totalTax}}
+   </td>
+   {{/istaxapplicable}}
+   </tr>
+   {{/transSell}}
+   {{#transBuy}}
+   <tr>
+   <td colspan="4" rowspan="6" class="text-success" style="vertical-align:bottom">
+   {{#issuccess}}
+   <strong><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</strong>
+   {{/issuccess}}
+   </td>
+   <td class="no-line text-right font-12">
+   <strong>Subtotal&nbsp;:</strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+   </td>
+   </tr>
+   <tr>
+   <td class="no-line text-right font-12">
+   <strong>GST/TAX&nbsp;Rate&nbsp;(%)&nbsp;: </strong></td>
+   <td class="no-line text-right ">
+   {{taxper}}
+   </td>
+   </tr>
+   <tr>
+   <td class="no-line text-right font-12">
+   <strong>Total&nbsp;GST/TAX&nbsp;: </strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{totalTax}}
+   </td>
+   </tr>
+   <tr></tr>
+   {{/transBuy}}
+   {{#transRedeem}}
+   <tr>
+   <td colspan="4" rowspan="4" class="text-success" style="vertical-align:bottom">
+    {{#issuccess}}
+   <strong class="text-success"><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</strong>
+    {{/issuccess}}
+   </td>
+   <td class="no-line text-right font-12">
+   <strong>Valuation&nbsp;:</strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{valuation}}
+   </td>
+   </tr>
+   <tr>
+   <td class="no-line text-right font-12">
+   <strong>Assaying&nbsp;Charges&nbsp;: </strong></td>
+   <td class="no-line text-right ">
+   <i class="mdi mdi-currency-inr"></i> {{assayingCharges}}
+   </td>
+   </tr>
+   {{/transRedeem}}
+   {{^isPaymentCharge}}
+   {{^transSell}}
+   <tr></tr>
+   {{/transSell}}
+   {{/isPaymentCharge}}
+   {{#isPaymentCharge}}
+   <tr>
+   <td class="no-line text-right font-12">
+   <strong>Transaction&nbsp;Fees&nbsp;:  </strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+   </td>
+   </tr>
+   {{/isPaymentCharge}}
+   <tr>
+   <td class="no-line text-right font-16">
+   <strong>Total : </strong></td>
+   {{#issuccess}}
+   <td class="no-line text-right text-success">
+   {{/issuccess}}
+   {{^issuccess}}
+   <td class="no-line text-right text-danger">
+   {{/issuccess}}
+   <input type="hidden" id="txtbankamt" name="bkamount" value={{total}}>
+   <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i><span id="totalamt">{{total}}</span></h4>
+   </td>
+   </tr>
+   {{^issuccess}}
+   {{^transSell}}
+   <tr>
+   <td colspan="6" class="no-line text-right">
+   <input class="btn btn-success btn-sm mdi mdi-cart pull-right" id="btnPaid" type="button" value="Proceed to pay" />
+   </td>
+   </tr>
+   {{/transSell}}
+   {{/issuccess}}
+   </tbody>
+   </table>
+   {{#issuccess}}
+   <div class="col-12">
+   <p class="ralignpad pull-right">
+   <!--<b class="pull-right"> Generated on behalf of bullion assetmanager </b>-->
+   <b class="pull-right"><b>eReceipt is prepared by the
+   {{entityName}} </b>
+   <br />
+   <span class="text text-info pull-right"> By Company Name.
+   </div>
+   </p>
+   {{/issuccess}}
+   </div>
+   <!--   <div class="row">
+   <p class="alignpad"> Buy Bullion was facilitated by the {{entityName}}</p>
+   </div> -->
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>{{/invoice}}
+</script>
+<script id="invoicetransfer" type="text/template">
+   {{#invoice}}
+   <div class="col-md-12">
+   <div class="card m-b-20">
+   <div class="card-block">
+   <h4 class="mt-0 header-title headerp x_title"><i class="mdi mdi-24px mdi-format-float-right"></i>
+   {{#issuccess}}
+   eReceipt
+   {{/issuccess}}
+   {{^issuccess}}
+   ESTIMATION
+   {{/issuccess}}
+   <span class="pull-right invoice-box" > Date: {{orderdate}}</span>
+   </h4>
+   </span>
+   <div class="row">
+
+   <div class="col-12">
+   <div class="invoice-title">
+   <input id="invoiceno" type="hidden" value="{{orderno}}" />
+    {{#issuccess}}
+   <div class="details pull-right animat pulse" title="Click to show assetstore certificate &amp; location" data-toggle="modal" data-target=".bs-example-modal-lg">
+   <img class="float-left " height="38px"  src="/a3b74f27304cd?url={{cimage}}" alt="Picture">
+   <div class="float-right certidetails">
+   <span><strong>&nbsp;AssetStore Name: {{assetstorename}}</strong></span><br>
+   <span style="color:gray"><strong><i>&nbsp;City : {{ccity}}</i></strong></span>
+   </div>
+   </div>
+   {{/issuccess}}
+   <h3 class="m-t-0"><img src="images/logo/trulogo.png" alt="logo" height="32" />
+   <!--<small class="poweredcss">Powered by <strong></strong></small>-->
+   {{#issuccess}}
+   <div class="pull-right animatearrow">
+   <a href="javascript:;">Click Here To View Ceritificate <span class="arrow"><span></span></span></a>
+   </div>
+   {{/issuccess}}
+   </h3>
+   </div>
+   </div>
+   <hr>
+   {{^issuccess}}
+   <div class="row">
+   <div class="col-4">
+   <address>
+   <strong>Receipt Issued By Entity In Favor of:</strong><br>
+   {{entityName}}<br>
+   {{truID}}<br>
+   {{address}}<br>
+   {{address1}}<br>
+   {{address2}}
+   </address>
+   </div>
+   <div class="col-4">
+   <div class="col-lg-12 offset-lg-2" style="padding:0">
+   <address>
+   <strong>Sender Details:</strong><br>
+   {{fname}}<br>
+   {{fTruID}}<br>          <!-- from TruID -->
+   {{#isfaddress}}<span>
+   {{faddress}},{{fcity}}<br>
+   {{fstate}},{{fcountry}}-{{fpincode}}</span>{{/isfaddress}}
+   </address>
+   </div>
+   </div>
+   <div class="col-4">
+   <div class="pull-right">
+   <address>
+   <strong>eReceipt No / TXN ID.: {{orderno}}</strong><br>
+   <strong>Transaction Type: {{type}}</strong><br>
+   <strong>Receiver Details:</strong><br>
+   {{toName}}<br>
+   {{toTruID}}<br>
+   {{#isaddress}}
+   <span>
+   {{taddress}},{{tcity}}<br>
+   {{tstate}},{{tcountry}}-{{tpincode}}
+    </span>{{/isaddress}}
+   </address>
+   </div>
+   </div>
+   </div>
+   {{/issuccess}}
+   {{#issuccess}}
+   <div class="row">
+   <div class="col-4">
+   <address>
+   <strong>Receipt Issued By Entity In Favor of:</strong><br>
+   {{entityName}}<br>
+   {{truID}}<br>
+   {{address}}<br>
+   {{address1}}<br>
+   {{address2}}
+   </address>
+   </div>
+   <div class="col-4">
+   <div class="col-lg-12 offset-lg-2" style="padding:0">
+   <address>
+   <strong>Sender Details:</strong><br>
+   {{fname}}<br>
+   {{fTruID}}<br>          <!-- from TruID -->
+   {{#isfaddress}}<span>
+   {{faddress}},{{fcity}}<br>
+   {{fstate}},{{fcountry}}-{{fpincode}}</span>{{/isfaddress}}
+   </address>
+   </div>
+   </div>
+   <div class="col-4">
+   <div class="pull-right">
+   <address>
+    <strong>eReceipt No / TXN ID.: {{orderno}}</strong><br>
+    <strong>Transaction Type: {{type}}</strong><br>
+    {{#mop}}
+    <strong>Bank TXN ID :</strong> {{bankTXNID}}  <br>
+    <strong>Paid by :</strong> {{payBy}} <br><br>
+    <!--<strong>Paid by: Others</strong><br><br>-->
+   {{/mop}}
+   {{^mop}}
+    <strong>Paid by: {{amtpayby}}</strong><br><br>
+   {{/mop}}
+  <strong>Receiver Details:</strong><br>
+   {{toName}}<br>
+   {{toTruID}}<br>
+   {{#isaddress}}
+   <span>
+   {{taddress}},{{tcity}}<br>
+   {{tstate}},{{tcountry}}-{{tpincode}}
+    </span>{{/isaddress}}
+   </address>
+   </div>
+   </div>
+   </div>
+   {{/issuccess}}
+   </div>
+   </div>
+   <div class="row">
+   <div class="col-12">
+   <div class="panel panel-default">
+   <div class="p-2">
+   <h5 class="panel-title font-16" style="text-align:left"><strong>Order Summary</strong></h5>
+   </div>
+   <div class="">
+   <div class="table-responsive">
+   <table class="table table-bordered">
+   <thead>
+   <tr>
+   <td colspan="3" width="50%"><strong>TruCoin</strong>
+   <td class="text-center" width="15%"><strong>QTY</strong>
+   <td class="text-center" width="15%"><strong>Rate/Gram</strong>
+   <!--<td><strong>Other Charges</strong></td>-->
+   <td class="text-right" width="20%"><strong>Amount</strong></td>
+   <!--<td class="text-right"><strong>Sub Total</strong></td>-->
+   </tr>
+   </thead>
+   <tbody>
+   <!-- foreach ($order->lineItems as $line) or some such thing here -->
+   {{#productlist}}
+   <tr>
+   <td colspan="3">
+   {{#isSilver}}
+   <img class="dashimgbul" src="images/silver.png" style="padding: 0;">
+   {{/isSilver}}
+   {{^isSilver}}
+   <img class="dashimgbul" src="images/gold.png" style="padding: 0;">
+   {{/isSilver}}
+   {{productname}}</td>
+   <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+   <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+   <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+   <!--<td class="text-right"><i class="mdi mdi-currency-inr"></i>{{charges}}</td>-->
+   </tr>
+   {{/productlist}}
+   <tr>
+   {{^issuccess}}
+   <td colspan="4" rowspan="3" class="text-success" style="vertical-align:bottom">
+   </td>
+   {{/issuccess}}
+   {{#issuccess}}
+   <td colspan="4" rowspan="3" class="text-success" style="vertical-align:bottom">
+   <strong class="text-success"><i class="mdi mdi-currency-inr"></i>{{totalAmount}} Amount successfully paid</strong>
+   {{/issuccess}}
+   <td class="no-line text-right font-12">
+   <strong>Subtotal&nbsp;:</strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{total}}
+   </td>
+   </tr>
+   <tr>
+   <td class="no-line text-right font-12">
+   <strong>Payable&nbsp;Charges&nbsp;:</strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{totalAmount}}
+   </td>
+   </tr>
+    {{#mop}}
+    {{#isPaymentCharge}}
+   <tr>
+   <td class="no-line text-right font-12">
+   <strong>Transaction&nbsp;Fees&nbsp;:</strong></td>
+   <td class="no-line text-right">
+   <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+   </td>
+   </tr>
+   {{/isPaymentCharge}}
+   {{/mop}}
+   {{#issuccess}}
+   <tr>
+   <td class="no-line text-right font-16">
+   <strong>Paid&nbsp;Charges&nbsp;:</strong></td>
+   <td class="no-line text-right text-success">
+   <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{totalAmount}}</h4>
+   </td>
+   </tr>
+   {{/issuccess}}
+   {{^issuccess}}
+   <tr>
+   <td class="no-line text-right">
+   <strong>Payable&nbsp;Charges&nbsp;:</strong></td>
+   <td class="no-line text-right text-danger">
+   <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i><span id="totalamt">{{totalAmount}}</span></h4>
+   </td>
+   </tr>
+   <tr>
+   <td colspan="6" class="no-line text-right">
+   <input class="btn btn-success btn-sm mdi mdi-cart pull-right" id="btnPaid" type="button" value="Proceed to pay" />
+   </td>
+   </tr>
+   {{/issuccess}}
+   </tbody>
+   </table>
+   </div>
+   <!--   <div class="row">
+   <p class="alignpad"> Buy Bullion was facilitated by the {{entityName}}</p>
+   </div> -->
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>{{/invoice}}
+</script>

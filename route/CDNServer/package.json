@@ -1,0 +1,28 @@
+{
+  "name": "entity_transaction",
+  "version": "1.0.0",
+  "description": "Entity transaction and wallet related apis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon file_upload.js"
+  },
+  "author": "Amit Shinde",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "archiver": "^5.0.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "express": "^4.16.3",
+    "express-bearer-token": "^2.4.0",
+    "helmet": "^3.21.2",
+    "https": "^1.0.0",
+    "ip": "^1.1.5",
+    "lokijs": "^1.5.11",
+    "morgan": "^1.9.0",
+    "multer": "^1.4.4",
+    "request": "^2.87.0",
+    "socket.io": "^4.6.2"
+  }
+}

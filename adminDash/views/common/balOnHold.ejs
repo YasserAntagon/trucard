@@ -1,0 +1,299 @@
+<link rel="stylesheet" href="css/charges.css" />
+<link rel="stylesheet" href="css/entity/summary.css" />
+<link rel="stylesheet" href="css/editable.css" />
+<style>
+  .dropdown-menu {
+    z-index: 3001 !important;
+  }
+  .daterangepicker {
+    width: none;
+  }
+</style> 
+<div class="box box-info">
+  <div id="loader" class="loaderContainer chargesLoader" style="display: none">
+    <div class="loader"></div>
+  </div>
+  <div class="box-header with-border"> 
+    <h3 class="box-title">Balances On Hold</h3> 
+  </div>
+  <% var id1="col-sm-2" %>
+  <div class="box-body">
+    <div class="row">
+      <div class="<%= id1%> col-xs-6">
+        <div class="box box-success">
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/wallet.png" height="24" width="24" />
+            </div>
+            <div class="inner">
+              <p style="color: #003443">
+                <span
+                  class="fa fa-circle-o-notch fa-spin spinnerRev text-info"
+                ></span>
+                <i class="mdi mdi-currency-inr spinnerVal hidden"></i>
+                <span
+                  style="font-size: 14px; font-weight: bold"
+                  class="spinnerVal hidden"
+                  id="walBal"
+                  >0</span
+                >
+              </p>
+              <p style="color: gray">Total Wallet Balance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="<%= id1%> col-xs-6">
+        <div class="box box-success">
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/wallet.png" height="24" width="24" />
+            </div>
+            <div class="inner">
+              <p style="color: #003443">
+                <span
+                  class="fa fa-circle-o-notch fa-spin spinnerRev text-info"
+                ></span>
+                <i class="mdi mdi-currency-inr spinnerVal hidden"></i>
+                <span
+                  style="font-size: 14px; font-weight: bold"
+                  class="spinnerVal hidden"
+                  id="onholdWalBal"
+                  >0</span
+                >
+              </p>
+              <p style="color: gray">onHold Wallet Balance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="<%= id1%> col-xs-6">
+        <div class="box box-warning">
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/gold.png" height="24" width="24" />
+            </div>
+            <div class="inner">
+              <p style="color: #003443">
+                <span
+                  class="fa fa-circle-o-notch fa-spin spinnerRev text-info"
+                ></span>
+                <span
+                  style="font-size: 14px; font-weight: bold"
+                  class="spinnerVal hidden"
+                  id="cstock24k"
+                  >0</span
+                >
+              </p>
+              <p style="color: gray">TruGold</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="<%= id1%> col-xs-6">
+        <div class="box box-warning">
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/gold.png" height="24" width="24" />
+            </div>
+            <div class="inner">
+              <p style="color: #003443">
+                <span
+                  class="fa fa-circle-o-notch fa-spin spinnerRev text-info"
+                ></span>
+                <span
+                  style="font-size: 14px; font-weight: bold"
+                  class="spinnerVal hidden"
+                  id="conholdstock24k"
+                  >0</span
+                >
+              </p>
+              <p style="color: gray">onHold TruGold</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="<%= id1%> col-xs-6">
+        <div class="box box-default">
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/silver.png" height="28" width="35" />
+            </div>
+            <div class="inner">
+              <p style="color: #003443">
+                <span
+                  class="fa fa-circle-o-notch fa-spin spinnerRev text-info"
+                ></span>
+                <span
+                  style="font-size: 14px; font-weight: bold"
+                  class="spinnerVal hidden"
+                  id="cstock99p"
+                  >0</span
+                >
+              </p>
+              <p style="color: gray">TruSilver</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="<%= id1%> col-xs-6">
+        <div class="box box-default">
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/silver.png" height="28" width="35" />
+            </div>
+            <div class="inner">
+              <p style="color: #003443">
+                <span
+                  class="fa fa-circle-o-notch fa-spin spinnerRev text-info"
+                ></span>
+                <span
+                  style="font-size: 14px; font-weight: bold"
+                  class="spinnerVal hidden"
+                  id="conholdstock99p"
+                  >0</span
+                >
+              </p>
+              <p style="color: gray">onHold TruSilver</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table
+          style="clear: both"
+          class="table table-bordered table-striped containerFG"
+          id="user">
+          <thead>
+            <tr>
+              <th colspan="4">OnHold Balances :</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td width="20%">
+                <img src="../images/new/wallet.png" height="24" width="28" />
+                Wallet :<br />
+                <small style="color: #808080; font-size: 10px"
+                  >Wallet Balance</small
+                >
+              </td>
+              <td width="20%">
+                ₹
+                <a
+                  href="javascript:;"
+                  id="txtWallet"
+                  data-type="text"
+                  data-pk="1"
+                  data-title="Enter Wallet Balance"
+                  onkeypress="isNumberKey(event)"
+                  class="editable editable-click editable-disabled"
+                  data-original-title=""
+                  title=""
+                  >0</a
+                ><br />
+                <small
+                  id="lblWalletDate"
+                  style="color: #808080; font-size: 10px"
+                ></small>
+              </td>
+
+              <td width="20%">
+                <a
+                  href="javascript:;"
+                  title="Release onhold balance"
+                  onclick="confirmRate('wallet')"
+                  class="btn btn-info btn-sm"
+                  ><i class="fa fa-2x fa-reply"></i> Release</a>
+              </td>
+            </tr>
+            <tr>
+              <td width="20%">
+                <img src="../images/new/gold.png" height="24" width="24" />
+                TruGold :<br />
+                <small style="color: #808080; font-size: 10px">24K Gold</small>
+              </td>
+              <td width="20%">
+                <a
+                  href="javascript:;"
+                  id="txtGold"
+                  data-type="text"
+                  data-pk="1"
+                  data-title="Enter TruGold"
+                  onkeypress="isNumberKey(event)"
+                  class="editable editable-click editable-disabled"
+                  data-original-title=""
+                  title="">0</a>
+                gms
+                <br />
+                <small
+                  id="lbl24Date"
+                  style="color: #808080; font-size: 10px"></small>
+              </td>
+              <td width="20%">
+                <a class="btn btn-info btn-sm"
+                  href="javascript:;"
+                  title="Release onhold balance"
+                  onclick="confirmRate('G24K')"><i class="fa fa-2x fa-reply"></i> Release</a>
+              </td>
+            </tr>
+            <tr>
+              <td width="20%">
+                <img src="../images/new/silver.png" height="24" width="28" />
+                TruSilver :<br />
+                <small style="color: #808080; font-size: 10px">99% Pure Silver</small>
+              </td>
+              <td width="20%">
+                <a
+                  href="javascript:;"
+                  id="txtSilver"
+                  data-type="text"
+                  data-pk="1"
+                  data-title="Enter TruSilver"
+                  onkeypress="isNumberKey(event)"
+                  class="editable editable-click editable-disabled"
+                  data-original-title=""
+                  title=""
+                  >0</a
+                >
+                gms
+                <br />
+                <small
+                  id="lbl99Date"
+                  style="color: #808080; font-size: 10px"
+                ></small>
+              </td>
+
+              <td width="20%">
+                <a
+                  href="javascript:;"
+                  class="btn btn-info btn-sm"
+                  title="Release onhold balance"
+                  onclick="confirmRate('S99P')"
+                  ><i class="fa fa-2x fa-reply"></i> Release </a> 
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <h5>onHold Status :</h5>
+                <p class="text text-danger">
+                  * onhold :- It means the above wallet or bullion stock
+                  is permanantly on hold.
+                </p> 
+                <p class="text text-danger">
+                  * release :- Click to release wallet, or bullion stock
+                  balances.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div> 
+    </div>
+  </div>
+  <script src="js/edit.js" type="text/javascript"></script>
+  <script src="js/globalVal.js" type="text/javascript"></script>
+  <script src="api/admin/controllers/verifyTPIN.js"></script>
+</div>

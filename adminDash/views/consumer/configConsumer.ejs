@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/head'); %>
+    <link href="truComponents/bootstrap/dist/css/bootstrap-editable.css" rel="stylesheet" />
+    <link href="truComponents/bootstrap/dist/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/permission.css">
+</head>
+
+<body class="skin-blue fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <%- include ('./partials/header'); %>
+        <div class="content-wrapper">
+            <div class="containerbg">
+
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Consumer Configuration</h3>
+                        <!-- <div class="box-tools pull-right">
+                            <a type="button" id="btnCedit" title="Change Configuration"
+                                class="btn btn-box-tool text-info"><i class="fa fa-2x fa-pencil"></i> Change
+                                Configuration</a>
+
+                            <a id="btnCancel" type="button" onclick="return clearAll();" title="Cancel"
+                                class="btn btn-box-tool text-info hidden"><i class="fa fa-2x fa-trash text text-danger"></i>
+                                Cancel</a>
+                        </div> -->
+                    </div>
+                    <div class="box-body pull-left hidden" id="updatedg">
+                        <!-- <a id="updateProf" class="hidden" type="button" onclick="updateConfig();"
+                            title="Publish Configuration" class="btn btn-box-tool text-success"><i
+                                class="fa fa-2x fa-floppy-o"></i>
+                            Publish Configuration</a> -->
+                        <!-- <a type="button" id="btnCedit" title="Change Configuration"
+                            class="btn btn-box-tool text-info"><i class="fa fa-2x fa-pencil"></i> Change
+                            Configuration</a>
+
+                        <a class="hidden" id="btnCancel" type="button" onclick="return clearAll();" title="Cancel"
+                            class="btn text text-danger"><i class="fa fa-2x fa-trash text text-danger"></i>
+                            Cancel</a> -->
+                    </div>
+                    <div class="box-body pull-right">
+                        <div class="btn-group radio-group">
+                           
+                            <label class="btn btn-success btn-sm">KYC Active<input type="radio" checked id="KYC"
+                                    name="kycFlag" onclick="kycFlag(this);" value="KYC"></label>
+                                    <label class="btn btn-warning btn-sm not-active">KYC Pending <input type="radio"
+                                        onclick="kycFlag(this);" value="nonKYC" id="pending" name="kycFlag"></label>
+                        </div>
+                    </div>
+                    <%- include ('./commonConfiguration'); %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-editable.min.js"></script>
+    <script src="truComponents/bootstrap/dist/js/bootstrap-toggle.min.js"></script>
+</body>
+
+</html>

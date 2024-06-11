@@ -1,0 +1,2108 @@
+<!--Entity-->
+<script id="entitytransfer" type="text/template">
+  {{#transinvoice}}
+  <div class="row" id="printtransinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <a href="javascript:void(0)" onclick="printDiv('printtransinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+          </h2>
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" /> 
+          </h2>
+      </div>
+      <div class="invoice-info">
+          <div class="col-sm-4 invoice-col">
+              <span>Sender Details:</span><br>
+              <address>
+                  <span>{{s_name}}</span><br>
+                  <span>{{s_truid}}</span><br>
+                  {{s_address}}<br>
+                  {{s_address1}}<br>
+                  {{s_address2}}<br>
+              </address>
+          </div>
+          <div class="col-sm-4 invoice-col">
+              <div class="col-md-12 col-lg-offset-2">
+                  <span>Receiver Details :</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                  </address>
+              </div>
+          </div>
+          <div class="col-sm-4 invoice-col ">
+              <div class="pull-right">
+                  <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                  <span>Txn Type : {{transactiontype}}</span><br>
+                  {{#isStatus}}
+                  {{#MOP}}
+                 MOP : truWallet
+                  {{/MOP}}
+                  {{^MOP}}
+                  MOP :
+                      <a class="" id="btnadddoc" data-inv={{orderno}}>Others</a><br>
+                  {{/MOP}}
+                  {{/isStatus}}
+              </div>
+          </div>
+      </div>
+      <div class="">
+          <div class="col-xs-12 table-responsive">
+              <h4><span>Order summary</span></h4>
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th>Product</th>
+                          <th>Quantity</th>
+                          <th class="text-right">Rate</th>
+                          <th class="text-right">Other Charges</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {{#productlist}}
+                      <tr>
+                          <td>{{productname}}</td>
+                          <td>{{qty}} gm</td>
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{other}}</td>
+                      </tr>
+                      {{/productlist}}
+                      <tr>
+                          <td colspan="3" class="text-success">
+                              <h5 class="text-danger" id="ttxnstatus"><span>{{status}}</span>
+                              </h5>
+                          </td>
+                          <td colspan="3" class="text-right">
+                              <h4><span>Total:</span>&nbsp<span id="ttxnamt">
+                                      <i class="mdi mdi-currency-inr"></i>{{total}}</span></h4>
+                          </td>
+
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          <!-- /.col -->
+      </div>
+  </div>
+  </div>{{/transinvoice}}
+</script>
+
+<script id="entityInvoice" type="text/template">
+  {{#invoice}}
+  <div class="row" id="printinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+          </h2>
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+          </h2>
+      </div>
+
+      <div class=" invoice-info">
+          <div class="col-sm-7 invoice-col">
+              <span>eReceipt in favour of:</span><br>
+              <address>
+                  <span>{{name}}</span><br>
+                  <span>{{to}}</span><br>
+                  {{address}}<br>
+                  {{address1}}<br>
+                  {{address2}}<br>
+              </address>
+          </div> 
+          <!-- /.col -->
+          <div class="col-sm-4 invoice-col ">
+              <div class="pull-right">
+                  <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                  <span>Txn Type : {{transactiontype}}</span><br>
+                  {{#isStatus}}
+                  {{#MOP}}
+                  MOP : truWallet
+                  {{/MOP}}
+                  {{^MOP}}
+                  MOP :
+                      <a href="javascript:void(0)" class="" data-inv={{orderno}}>Others</a><br>
+                  {{/MOP}}
+                  {{/isStatus}}
+              </div>
+          </div>
+          <div class="col-xs-12 table-responsive">
+              <h4><span>Order summary</span></h4>
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th>Product</th>
+                          <th>TruCoin Details</th>
+                          <th>Quantity</th>
+                          <th class="text-right">Rate</th>
+                          <th class="text-right">{{taxhead}}</th>
+                          <th class="text-right">Subtotal</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {{#productlist}}
+                      <tr>
+                          <td>{{productname}}</td>
+                          <td>{{from}}</td>
+                          <td>{{qty}} gm</td>
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{tax}}</td>
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td>
+                      </tr>
+                      {{/productlist}}
+                      <tr>
+                          <td colspan="3" class="text-success">
+                              <h5 class="text-danger" id="txnstatus"><span>{{status}}</span></h5>
+                          </td>
+                          <td colspan="3" class="text-right">
+                              <h4><span>Total:</span>&nbsp<span id="txnamt"><i
+                                          class="mdi mdi-currency-inr"></i>{{total}}</span></h4>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      <!-- /.col -->
+  </div>{{/invoice}}
+</script>
+<script id="entityInvoiceBuy" type="text/template">
+  {{#invoice}}
+  <div class="row" id="printinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+          </h2>
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+          </h2>
+      </div>
+
+      <div class=" invoice-info">
+          <div class="col-sm-7 invoice-col">
+              <span>eReceipt in favour of:</span><br>
+              <address>
+                  <span>{{name}}</span><br>
+                  <span>{{to}}</span><br>
+                  {{address}}<br>
+                  {{address1}}<br>
+                  {{address2}}<br>
+              </address>
+          </div> 
+          <!-- /.col -->
+          <div class="col-sm-4 invoice-col ">
+              <div class="pull-right">
+                  <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                  <span>Txn Type : {{transactiontype}}</span><br>
+                  {{#isStatus}}
+                  {{#MOP}}
+                  <span>MOP : truWallet</span><br>
+                  {{/MOP}}
+                  {{^MOP}}
+                  <span>MOP :
+                      <a href="javascript:void(0)" class="" data-inv={{orderno}}>Others</a></span><br>
+                  {{/MOP}}
+                 <span>Txn Status : <label class="text-success">Success</label></span>
+                          {{/isStatus}}
+                          {{^isStatus}}
+                          <span>Txn Status : <label class="text-danger">Failed</label></span>
+                          {{/isStatus}}
+              </div>
+          </div>
+          <div class="col-xs-12 table-responsive">
+              <h4><span>Order summary</span></h4>
+              <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                         <th colspan="2" width="40%"><span>TruCoin</span></th>
+                                      <th class="text-center" width="15%"><span>QTY</span></th>
+                                      <th class="text-center" width="15%"><span>Rate/Gram</span></th>
+                                  <th class="text-right" width="20%"><span>Amount</span></td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {{#productlist}}
+                      <tr>
+                          <td colspan="2">{{productname}}<br>{{from}}</td>
+                                  <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+                                  <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                                  <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+                              </tr>
+                              {{/productlist}}
+                              <tr>
+                                 <td colspan="3" rowspan="5" class="text-success" style="vertical-align:bottom">
+                                      {{#isStatus}}
+                                      <span><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</span>
+                                      {{/isStatus}}
+                                  </td>
+                                  <td class="no-line text-right font-12">
+                                  <span>Subtotal&nbsp;:</span></td>
+                                  <td class="no-line text-right">
+                                  <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+                                  </td>
+                                  </tr>
+                                  <tr>
+                                  <td class="no-line text-right font-12">
+                                  <span>GST/TAX&nbsp;Rate&nbsp;(%)&nbsp;: </span></td>
+                                  <td class="no-line text-right ">
+                                  {{taxper}}
+                                  </td>
+                                  </tr>
+                                  <tr>
+                                  <td class="no-line text-right font-12">
+                                  <span>Total&nbsp;GST/TAX&nbsp;: </span></td>
+                                  <td class="no-line text-right">
+                                  <i class="mdi mdi-currency-inr"></i> {{totalTax}}
+                                  </td>
+                                  </tr>
+                                  <tr>
+                                  <!-- <td class="no-line text-right font-12">
+                                  <span>TRANSACTION&nbsp;FEES&nbsp;:  </span></td>
+                                  <td class="no-line text-right">
+                                  <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+                                  </td> -->
+                                  </tr>
+                                  <tr>
+                                  <td class="no-line text-right">
+                                  <span>Total :</span></td>
+                                  <td class="no-line text-right text-success">
+                                      {{#isStatus}}
+                                      <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                                      {{/isStatus}}
+                                      {{^isStatus}}
+                                      <h4 class="m-0 intotal text-danger"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                                      {{/isStatus}}
+                                  </td>
+                                  </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      <!-- /.col -->
+  </div>{{/invoice}}
+</script>
+<script id="EntitySelfBuyInvoice" type="text/template">
+  {{#invoice}}
+  <div class="row" id="printinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                  </a> -->
+              <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                  onclick="downloadpdf('printinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+              </a> -->
+              <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+               
+          </h2>
+          <div class="row invoice-info">
+              <div class="col-sm-7 invoice-col">
+                  <span>eReceipt in favour of:</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                      {{email}}
+                  </address>
+              </div> 
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col ">
+                  <div class="pull-right">
+                      <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                      <span>Txn Type : {{transactiontype}}</span><br>
+                      {{#behalfof}}
+                      <span>Behalf of : {{behalfof}}</span><br>{{/behalfof}}
+                      {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span><br>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      <span>Txn Status : <label class="text-success">Success</label></span>
+                      {{/isStatus}}
+                      {{^isStatus}}
+                      <span>Txn Status : <label class="text-danger">Failed</label></span>
+                      {{/isStatus}}
+
+                  </div>
+              </div>
+              <div class="col-xs-12 table-responsive">
+                  <h4><span>Order summary</span></h4>
+                  <table class="table table-bordered">
+                      <thead>
+                          <tr>
+                              <!-- <th>Product</th>
+                              <th>TruCoin Details</th>
+                              <th>Quantity</th>
+                              <th class="text-right">Rate</th>
+
+                              <th class="text-right">{{taxhead}}</th>
+
+
+                              <th class="text-right">Subtotal</th> -->
+                              <th colspan="2" width="40%"><span>TruCoin</span></th>
+                                  <th class="text-center" width="15%"><span>QTY</span></th>
+                                  <th class="text-center" width="15%"><span>Rate/Gram</span></th>
+                              <th class="text-right" width="20%"><span>Amount</span></td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {{#productlist}}
+                          <tr>
+                              <!-- <td>{{productname}}</td>
+                              <td>{{dfrom}}</td>
+                              <td>{{qty}} gm</td>
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                              <!-- <td class="text-right"><i class="fa fa-inr"></i> {{assetmanagersCharges}}</td> ->
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{tax}}</td>
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td> -->
+                              <td colspan="2">{{productname}}<br>{{from}}</td>
+                              <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+                              <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                              <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+                          </tr>
+                          {{/productlist}}
+                          <tr>
+                             <td colspan="3" rowspan="5" class="text-success" style="vertical-align:bottom">
+                                  {{#isStatus}}
+                                  <span><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</span>
+                                  {{/isStatus}}
+                              </td>
+                              <td class="no-line text-right font-12">
+                              <span>Subtotal&nbsp;:</span></td>
+                              <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+                              </td>
+                              </tr>
+                              <tr>
+                              <td class="no-line text-right font-12">
+                              <span>GST/TAX&nbsp;Rate&nbsp;(%)&nbsp;: </span></td>
+                              <td class="no-line text-right ">
+                              {{taxper}}
+                              </td>
+                              </tr>
+                              <tr>
+                              <td class="no-line text-right font-12">
+                              <span>Total&nbsp;GST/TAX&nbsp;: </span></td>
+                              <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{totalTax}}
+                              </td>
+                              </tr>
+                              <tr>
+                              <!-- <td class="no-line text-right font-12">
+                              <span>TRANSACTION&nbsp;FEES&nbsp;:  </span></td>
+                              <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+                              </td> -->
+                              </tr>
+                              <tr>
+                              <td class="no-line text-right">
+                              <span>Total :</span></td>
+                              <td class="no-line text-right text-success">
+                                  {{#isStatus}}
+                                  <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                                  {{/isStatus}}
+                                  {{^isStatus}}
+                                  <h4 class="m-0 intotal text-danger"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                                  {{/isStatus}}
+                              </td>
+                              </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <!-- /.col -->
+  </div>{{/invoice}}
+</script>
+
+<script id="EntitySelfRedeemInvoice" type="text/template">
+  {{#invoice}}
+  <div class="row" id="printinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                  </a> -->
+              <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                  onclick="downloadpdf('printinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+              </a> -->
+              <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+              
+          </h2>
+          <div class="row invoice-info">
+              <div class="col-sm-7 invoice-col">
+                  <span>eReceipt To,</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                      {{email}}
+                  </address>
+              </div> 
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col ">
+                  <div class="pull-right">
+                      <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                      <span>Txn Type : {{transactiontype}}</span><br>
+                      {{#behalfof}}
+                      <span>Behalf of : {{behalfof}}</span><br>{{/behalfof}}
+                      {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span><br>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      <span>Txn Status : <label class="text-success">Success</label></span>
+                      {{/isStatus}}
+                      {{^isStatus}}
+                      <span>Txn Status : <label class="text-danger">Failed</label></span>
+                      {{/isStatus}}
+
+                  </div>
+              </div>
+              <div class="col-xs-12 table-responsive">
+                  <h4><span>Order summary</span></h4>
+                  <table class="table table-bordered">
+                      <thead>
+                          <tr>
+                              <!-- <th>Product</th>
+                              <th>TruCoin Details</th>
+                              <th>Quantity</th>
+                              <th class="text-right">Rate</th>
+
+                              <th class="text-right">{{taxhead}}</th>
+
+
+                              <th class="text-right">Subtotal</th> -->
+                                  <th colspan="2" width="40%"><span>TruCoin</span></th>
+                                      <th class="text-center" width="15%"><span>QTY</span></th>
+                                      <th class="text-center" width="15%"><span>Rate/Gram</span></th>
+                                  <th class="text-right" width="20%"><span>Amount</span></td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {{#productlist}}
+                          <tr>
+                              <!-- <td>{{productname}}</td>
+                              <td>{{dfrom}}</td>
+                              <td>{{qty}} gm</td>
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                              <!-- <td class="text-right"><i class="fa fa-inr"></i> {{assetmanagersCharges}}</td> ->
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{tax}}</td>
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td> -->
+                               <td colspan="2">{{productname}}<br>{{from}}</td>
+                                  <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+                                  <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                                  <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td>
+                                  </tr>
+                          </tr>
+                          {{/productlist}}
+                          <tr>
+                                     <td colspan="3" rowspan="5" class="text-success" style="vertical-align:bottom">
+                                          {{#isStatus}}
+                                          <span><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</span>
+                                          {{/isStatus}}
+                                      </td>
+                                      <td class="no-line text-right font-12">
+                                      <span>Subtotal&nbsp;:</span></td>
+                                      <td class="no-line text-right">
+                                      <i class="mdi mdi-currency-inr"></i> {{SubRtotl}}
+                                      </td>
+                                      </tr>
+                                     <!-- <tr>
+                                      <td class="no-line text-right font-12">
+                                      <span>Assaying&nbsp;Charges&nbsp;: </span></td>
+                                      <td class="no-line text-right">
+                                      <i class="mdi mdi-currency-inr"></i> {{total}}
+                                      </td>
+                                      </tr>
+                                       <tr>
+                                      <td class="no-line text-right font-12">
+                                      <span>Transaction&nbsp;Fees&nbsp;:  </span></td>
+                                      <td class="no-line text-right">
+                                      <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+                                      </td>
+                                      </tr> -->
+                                      <tr>
+                                      <td class="no-line text-right">
+                                          <h4 class="m-0 intotal"><span>Total :</span></h4></td>
+                                      <td class="no-line text-right text-success">
+                                          {{#isStatus}}
+                                          <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i><span>{{total}}</span></h4>
+                                          {{/isStatus}}
+                                          {{^isStatus}}
+                                          <h4 class="m-0 intotal text-danger"><i class="mdi mdi-currency-inr"></i><span>{{total}}</span></h4>
+                                          {{/isStatus}}
+                                      </td>
+                                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <!-- /.col -->
+  </div>{{/invoice}}
+</script>
+<!--Consumer-->
+<script id="consumerBuyInvoice" type="text/template">
+  {{#invoice}}
+  <div class="row" id="printinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+          </h2>
+          <div class="row invoice-info">
+              <div class="col-sm-7 invoice-col">
+                  <span>eReceipt For :</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                      {{email}}
+                  </address>
+              </div> 
+              <div class="col-sm-4 invoice-col ">
+                  <div class="pull-right">
+                      <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                      <span>Txn Type : {{transactiontype}}</span><br>
+                      {{#behalfof}}
+                      <span>Behalf of : {{behalfof}}</span><br>{{/behalfof}}
+                      {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span><br>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      <span>Txn Status : <label class="text-success">Success</label></span>
+                      {{/isStatus}}
+                      {{^isStatus}}
+                      <span>Txn Status : <label class="text-danger">Failed</label></span>
+                      {{/isStatus}}
+
+                  </div>
+              </div>
+              <div class="col-xs-12 table-responsive">
+                  <h4><span>Order summary</span></h4>
+                  <table class="table table-bordered">
+                      <thead>
+                          <tr> 
+                              <th colspan="2" width="40%"><span>TruCoin</span></th>
+                                  <th class="text-center" width="15%"><span>QTY</span></th>
+                                  <th class="text-center" width="15%"><span>Rate/Gram</span></th>
+                              <th class="text-right" width="20%"><span>Amount</span></td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {{#productlist}}
+                          <tr> 
+                              <td colspan="2">{{productname}}<br>{{from}}</td>
+                              <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+                              <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                              <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+                          </tr>
+                          {{/productlist}}
+                          <tr>
+                             <td colspan="3" rowspan="5" class="text-success" style="vertical-align:bottom">
+                                  {{#isStatus}}
+                                  <span><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</span>
+                                  {{/isStatus}}
+                              </td>
+                              <td class="no-line text-right font-12">
+                              <span>Subtotal&nbsp;:</span></td>
+                              <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+                              </td>
+                              </tr>
+                              <tr>
+                              <td class="no-line text-right font-12">
+                              <span>GST/TAX&nbsp;Rate&nbsp;(%)&nbsp;: </span></td>
+                              <td class="no-line text-right ">
+                              {{taxper}}
+                              </td>
+                              </tr>
+                              <tr>
+                              <td class="no-line text-right font-12">
+                              <span>Total&nbsp;GST/TAX&nbsp;: </span></td>
+                              <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{totalTax}}
+                              </td>
+                              </tr>
+                              <tr>
+                              <!-- <td class="no-line text-right font-12">
+                              <span>TRANSACTION&nbsp;FEES&nbsp;:  </span></td>
+                              <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+                              </td> -->
+                              </tr>
+                              <tr>
+                              <td class="no-line text-right">
+                              <span>Total :</span></td>
+                              <td class="no-line text-right text-success">
+                                  {{#isStatus}}
+                                  <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                                  {{/isStatus}}
+                                  {{^isStatus}}
+                                  <h4 class="m-0 intotal text-danger"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                                  {{/isStatus}}
+                              </td>
+                              </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>{{/invoice}}
+</script>
+<script id="consumerRedeemInvoice" type="text/template">
+  {{#invoice}}
+  <div class="row" id="printinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                  </a> -->
+              <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                  onclick="downloadpdf('printinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+              </a> -->
+              <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png"  alt="logo" height="42" /> 
+          </h2>
+          <div class="row invoice-info">
+            <div class="col-sm-8 invoice-col">
+                  <span>eReceipt in favour of:</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                      {{email}}
+                  </address>
+              </div> 
+              <div class="col-sm-4 invoice-col">
+                  <span class="pull-right">
+                      <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                      <span>Txn Type : {{transactiontype}}</span><br>
+                      {{#behalfof}}
+                      <span>Behalf of : {{behalfof}}</span><br>{{/behalfof}}
+                      {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span><br>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      <span>Txn Status : <label class="text-success">Success</label></span>
+                      {{/isStatus}}
+                      {{^isStatus}}
+                      <span>Txn Status : <label class="text-danger">Failed</label></span>
+                      {{/isStatus}}
+
+                  </span>
+              </div>
+              <div class="col-xs-12 table-responsive">
+                  <h4><span>Order summary</span></h4>
+                  <table class="table table-bordered">
+                      <thead>
+                          <tr> 
+                                  <th colspan="2" width="40%"><span>TruCoin</span></th>
+                                      <th class="text-center" width="15%"><span>QTY</span></th>
+                                      <th class="text-center" width="15%"><span>Rate/Gram</span></th>
+                                  <th class="text-right" width="20%"><span>Amount</span></td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {{#productlist}}
+                          <tr> 
+                               <td colspan="2">{{productname}}<br>{{from}}</td>
+                                  <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+                                  <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                                  <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td>
+                                  </tr>
+                          </tr>
+                          {{/productlist}}
+                          <tr>
+                                     <td colspan="3" rowspan="5" class="text-success" style="vertical-align:bottom">
+                                          {{#isStatus}}
+                                          <span><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</span>
+                                          {{/isStatus}}
+                                      </td>
+                                      <td class="no-line text-right font-12">
+                                      <span>Subtotal&nbsp;:</span></td>
+                                      <td class="no-line text-right">
+                                      <i class="mdi mdi-currency-inr"></i> {{SubRtotl}}
+                                      </td>
+                                      </tr>
+                                     <!-- <tr>
+                                      <td class="no-line text-right font-12">
+                                      <span>Assaying&nbsp;Charges&nbsp;: </span></td>
+                                      <td class="no-line text-right">
+                                      <i class="mdi mdi-currency-inr"></i> {{total}}
+                                      </td>
+                                      </tr>
+                                       <tr>
+                                      <td class="no-line text-right font-12">
+                                      <span>Transaction&nbsp;Fees&nbsp;:  </span></td>
+                                      <td class="no-line text-right">
+                                      <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+                                      </td>
+                                      </tr> -->
+                                      <tr>
+                                      <td class="no-line text-right">
+                                          <h4 class="m-0 intotal"><span>Total :</span></h4></td>
+                                      <td class="no-line text-right text-success">
+                                          {{#isStatus}}
+                                          <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i><span>{{total}}</span></h4>
+                                          {{/isStatus}}
+                                          {{^isStatus}}
+                                          <h4 class="m-0 intotal text-danger"><i class="mdi mdi-currency-inr"></i><span>{{total}}</span></h4>
+                                          {{/isStatus}}
+                                      </td>
+                                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <!-- /.col -->
+  </div>{{/invoice}}
+</script>
+
+<script id="consumerTransferInvoice" type="text/template">
+  {{#transinvoice}}
+  <div class="row" id="printtransinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                          </a> -->
+              <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                  onclick="downloadpdf('printtransinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+              </a> -->
+              <a href="javascript:void(0)" onclick="printDiv('printtransinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+             
+          </h2>
+      </div>
+      <div class="row invoice-info">
+          <div class="col-xs-12">
+          <div class="col-sm-4 invoice-col">
+              <span>Sender Details:</span><br>
+              <address>
+                  <span>{{s_name}}</span><br>
+                  <span>{{s_truid}}</span><br>
+                  {{s_address}}<br>
+                  {{s_address1}}<br>
+                  {{s_address2}}<br>
+                  <!-- {{email}} -->
+              </address>
+          </div>
+          <div class="col-sm-4 invoice-col">
+              <div class="col-md-12 col-lg-offset-2">
+                  <span>Receiver Details :</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                  </address>
+              </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 invoice-col">
+              <div class="pull-right">
+                  <span> No.: {{orderno}}</span><br>
+                  <span>Txn Type : {{transactiontype}}</span><br>
+                  <!-- <span>Behalf of : {{behalfof}}</span><br> -->
+                 {{#isStatus}}
+                  {{#MOP}}
+                  <span>MOP : truWallet</span><br>
+                  {{/MOP}}
+                  {{^MOP}}
+                  <span>MOP : Others</span><br>
+                  {{/MOP}}
+                  <span>Txn Status : <label class="text-success">Success</label></span>
+                  {{/isStatus}}
+                  {{^isStatus}}
+                  <span>Txn Status : <label class="text-danger">Failed</label></span>
+                  {{/isStatus}}
+
+              </div>
+          </div>
+          </div>
+      </div>
+      <div class="">
+          <div class="col-sm-12 table-responsive">
+              <h4><span>Order summary</span></h4>
+              <table class="table table-bordered">
+                  <thead>
+                      <tr> 
+                        <th colspan="3" width="50%"><span>Product</span></th>
+                                  <th class="text-center" width="15%"><span>QTY</span></th>
+                                  <th class="text-center" width="15%"><span>Rate/Gram</span></th>
+                              <th class="text-right" width="20%"><span>Amount</span></td>
+                              </tr>
+                  </thead>
+                  <tbody>
+                      {{#productlist}}
+                      <tr>
+                          <!-- <td>{{productname}}</td>
+
+                          <td>{{qty}} gm</td>
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{other}}</td> -->
+                          <!-- <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td> -->
+                      <td colspan="2">{{productname}}</td>
+                              <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+                              <td class="text-center" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+                              <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+
+                          </tr>
+                      {{/productlist}}
+                      <!-- <tr>
+                          <td colspan="3" class="text-success">
+                              <h5 class="text-danger" id="ttxnstatus"><span>{{status}}</span>
+                              </h5>
+                          </td>
+
+                          <td colspan="3" class="text-right">
+                              <h4><span>Total:</span>&nbsp<span id="ttxnamt">
+                                      <i class="mdi mdi-currency-inr"></i>{{total}}</span></h4>
+                          </td>
+
+                      </tr> -->
+                      <tr>
+                         <td colspan="3" rowspan="5" class="text-success" style="vertical-align:bottom">
+                              {{#isStatus}}
+                              <span><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</span>
+                              {{/isStatus}}
+                          </td>
+                          <td class="no-line text-right font-12">
+                          <span>Subtotal&nbsp;:</span></td>
+                          <td class="no-line text-right">
+                          <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+                          </td>
+                          </tr>
+                         <!-- <tr>
+                          <td class="no-line text-right font-12">
+                          <span>Assaying&nbsp;Charges&nbsp;: </span></td>
+                          <td class="no-line text-right">
+                          <i class="mdi mdi-currency-inr"></i> {{total}}
+                          </td>
+                          </tr>
+                           <tr>
+                          <td class="no-line text-right font-12">
+                          <span>Transaction&nbsp;Fees&nbsp;:  </span></td>
+                          <td class="no-line text-right">
+                          <i class="mdi mdi-currency-inr"></i> {{paymentCharge}}
+                          </td>
+                          </tr> -->
+                          <tr>
+                          <td class="no-line text-right">
+                              <h4 class="m-0 intotal"><span>Total :</span></h4></td>
+                          <td class="no-line text-right text-success">
+                              {{#isStatus}}
+                              <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i><span>{{total}}</span></h4>
+                              {{/isStatus}}
+                              {{^isStatus}}
+                              <h4 class="m-0 intotal text-danger"><i class="mdi mdi-currency-inr"></i><span>{{total}}</span></h4>
+                              {{/isStatus}}
+                          </td>
+                          </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  {{/transinvoice}}
+</script>
+
+<script id="mustacheTempalte_a" type="text/template">
+  {{#invoice}}
+  <div class="row" id="printinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                  </a> -->
+              <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                  onclick="downloadpdf('printinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+              </a> -->
+              <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+          </h2>
+          <div class="row invoice-info">
+              <div class="col-sm-7 invoice-col">
+                  <span>eReceipt in favour of:</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                      {{email}}
+                  </address>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col ">
+                  <div class="pull-right">
+                      <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                      <span>Txn Type : {{transactiontype}}</span><br>
+                      {{#behalfof}}
+                      <span>Behalf of : {{behalfof}}</span><br>{{/behalfof}}
+                      {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      {{/isStatus}}
+
+                  </div>
+              </div>
+              <div class="col-xs-12 table-responsive">
+                  <h4><span>Order summary</span></h4>
+                  <table class="table table-striped">
+                      <thead>
+                          <tr>
+                              <th>Product</th>
+                              <th>TruCoin Details</th>
+                              <th>Quantity</th>
+                              <th class="text-right">Rate</th>
+
+                              <th class="text-right">{{taxhead}}</th>
+
+
+                              <th class="text-right">Subtotal</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {{#productlist}}
+                          <tr>
+                              <td>{{productname}}</td>
+                              <td>{{dfrom}}</td>
+                              <td>{{qty}} gms</td>
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{rate}}</td> 
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{tax}}</td>
+                              <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td>
+                          </tr>
+                          {{/productlist}}
+                          <tr>
+                              <td colspan="3" class="text-success">
+                                  <!-- <h5 class="text-danger" id="txnstatus"><span>{{status}}</span>
+                                      </h5> -->
+                                  <a href="javascript:;" class="text-danger" id="txnstatus" data-Invoice={{orderno}}
+                                      data-amt={{total}} onclick='getTransactiondetails();'>{{status}}</a>
+                              </td>
+
+                              <td colspan="3" class="text-right">
+                                  <h4><span>Total:</span>&nbsp<span id="txnamt">
+                                          <i class="mdi mdi-currency-inr"></i>{{total}}</span></h4>
+                              </td>
+
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      <!-- /.col -->
+  </div>{{/invoice}}
+</script>
+
+<script id="mustacheTempalte_b" type="text/template">
+  {{#transinvoice}}
+  <div class="row" id="printtransinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                          </a> -->
+              <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                  onclick="downloadpdf('printtransinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+              </a> -->
+              <a href="javascript:void(0)" onclick="printDiv('printtransinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+           
+          </h2>
+      </div>
+      <div class="row invoice-info">
+          <div class="col-xs-12">
+          <div class="col-sm-4 invoice-col">
+              <span>Sender Details:</span><br>
+              <address>
+                  <span>{{s_name}}</span><br>
+                  <span>{{s_truid}}</span><br>
+                  {{s_address}}<br>
+                  {{s_address1}}<br>
+                  {{s_address2}}<br>
+                  <!-- {{email}} -->
+              </address>
+          </div>
+          <div class="col-sm-4 invoice-col">
+              <div class="col-md-12 col-lg-offset-2">
+                  <span>Receiver Details :</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                  </address>
+              </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-sm-4 invoice-col">
+              <div class="pull-right">
+                  <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                  <span>Txn Type : {{transactiontype}}</span><br>
+                  <!-- <span>Behalf of : {{behalfof}}</span><br> -->
+                  {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      {{/isStatus}}
+              </div>
+          </div>
+          </div>
+      </div>
+      <div class="">
+          <div class="col-sm-12 table-responsive">
+              <h4><span>Order summary</span></h4>
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th>Product</th>
+
+                          <th>Quantity</th>
+                          <th class="text-right">Rate</th>
+
+                          <th class="text-right">Other Charges</th>
+                          <!-- <th class="text-right">Subtotal</th> -->
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {{#productlist}}
+                      <tr>
+                          <td>{{productname}}</td>
+
+                          <td>{{qty}} gm</td>
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{rate}}</td>
+
+                          <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{other}}</td>
+                          <!-- <td class="text-right"><i class="mdi mdi-currency-inr"></i>{{subtotal}}</td> -->
+                      </tr>
+                      {{/productlist}}
+                      <tr>
+                          <td colspan="3" class="text-success">
+                              <h5 class="text-danger" id="ttxnstatus"><span>{{status}}</span>
+                              </h5>
+                          </td>
+
+                          <td colspan="3" class="text-right">
+                              <h4><span>Total:</span>&nbsp<span id="ttxnamt">
+                                      <i class="mdi mdi-currency-inr"></i>{{total}}</span></h4>
+                          </td>
+
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  {{/transinvoice}}
+</script>
+<script id="mustacheTempalte_c" type="text/template">
+  {{#transinvoice}}
+  <div class="row" id="printtransinvoice">
+      <div class="col-xs-12">
+          <h2 class="page-header">
+              <i class="fa fa-globe"></i> eRECEIPT
+              <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                          </a> -->
+              <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                  onclick="downloadpdf('printtransinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+              </a> -->
+              <a href="javascript:void(0)" onclick="printDiv('printtransinvoice');" class="pull-right">&nbsp<i
+                      class="fa fa-print"></i>
+              </a>
+              <small class="pull-right">Order Date:
+                  {{orderdate}}</small>
+
+          </h2>
+
+      </div>
+      <div class="col-xs-12">
+          <h2 class="page-header"><img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+             
+          </h2>
+      </div>
+      <div class=" invoice-info">
+
+          <div class="col-sm-7 invoice-col">
+
+                  <span>eReceipt in favour of:</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                  </address>
+
+          </div> 
+          <!-- /.col -->
+          <div class="col-sm-4 invoice-col">
+              <div class="pull-right">
+                  <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                  <span>Txn Type : {{transactiontype}}</span><br>
+                  {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      {{/isStatus}}
+              </div>
+          </div>
+      </div>
+      <div class="">
+          <div class="col-sm-12 table-responsive">
+              <h4><span>Order summary</span></h4>
+              <table id="invoicecontent" class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <td class="text-center"><span>Conversion From</span></td>
+                          <td class="text-center"><span>Conversion To</span></td>
+
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td class="text-center"><span>{{fbullionType}}</span><br>
+                              <span>Qty : {{fQTY}}</span><br>
+                              <span>Rate : <i class="fa fa-inr"></i> {{fRate}}</span>
+                          </td>
+                          <td class="text-center"><span>{{tbullionType}}</span><br>
+                              <span>Qty : {{tQTY}}</span><br>
+                              <span>Rate : <i class="fa fa-inr"></i> {{tRate}}</span>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td colspan="2" class="no-line text-right">
+                              <span class="text-danger pull-left" id="ttxnstatus">
+                                  <span>{{status}}</span>
+                              </span>
+                              <span>Paid Amount : <span class="h4 m-0 intotal"><span class="text-success"><i
+                                              class="mdi mdi-currency-inr"></i><span>{{payableAmt}}</span></span>
+                                  </span>
+                              </span>
+                              <br> {{#tranType}}
+                              <span class="text-success pull-left" id="txnstatus">Paid by :
+                                  <span>{{MOP}}</span>
+                              </span> {{/tranType}}
+                          </td>
+
+                      </tr>
+                      <tr>
+                      <td colspan="2" >
+                          <div class="col-sm-6">
+                            <span class="text-danger">&nbsp;* Amount of <i class="fa fa-inr"></i> {{total}} Bullion converted from {{fbullionType}} to {{tbullionType}}.</span>
+                          </div>
+                  </td>
+              </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+  {{/transinvoice}}
+</script>
+
+
+<!--TruCoin-->
+<script id="invoicetmp" type="text/template">
+  {{#invoice}}
+  <div class="col-xs-12" id="printinvoice">
+      <!-- title row -->
+      <div class="row">
+          <div class="col-xs-12">
+              <h2 class="page-header">
+                  <i class="fa fa-globe"></i> eRECEIPT
+                  <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                      onclick="downloadpdf('printinvoice',this);" class="pull-right">&nbsp<i class="fa fa-download "></i>
+                  </a> -->
+                  <a href="javascript:void(0)" title="Print" onclick="printDiv('printinvoice');"
+                      class="pull-right">&nbsp<i class="fa fa-print"></i>
+                  </a>
+                  <small class="pull-right">Order Date:
+                      {{orderdate}}</small>
+
+              </h2>
+
+
+          </div>
+          <div class="col-xs-12">
+
+              <img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+
+              <div class=" pull-right showcontent">
+                  <!-- <div class="user-block" onclick="showcert();">
+                          <img class="img-circle img-bordered-sm" src="{{imagef}}" alt="user image">
+                          <span class="username">
+                              <a href="javascript:;">AssetStore Name : {{assetstorename}}</a>
+
+                          </span>
+                          <span class="description">{{ccity}}</span>
+
+                      </div> -->
+                <!--   <div class="details pull-right" onclick="showcert();"
+                      title="Click to show assetstore certificate &amp; location" data-toggle="modal"
+                      data-target=".bs-example-modal-lg">
+                      <img class="float-left" height="38px" src="{{cimage}}" alt="Picture">
+                      <div class="float-right">
+                          <h5><span>AssetStore Name: {{assetstorename}}</span></h5>
+                          <h5><i>City : {{ccity}}</i></h5>
+                      </div>
+                  </div> -->
+
+              </div>
+              <div class="col-lg-8 col-lg-offset-2 showcontent-content slide">
+                  <div id="certDiv">
+                      <img src="images/certi/logo.png" class="imgcenter">
+                      <div class="headingcert">
+                          <h3><span><i>Certificate of Authenticity</i></span></h3>
+                      </div>
+                      {{#golds}}
+                      <div class="goldcenter">
+                          {{#g24k}}
+                          <div class="g1center">
+                              Gold Purity 24K <br />
+                              Weight <span>{{g24k}} gm</span>
+                          </div>
+                          {{/g24k}}
+                         
+                          {{#s99p}}
+                          <div class="g1center">
+                              99% Silver<br />
+                              Weight <span>{{s99p}} gm</span>
+                          </div>
+                          {{/s99p}}
+
+                      </div>
+                      {{/golds}}
+                      <div class="centered">This bullions is sold by {{from}} under {{assetstorename}}
+                      </div>
+                  </div>
+
+              </div>
+              <hr>
+          </div>
+          <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+          <div class="col-sm-6 invoice-col">
+              <span>eReceipt in favour of:</span>
+              <address>
+                  {{name}}<br>
+                  {{truID}}<br>
+                  {{address}},<br>
+                  {{address1}},<br>
+                  {{address2}}
+
+              </address>
+          </div>
+          <!-- /.col -->
+
+          <div class="col-sm-6 invoice-col">
+              <div class="pull-right">
+                  <span>To,</span>
+                  <address>
+                      <span> eReceipt No / TXN ID : {{orderno}}</span> <br>
+                      <span>Txn Type : {{type}}</span><br>
+                      {{#status}}
+                      <span>Txn Status : </span><span class="text-success txnstatus"><span>Success</span>
+                      </span><br>
+                      <span>Paid Via: </span><span><span>{{mop}}</span></span> <br>
+                      {{/status}}
+                      {{^status}}
+                      <span>Txn Status : </span><span class="text-danger txnstatus"><span>Failed</span>
+                      </span> <br>
+                      {{/status}}
+                      <span>Invoice issued by :</span><br>
+                      {{from}}<br>
+                      {{fromtruid}}<br>
+                      {{f_address}},<br>
+                      {{f_address1}},<br>
+                      {{f_address2}}
+                  </address>
+              </div>
+          </div>
+
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+
+
+          <div class="col-xs-12 table-responsive">
+              <h4><span>Order summary</span></h4>
+              <table class="table table-bordered">
+                  <thead>
+                      <td colspan="3" width="50%"><span>TruCoin</span></td>
+                      <td class="text-center" width="15%"><span>QTY</span></td>
+                      <td class="text-center" width="15%"><span>Rate/Gram</span></td>
+                      <td class="text-right" width="20%"><span>Amount</span></td>
+                  </thead>
+                  <tbody>
+                      <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                      {{#productlist}}
+                      <tr>
+                          <td colspan="2">{{productname}}<br>{{from}}</td>
+                          <td class="text-center" style="vertical-align: middle;">{{qty}} gms</td>
+                          <td class="text-center" style="vertical-align: middle;"><i
+                                  class="mdi mdi-currency-inr"></i>{{rate}}</td>
+
+                          <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>
+                              {{#transfer}}
+                              {{tamount}}
+                              {{/transfer}}
+                              {{^transfer}}
+                              {{amount}}
+                              {{/transfer}}
+                          </td>
+                      </tr>
+                      {{/productlist}}
+                      {{#buy}}
+                      <tr>
+                         <td colspan="3" rowspan="5" class="text-success" style="vertical-align:bottom">
+                              <span><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully paid</span>
+                          </td>
+                          <td class="no-line text-right font-12">
+                              <span>Subtotal&nbsp;:</span></td>
+                          <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="no-line text-right font-12">
+                              <span>GST/TAX&nbsp;Rate&nbsp;(%)&nbsp;: </span></td>
+                          <td class="no-line text-right ">
+                              {{taxper}}%
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="no-line text-right font-12">
+                              <span>Total&nbsp;GST/TAX&nbsp;: </span></td>
+                          <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{totalTax}}
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="no-line text-right font-20">
+                              <span>Total : </span></td>
+                          <td class="no-line text-right text-success">
+                              <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                          </td>
+                      </tr>
+                      {{/buy}}
+                      {{#redeem}}
+                      <tr>
+                          <td colspan="4" rowspan="2" class="text-success" style="vertical-align:bottom">
+                              <span><i class="mdi mdi-currency-inr"></i> {{total}} Amount successfully credited into your
+                                  wallet.</span>
+                          </td>
+                          <td class="no-line text-right font-12">
+                              <span>Subtotal&nbsp;:</span></td>
+                          <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{subtotal}}
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="no-line text-right">
+                              <span class="font-20">Total :</span></td>
+                          <td class="no-line text-right text-success">
+                              <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                          </td>
+                      </tr>
+                      {{/redeem}}
+                      {{#transfer}}
+                      <tr>
+                          <td colspan="4" rowspan="2" style="vertical-align:bottom">
+                              {{#mop}}
+                              <br>
+                              <!--<span>Bank TXN ID :</span> {{bankTXNID}}  <br>-->
+                              <span>Paid by :</span> {{payBy}} <br><br>
+                              <!--<span>Paid by: Others</span><br><br>-->
+                              {{/mop}}
+                              {{^mop}}
+                              <span>Paid by: truWallet</span><br><br>
+                              {{/mop}}
+                              <b class="text-success"><i class="mdi mdi-currency-inr"></i>{{total}} Amount successfully
+                                  paid</span>
+                          </td>
+                          <td class="no-line text-right font-12">
+                              <span>Subtotal&nbsp;:</span></td>
+                          <td class="no-line text-right">
+                              <i class="mdi mdi-currency-inr"></i> {{subTtotal}}
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="no-line text-right">
+                              <span>Payable&nbsp;Charges&nbsp;:</span></td>
+                          <td class="no-line text-right text-success">
+                              <h4 class="m-0 intotal"><i class="mdi mdi-currency-inr"></i>{{total}}</h4>
+                          </td>
+                      </tr>
+                      {{/transfer}}
+                  </tbody>
+              </table>
+                      <div>
+                          <p class="alignpad pull-right"> <span> Generated on behalf of Bullion TruCoin </span>
+                              <br />
+                              <span class="text text-info"> By Company Name.
+                          </p>
+                      </div>
+
+          </div>
+          <!--    <div class="row">
+                          <div class="col-12">
+
+                          </div>
+                  </div> -->
+
+      </div>
+  </div>
+  </div>
+  </div>{{/invoice}}
+</script>
+
+<script id="assetmanager_invoice" type="text/template">
+  {{#invoice}}
+  <div class="col-xs-12" id="transInvoice">
+      <div class="row">
+          <div class="col-xs-12">
+              <h2 class="page-header">
+                  <i class="fa fa-globe"></i> eRECEIPT
+                  <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                                      </a> -->
+                  <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                      onclick="downloadpdf('transInvoice',this);" class="pull-right">&nbsp<i
+                          class="fa fa-download "></i>
+                  </a> -->
+                  <a href="javascript:void(0)" title="Print" onclick="printDiv('transInvoice');"
+                      class="pull-right">&nbsp<i class="fa fa-print"></i>
+                  </a>
+                  <small class="pull-right">Order Date:
+                      {{orderdate}}</small>
+
+              </h2>
+
+          </div>
+          <div class=" col-xs-12 ">
+              <img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+
+              <div class="pull-right showcontent">
+                  <!-- <div class="user-block" onclick="showcert();">
+                      <img class="img-circle img-bordered-sm" src="{{custimg}}" alt="user image">
+                      <span class="username">
+                          <a href="javascript:;">AssetStore Name : {{assetstore}}</a>
+
+                      </span>
+                      <span class="description">{{custCity}}</span>
+
+                  </div> -->
+                 <!--  <div class="details pull-right" onclick="showcert();" title="Click to show assetstore certificate &amp; location"
+                  data-toggle="modal" data-target=".bs-example-modal-lg">
+              <img class="float-left" height="38px" src="{{custimg}}" alt="Picture">
+              <div class="float-right">
+                  <h5><span>AssetStore Name: {{assetstore}}</span></h5>
+                  <h5><i>City : {{custCity}}</i></h5>
+              </div>
+          </div> -->
+              </div>
+              <div class="col-lg-8 col-lg-offset-2 showcontent-content slide">
+                  <div id="certDiv">
+                      <img src="images/certi/logo.png" class="imgcenter">
+                      <div class="headingcert">
+                          <h3><span><i>Certificate of Authenticity</i></span></h3>
+                      </div>
+                      {{#golds}}
+                      <div class="goldcenter">
+                          {{#g24k}}
+                          <div class="g1center">
+                              Gold Purity 24K <br />
+                              Weight <span>{{g24k}} gm</span>
+                          </div>
+                          {{/g24k}}
+                         
+                          {{#s99p}}
+                          <div class="g1center">
+                              99% Silver<br />
+                              Weight <span>{{s99p}} gm</span>
+                          </div>
+                          {{/s99p}}
+
+                      </div>
+                      {{/golds}}
+                      <div class="centered">This bullions is sold by {{dname}} under {{assetstore}}
+                      </div>
+                  </div>
+
+
+              </div>
+              <hr>
+              <!-- /.col -->
+          </div>
+          <!-- info row -->
+
+          <div class="invoice-info">
+              <div class="col-sm-7 invoice-col">
+                  <span>eReceipt in favour of:</span><br>
+                  <address>
+                      <span>{{name}}</span><br>
+                      <span>{{to}}</span><br>
+                      {{address}}<br>
+                      {{address1}}<br>
+                      {{address2}}<br>
+                  </address>
+              </div> 
+              <!-- /.col -->
+              <div class="col-sm-4 invoice-col ">
+                  <div class="pull-right">
+                      <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+                      <span>Txn Type : {{transactiontype}}</span><br>
+                      {{#isStatus}}
+                      {{#MOP}}
+                      <span>MOP : truWallet</span><br>
+                      {{/MOP}}
+                      {{^MOP}}
+                      <span>MOP : Others</span><br>
+                      {{/MOP}}
+                      {{/isStatus}}
+                      <span> Behalf Of : {{behalfof}}</span><br>
+                  </div>
+                  <!-- /.col -->
+                  <!-- <div class="col-sm-4 invoice-col">
+                              <span>eReceipt No / TXN ID.: {{orderno}}</span><br>
+
+                          </div> -->
+                  <!-- /.col -->
+              </div>
+              <!-- /.row -->
+
+              <!-- Table row -->
+              <div class="">
+                  <div class="col-xs-12 table-responsive">
+                      <h4><span>Order summary</span></h4>
+                      <table class="table table-striped">
+                          <thead>
+                              <tr>
+                                  <th>Product</th>
+                                  <th>TruCoin Details</th>
+                                  <th>Quantity</th>
+                                  <th class="text-right">Rate</th>
+                                  <!-- <th class="text-right">Charges</th> -->
+                                  <th class="text-right">{{taxhead}}</th>
+                                  <th class="text-right">Subtotal</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {{#productlist}}
+                              <tr>
+                                  <td>{{productname}}</td>
+                                  <td>{{dfrom}}</td>
+                                  <td>{{qty}}</td>
+                                  <td class="text-right"><i class="fa fa-inr"></i> {{rate}}</td>
+                                  <!-- <td class="text-right"><i class="fa fa-inr"></i> {{assetmanagersCharges}}</td> -->
+                                  <td class="text-right"><i class="fa fa-inr"></i> {{tax}}</td>
+                                  <td class="text-right"><i class="fa fa-inr"></i> {{subtotal}}</td>
+                              </tr>
+                              {{/productlist}}
+                              <tr>
+                                  <td class="text-success">
+                                      {{#isStatus}}
+                                      <h5 class="text-success" id="txnstatus"><span>{{status}}</span></h5>
+                                  {{/isStatus}}
+                                      {{^isStatus}}
+                                      <h5 class="text-danger" id="txnstatus"><span>{{status}}</span></h5>
+                                  {{/isStatus}}
+                                  </td>
+
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>
+                                  <td class="text-right">
+                                      <h4><span>Total:</span></h4>
+                                  </td>
+                                  {{#isStatus}}
+                                  <td class="text-right text-success" id="txnamt">
+                                      <h4><span><i class="fa fa-inr"></i> {{total}}</span></h4>
+                                  </td>
+                                  {{/isStatus}}
+                                  {{^isStatus}}
+                                  <td class="text-right text-danger" id="txnamt">
+                                      <h4><span><i class="fa fa-inr"></i> {{total}}</span></h4>
+                                  </td>
+                                  {{/isStatus}}
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <!-- /.col -->
+              </div>
+          </div>
+
+          <!-- /.row -->
+
+
+          <!-- /.col -->
+      </div>{{/invoice}}
+</script>
+
+<script id="transferReceipt" type="text/template">
+  {{#invoice}}
+  <div class="col-xs-12" id="transferInvoice">
+      <div class="row">
+          <div class="col-xs-12">
+              <h2 class="page-header">
+                  <i class="fa fa-globe"></i> eRECEIPT
+                  <!-- <a href="javascript:window.print()"  class=" btn btn-info pull-right"><i class="fa fa-print"></i>
+                                              </a> -->
+                  <!-- <a href="javascript:void(0)" title="Download PDF" data-invoice="{{orderno}}"
+                      onclick="downloadpdf('transferInvoice',this);" class="pull-right">&nbsp<i
+                          class="fa fa-download "></i>
+                  </a> -->
+                  <a href="javascript:void(0)" title="Print" onclick="printDiv('transferInvoice');"
+                      class="pull-right">&nbsp<i class="fa fa-print"></i>
+                  </a>
+                  <small class="pull-right">Order Date:
+                      {{orderdate}}</small>
+
+              </h2>
+
+          </div>
+          <div class=" col-xs-12 ">
+
+              <img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+
+              <div class=" pull-right showcontent">
+                  <!-- <div class="user-block"  onclick="showcert();">
+                          <img class="img-circle img-bordered-sm" src="{{cimage}}" alt="user image">
+                          <span class="username">
+                              <a href="javascript:;">AssetStore Name : {{assetstorename}}</a>
+
+                          </span>
+                          <span class="description">{{ccity}}</span>
+
+                      </div> -->
+                 <!--  <div class="details pull-right" onclick="showcert();"
+                      title="Click to show assetstore certificate &amp; location" data-toggle="modal"
+                      data-target=".bs-example-modal-lg">
+                      <img class="float-left" height="38px" src="{{cimage}}" alt="Picture">
+                      <div class="float-right">
+                          <h5><span>AssetStore Name: {{assetstorename}}</span></h5>
+                          <h5><i>City : {{ccity}}</i></h5>
+                      </div>
+                  </div> -->
+              </div>
+              <div class="col-lg-8 col-lg-offset-2 showcontent-content slide">
+                  <div id="certDiv">
+                      <img src="images/certi/logo.png" class="imgcenter">
+                      <div class="headingcert">
+                          <h3><span><i>Certificate of Authenticity</i></span></h3>
+                      </div>
+                      {{#golds}}
+                      <div class="goldcenter">
+                          {{#g24k}}
+                          <div class="g1center">
+                              Gold Purity 24K <br />
+                              Weight <span>{{g24k}} gm</span>
+                          </div>
+                          {{/g24k}}
+                         
+                          {{#s99p}}
+                          <div class="g1center">
+                              99% Silver<br />
+                              Weight <span>{{s99p}} gm</span>
+                          </div>
+                          {{/s99p}}
+
+                      </div>
+                      {{/golds}}
+                      <div class="centered">This bullions is sold by {{from}} under {{assetstorename}}
+                      </div>
+                  </div>
+
+              </div>
+              <hr>
+          </div>
+          <!-- /.col -->
+      </div>
+      <!-- info row -->
+      <div class="row invoice-info">
+          <div class="col-sm-6 invoice-col">
+              <span>Sender Details:</span><br />
+              <address>
+                  {{name}}<br>
+                  {{truID}}<br>
+                  {{address}}<br>
+                  {{address1}}<br>
+                  {{address2}}
+              </address>
+          </div>
+          <!-- /.col -->
+
+          <div class="col-sm-6 invoice-col">
+              <div class="pull-right">
+                  <span>Receiver Details:</span><br>
+                  <address>
+                      <span> Order No : {{orderno}}</span> <br>
+                      {{from}}<br>
+                      {{ftruid}}<br>
+                      {{f_address}}<br>
+                      {{f_address1}}<br>
+                      {{f_address2}}
+                  </address>
+              </div>
+          </div>
+
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+
+
+          <div class="col-xs-12 table-responsive">
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <td><span>Product</span></td>
+
+                          <td><span>Quantity </span>
+
+                          <td><span>Rate/Gram</span>
+                          </td>
+
+                          <td class="text-right"><span>Sub Total</span></td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                      {{#productlist}}
+                      <tr>
+                          <td>{{productname}}</td>
+                          <td>{{qty}}</td>
+                          <td><i class="fa fa-inr"></i> {{rate}}</td>
+                          <td class="text-right"><i class="fa fa-inr"></i> {{charges}}</td>
+                      </tr>
+                      {{/productlist}}
+                      <tr>
+                          <td colspan="2">
+                              <span>Paid Via : {{mop}}</span>
+                          </td>
+
+                          <td class="no-line text-right">
+                              <span>Total :</span></td>
+                          <td class="no-line text-right text-success">
+                              <h4 class="m-0"><i class="fa fa-inr"></i> {{totalAmount}}</h4>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td colspan="4">
+                              <p class="alignpad pull-right"> <span> Generated on behalf of bullion assetmanager </span>
+                                  <br />
+                                  <span class="text text-info"> By Company Name.
+          </div>
+          </p>
+          </td>
+          </tr>
+          </tbody>
+          </table>
+
+      </div>
+
+  </div>
+  <!-- close button here -->
+  </div>
+  </div>
+  </div>
+  {{/invoice}}
+</script>
+<script id="WalletTrans" type="text/template">
+    {{#invoice}}
+    <div class="col-xs-12" id="invoiceprint">
+  <h4 class="mt-0 header-title headerp x_title">
+  <i class="mdi mdi-24px mdi-format-float-right"></i> Summary
+  <span class="pull-right"> Order Date: {{orderdate}}
+  <a href="javascript:void(0)" title="Print" onclick="printDiv('invoiceprint');" class="pull-right">&nbsp<i
+  class="fa fa-print"></i>
+  </a>
+  </span></h4>
+  <div class="col-md-12">
+  <div class="invoice-title">
+    <img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" />
+  </h3>
+  </div>
+  <hr>
+  <div class="row">
+  <div class="col-md-6">
+  <address>
+  <span>To</span><br>
+  <span>{{toAssetManagerName}}</span><br>
+  {{to}}
+  </address>
+  </div>
+  <div class="col-md-6">
+  <address class="pull-right">
+  <span> Receipt No / TXN ID : {{invoice}}</span>
+  <br>
+  <span>Txn Type : {{type}}</span><br />
+  <span>Txn Status : </span><span id="txnstatus"><span>{{status}}</span></span><br>
+  </address>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-12">
+  <div class="p-2">
+  <h5 class="panel-title font-20"><span>Order summary</span></h5>
+  </div>
+  <div class="">
+  <div class="table-responsive">
+  <table id="invoicecontent" class="table table-bordered">
+  <thead>
+  <tr>
+  <td colspan="3" width="50%"><span>Title</span></td>
+    <td class="text-right" width="20%"><span>Amount</span></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td colspan="3">{{title}}</td>
+    <td class="text-right" style="vertical-align: middle;"><i class="mdi mdi-currency-inr"></i>{{amount}}</td>
+    </tr>
+   <!--  vtype -->
+  <td colspan="4" rowspan="4"  style="vertical-align:bottom">
+    {{#hasAc}}
+    {{senderName}}<br />
+     {{senderAccountNumber}}<br />
+     {{/hasAc}} 
+     {{bankName}} <br />
+     {{bankTxnID}} <br />
+     {{paidBy}}<br />
+     {{acOrigin}}<br />
+     {{destinationAC}}<br />
+     
+
+
+    <span class="text-success">Amount of <i class="mdi mdi-currency-inr"></i>{{amount}} successfully added in your {{wallet}} account</span>
+    </td></tr>
+  </tbody>
+  </table>
+  </div>
+  {{#tranType}}
+  <div class="row">
+    <div class="col-12">
+    <p class="ralignpad text-right"> <span> Receipt is prepared by,
+    </span>
+    <br />
+    <span class="text text-info pull-right"> Company Name.
+    </div>
+    </p>
+    </div>
+  </div>
+  {{/tranType}}
+  </div>
+  </div></div>{{/invoice}}
+</script>
+<script id="GSTBreakup" type="text/template">
+    {{#invoice}}
+    <div class="col-xs-12" id="invoiceprint">
+  <h4 class="mt-0 header-title headerp x_title">
+  <i class="mdi mdi-24px mdi-format-float-right"></i> GST Summary
+  <span class="pull-right">
+  <a href="javascript:void(0)" title="Print" onclick="printDiv('invoiceprint');" class="pull-right">&nbsp<i
+  class="fa fa-print"></i>
+  </a>
+  </span></h4>
+  <div class="col-md-12">
+  <div class="invoice-title">
+    <img src="images/logo/logo.png" class="logoimg" " alt="logo" height="42" /> 
+    <span class="pull-right">
+        <span> Report By</span> : {{date}}
+        </span>
+  </div>
+  <hr>
+  <div class="row">
+  <div class="col-md-6">
+  <address>
+  <span>To</span><br>
+  <span>{{companyName}}</span><br>
+  {{to}}
+  </address>
+  </div>
+  <div class="col-md-6">
+  <address class="pull-right">
+  <span> Period </span>: {{start}} to {{end}} <br/> 
+  </address>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col-md-12">
+  <div class="p-2">
+  <h5 class="panel-title font-20"><span>Order summary</span></h5>
+  </div>
+  <div class="">
+  <div class="table-responsive">
+  <table id="invoicecontent" class="table table-bordered">
+  <thead>
+  <tr>
+  <td colspan="3" width="50%"><span>Title</span></td>
+    <td class="text-right" width="20%"><span>Total Txn Amount</span></td>
+    <td class="text-right" width="20%"><span>Total GST</span></td>
+  </tr>
+  </thead>
+  <tbody>
+    {{#listData}}
+    <tr>
+        <td colspan="3" width="50%">{{title}}</td>
+          <td class="text-right" width="20%">{{amount}}</td>
+          <td class="text-right" width="20%">{{gst}}</td>
+        </tr>
+        {{/listData}}
+        {{#myData}}
+        <tr>
+            <td colspan="3" width="50%"><span>{{title}}</span></td>
+              <td class="text-right" width="20%"><span>{{amount}}</span></td>
+              <td class="text-right" width="20%"><span>{{gst}}</span></td>
+            </tr>
+            {{/myData}}
+  </tbody>
+  </table>
+  </div>
+  <div class="row" style="padding-top:  20px;">
+    <div class="col-12">
+    <p class="ralignpad text-right"> <span> Receipt is prepared by,
+    </span>
+    <br />
+    <span class="text text-info pull-right"> Company Name.
+    </div>
+    </p>
+    </div>
+  </div>
+  </div>
+  </div></div>{{/invoice}}
+</script>
+
+<script src="js/print.js"></script>

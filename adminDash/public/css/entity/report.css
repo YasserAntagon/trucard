@@ -1,0 +1,120 @@
+    a:hover,
+    a:focus {
+        text-decoration: none;
+        outline: none;
+    }
+
+    #accordion .panel {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        margin-bottom: 15px;
+    }
+
+    #accordion .panel-heading {
+        padding: 0;
+        border-radius: 0;
+        border: none;
+    }
+
+    #accordion .panel-title a {
+        display: block;
+        padding: 14px 30px 14px 70px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: #ef6145;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease 0s;
+    }
+
+    #accordion .panel-title a.collapsed {
+        background: #f8f8f8;
+        color: #1e4276;
+    }
+
+    #accordion .panel-title a.collapsed:hover {
+        color: #ef6145;
+    }
+
+    #accordion .panel-title a:before {
+        content: "";
+        width: 55px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 0;
+        left: -13px;
+        transform: skewX(-25deg);
+        transition: all 0.5s ease 0s;
+    }
+
+    #accordion .panel-title a.collapsed:hover:before {
+        background: #d7573e;
+    }
+
+    #accordion .panel-title a:after {
+        content: "\f047";
+        font-family: FontAwesome;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        color: #fff;
+        transform: translateY(-50%);
+    }
+
+    #accordion .panel-title a.collapsed:after {
+        color: #9f9f9f;
+    }
+
+    #accordion .panel-title a.collapsed:hover:after {
+        color: #fff;
+    }
+
+    #accordion .panel-body {
+        font-size: 14px;
+        color: #5a3245;
+        line-height: 25px;
+        padding: 15px 15px 15px 30px;
+        position: relative;
+        border: none;
+        transition: all 0.5s ease 0s;
+        border: 0 solid #ddd;
+        border-radius: 0 0 8px 8px;
+    }
+
+    #accordion .panel-body:before {
+        content: "";
+        width: 5px;
+        height: 40px;
+        background: #ef6145;
+        position: absolute;
+        top: 30px;
+        left: 0;
+    }
+
+    #accordion .panel-body p {
+        margin-bottom: 0;
+    }
+
+    .panel-collapse {
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    .box-left-border {
+        border-left: 5px solid #2567a0;
+    }
+
+    .mg-10 h3 {
+        font-size: 20px;
+    }
+
+    .table {
+        margin-bottom: 0
+    }
+
+    .mg-10:hover {
+        background-color: #ef6145 !important;
+    }

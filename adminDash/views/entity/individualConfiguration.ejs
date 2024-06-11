@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include ('./partials/head'); %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.js"></script>
+
+    <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.5.0/math.js"></script>
+    <link rel="stylesheet" href="truComponents/bootstrap/dist/css/bootstrap-editable.css">
+    <link href="truComponents/bootstrap/dist/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/permission.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/theme/dracula.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.35.0/codemirror.css">
+    <style>
+        .setindvConf>.nav-tabs {
+            padding-top: 0;
+        }
+
+        .setindvConf>.nav-tabs>li.active>a:hover,
+        .setindvConf>.nav-tabs>li.active>a:focus {
+            background-color: #fff;
+            border: none;
+            color: #333;
+
+        }
+
+        .setindvConf>.nav-tabs>li>a:hover {
+            color: #333;
+        }
+
+        .setindvConf>.tab-content {
+            padding: 0px;
+
+        }
+
+        .nav-tabs-custom>.nav-tabs {
+            border-bottom-color: #d7d7d7;
+        }
+
+        .nav-tabs-custom>.nav-tabs>li.active>a {
+            border-left-color: #d7d7d7;
+            border-right-color: #d7d7d7;
+        }
+
+        .CodeMirror {
+            height: 200px;
+        }
+
+        .cm-value {
+            color: #50fa7b;
+        }
+
+        .cm-value-Header {
+            color: #08c
+        }
+
+        .cm_operator {
+            color: #bd93f9;
+        }
+
+        .cm_help {
+            color: #ffb86c;
+        }
+
+        .cm-value {
+            color: #50fa7b;
+        }
+    </style>
+
+    <%- include ('./partials/lheader'); %>
+    <div class="row content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-widget box-widgets ">
+                    <div class="box-header">
+                        <h3 class="box-title"> <i class="fa fa-lock"></i> Partner Configurations
+                        </h3>
+                        <hr>
+                    </div>
+                    <div class="box-body">
+                        <%- include ('./commonConfiguration'); %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <script src="api/entityApi/controllers/entityProfile.js"></script>
+
+    <%- include ('./partials/footer'); %>
+    </body>
+
+</html>

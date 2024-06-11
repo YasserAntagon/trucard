@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include ('./partials/head'); %> 
+    <link rel="stylesheet"  href="truComponents/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="css/responsive.bootstrap4.min.css" />
+    <link href="truComponents/bootstrap/dist/css/bootstrap-editable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/consumer/summary.css" />
+    <link rel="stylesheet" href="css/consumer/wizard.css" />
+    <style>
+      #myModals .modal-dialog {
+        width: 50%;
+      }
+      .small-box h3 {
+        font-size: 24px;
+      }
+      .small-box .icon {
+        top: -5px;
+        font-size: 70px;
+      }
+      .small-box:hover .icon {
+        font-size: 75px;
+      }
+      .wizard {
+        padding: 0 20px;
+      }
+      .cDate {
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="skin-yellow fixed sidebar-mini sidebar-collapse">
+    <div class="wrapper">      
+      <%- include ('./partials/header'); %> 
+      <div class="content-wrapper"> 
+      <section>
+        <%- include ('./consumerTempList'); %>
+      </section>
+    </div></div>
+    <%- include ('./partials/footer'); %> 
+    <script src="truComponents/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="truComponents/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="js/datatable/dataTables.responsive.min.js"></script>
+    <script src="js/datatable/responsive.bootstrap4.min.js"></script>
+    <script src="js/datatable/dataTables.buttons.min.js"></script>
+    <script src="js/datatable/buttons.bootstrap4.min.js"></script>
+    <script src="js/datatable/jszip.min.js"></script>
+    <script src="js/datatable/pdfmake.min.js"></script>
+    <script src="js/datatable/vfs_fonts.js"></script>
+    <script src="js/datatable/buttons.html5.min.js"></script>
+    <script src="js/datatable/buttons.print.min.js"></script>
+    <script src="js/datatable/buttons.colVis.min.js"></script>
+    <script src="js/entity/mustache.min.js"></script>
+    <script src="js/html2pdf.bundle.js"></script>  
+    <script src="js/moment.js"></script> 
+    <script src="api/admin/controllers/verifyTPIN.js"></script>
+    <script src="api/consumerApi/controllers/consumerListExc.js"></script>
+    <script src="api/consumerApi/controllers/consumeractive.js"></script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<%- include ('./partials/head'); %> 
+<link rel="stylesheet" href="css/consumer/wallet.css">
+<link rel="stylesheet" href="css/consumer/cuprofile.css">
+<%- include ('./partials/lHeader'); %>
+<div class="containerbg">
+  <div class="box box-warning">
+    <div class="box-header with-border">
+      <h3 class="box-title">Consumer Details</h3>   
+      </div> 
+      <div class="box-body">
+<div class="col-sm-12"> 
+    <div class="col-sm-4 col-xs-6">
+        <div class="box box-success"> 
+            <div class="box-body">
+              <div class="pull-right">
+                <img src="../images/new/wallet.png" height="24" width="24" />      
+              </div>
+                <div class="inner">
+                  <p style="color: #003443">
+                    <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                    <i class="mdi mdi-currency-inr spinnerVal hidden"></i> <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="walBal">0</span>
+                  </p> 
+                  <p style="color: gray">Total Wallet Balance</p>
+                </div> 
+            </div>                      
+          </div> 
+    </div>
+    <div class="col-sm-4 col-xs-6">
+      <div class="box box-warning"> 
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/gold.png" height="24" width="24" />      
+            </div>
+              <div class="inner">
+                <p style="color: #003443">
+                  <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                 <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="cstock24k">0</span>
+                </p> 
+                <p style="color: gray">TruCoin Gold</p>
+              </div> 
+          </div>                      
+        </div> 
+    </div>
+    <div class="col-sm-4 col-xs-6">
+      <div class="box box-default"> 
+          <div class="box-body">
+            <div class="pull-right">
+              <img src="../images/new/silver.png" height="28" width="35" />      
+            </div>
+              <div class="inner">
+                <p style="color: #003443">
+                  <span class="fa fa-circle-o-notch fa-spin spinnerRev text-info"></span>
+                  <span style="font-size: 14px; font-weight: bold" class="spinnerVal hidden" id="cstock99p">0</span>
+                </p> 
+                <p style="color: gray">TruCoin Silver</p>
+              </div> 
+          </div>                      
+        </div> 
+    </div>
+</div></div></div></div>
+<%- include ('./partials/lfooter'); %>  
+<script src="api/consumerApi/controllers/consumerStockList.js"></script>
+</body>
+</html>
+
+

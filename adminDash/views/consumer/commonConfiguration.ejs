@@ -1,0 +1,416 @@
+<div class="box-body">
+    <div id="consumerConfLoader" class="loaderContainer" style="display:none;">
+        <div class="loader"></div>
+    </div>
+    <div class="col-lg-12 ">
+        <div class="nav-tabs-custom setindvConf">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#permission" data-toggle="tab" aria-expanded="true">Access Permissions</a>
+                </li>
+                <li class=""><a href="#limit" data-toggle="tab" aria-expanded="false">Bullion
+                        Transaction Limit</a>
+                </li>
+                <li class=""><a href="#walpermission" data-toggle="tab" aria-expanded="false">Wallet
+                        Permissions</a></li>
+
+                <% if (pgPermissionEnable) { %>
+                    <li class=""><a href="#pgpermission" data-toggle="tab" aria-expanded="false">Payment
+                            Gateway</a></li>
+                    <% } %>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="permission">
+                    <div>
+                        <a type="button" title="Change Configuration" class="btn text-info btn-box-tool pull-right"
+                            data-type="accesspermission" onclick="onedit(this)"><i class="fa fa fa-pencil"></i> Change
+                            Configuration</a>
+                        <a type="button" data-type="accesspermission" onclick="onedit(this)" title="Cancel"
+                            class="cnlbtn btn btn-box-tool text-info hidden pull-right"><i
+                                class="fa fa-2x fa-trash text text-danger"></i> Cancel</a>
+                    </div>
+                    <table style="clear: both" class="table table-bordered table-striped" id="user">
+                        <thead>
+                            <th colspan="4">Access Permission
+                            </th>
+                        </thead>
+                        <tbody id="accessContent">
+                        </tbody>
+                        <tr><td colspan="4">
+                            <button class="btn btn-sm btn-primary pull-right" disabled id="svPermission">Save
+                                Permission</button>
+                        </td></tr>
+                    </table>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="limit">
+                    <table style="clear: both" class="table table-bordered table-striped" id="user">
+                        <thead>
+                            <th>
+                                Module
+                            </th>
+                            <!-- <th>
+                        Permissions
+                    </th> -->
+                            <th>
+                                Gold Limit
+                            </th>
+                            <th>
+                                Silver Limit
+                            </th>
+                            <th>
+                                Other Limits
+                            </th>
+                            <th></th>
+                        </thead>
+                        <tbody id="bulLimitContent"></tbody>
+                       
+                    </table>
+
+                </div>
+                <!-- /.tab-pane -->
+
+                <div class="tab-pane" id="walpermission">
+                    <!-- <a type="button" title="Change Configuration"
+                        class="btn text-info btn-box-tool pull-right" data-type="walletpermission"
+                        onclick="onedit(this)"><i class="fa fa fa-pencil"></i> Change
+                        Configuration</a>
+                    <a type="button" data-type="walletpermission" onclick="onedit(this)"
+                        title="Cancel"
+                        class="cnlbtnwal btn btn-box-tool text-info hidden pull-right"><i
+                            class="fa fa-2x fa-trash text text-danger"></i> Cancel</a> -->
+                    <table style="clear: both" class="table table-bordered table-striped" id="user">
+                        <thead>
+                            <th>
+                                Module
+                            </th>
+                            <th>
+                                Permissions
+                            </th>
+                            <th>
+                                Wallet One Time Limit
+                            </th>
+                            <th>
+                                Transaction & Wallet Hold Limit
+                            </th>
+                            <th>Other Limits</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td width="20%">Wallet Amount Containing:</td>
+                                <td>
+                                    <a href="javascript:;" id="walletAccess" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                    <small><label class="text-danger" id="lblreasonwalletAccess"></label></small>
+                                </td>
+                                <td>
+                                    Min <i class="fa fa-rupee"></i> <a href="javascript:;" id="walletMinSilver"
+                                        data-type="text" data-title="Enter Min Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="walletMaxSilver"
+                                        data-type="text" data-title="Enter Max Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a><br />
+                                    <small class="text-danger">* One time limit of amount add in wallet. </small><br />
+                                    <br />
+                                    Pay By Wallet: <a href="javascript:;" id="payByWallet" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                    <small><label class="text-danger" id="lblreasonpayByWallet"></label></small><br />
+                                    <small class="text-danger">* Enable and disable Wallet Payment Option. </small>
+                                </td>
+                                <td>Total : <i class="fa fa-rupee"></i> <a href="javascript:;" id="totalWallet"
+                                        data-type="text" data-title="Enter Total Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    <small class="text-danger">* The limit of wallet amount (in rupees) of consumer </small>
+                                </td>
+                                <td>
+                                    Txn invervals : <a href="javascript:;" id="wallettxnInterval" data-type="text"
+                                        data-title="Enter Txn Time Interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Txn Time Interval"></a>
+                                    min<span>
+                                    </span><br />
+                                    No. of Txn in invervals : <a href="javascript:;" id="walletnotxnInterval"
+                                        data-type="text" data-title="Enter no of txn in time interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter no of txn in time interval"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in month : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="walletMaxamtmonth" data-type="text"
+                                        data-title="Enter maximun amount of txn in month "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter maximun amount of txn in month"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in hour : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="walletMaxamthour" data-type="text"
+                                        data-title="Enter minimun amount of txn in hour "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in hour"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in Day : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="walletMaxAmtOfTxnInDay" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updatewalletlimit(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="walletpermission"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="20%">Wallet To Bank:</td>
+                                <td><a href="javascript:;" id="wallettobank" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                    <small><label class="text-danger" id="lblreasonwallettobank"></label></small>
+                                </td>
+                                <td>Min <i class="fa fa-rupee"></i> <a href="javascript:;" id="wallettobankMin"
+                                        data-type="text" data-title="Enter Min Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="wallettobankMax"
+                                        data-type="text" data-title="Enter Max Wallet Amount"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a><br />
+                                    <small class="text-danger">* One time limit of amount for wallet
+                                        to bank. </small>
+                                </td>
+                                <td>
+                                    <i class="fa fa-2x fa-times  text text-danger"></i>
+                                </td>
+                                <td>
+                                    Txn invervals : <a href="javascript:;" id="wallettobanktxnInterval" data-type="text"
+                                        data-title="Enter Txn Time Interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter Txn Time Interval"></a>
+                                    min<span>
+                                    </span><br />
+                                    No. of Txn in invervals : <a href="javascript:;" id="wallettobanknotxnInterval"
+                                        data-type="text" data-title="Enter no of txn in time interval "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter no of txn in time interval"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in month : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="wallettobankMaxamtmonth" data-type="text"
+                                        data-title="Enter maximun amount of txn in month "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter maximun amount of txn in month"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in hour : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="wallettobankMaxamthour" data-type="text"
+                                        data-title="Enter minimun amount of txn in hour "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in hour"></a> <span>
+                                    </span><br />
+                                    Maximum amount of txn in Day : <i class="fa fa-rupee"></i> <a href="javascript:;"
+                                        id="wallettobankMaxAmtOfTxnInDay" data-type="text"
+                                        data-title="Enter minimun amount of txn in Day "
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title="Enter minimun amount of txn in Day"></a> <span>
+                                    </span>
+
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updatewallettobanklimit(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="wallettobank"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td width="20%">Redeem To Wallet :</td>
+                                <td><a href="javascript:;" id="redeemToWallet" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a>
+                                    <small><label class="text-danger" id="lblreasonredeemToWallet"></label></small>
+                                </td>
+                                <td>
+                                    <i class="fa fa-2x fa-times text text-danger"></i>
+                                </td>
+                                <td>
+                                    <i class="fa fa-2x fa-times  text text-danger"></i>
+                                </td>
+                                <td>
+                                    <i class="fa fa-2x fa-times  text text-danger"></i>
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updateredeemtowalletlimit(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="redeemtowallet"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+
+
+                            </tr>
+
+                            <tr>
+                                <td colspan="5">
+                                    <h5 class="text-danger">Wallet transactions have certain limits
+                                        as governed by RBI.
+                                        The various limits are:</h5>
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Limit Type</th>
+                                            <th>Period</th>
+                                            <th>
+                                                Non KYC
+                                            </th>
+                                            <th>
+                                                Full KYC
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td>Adding money to wallet ( Including receiving money
+                                                from another user )</td>
+                                            <td>At any Time</td>
+                                            <td>Rs 10,000</td>
+                                            <td>Rs 10,0000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bullion Unit Valuation contain in account (
+                                                Including on hold redeem unit )</td>
+                                            <td>At any Time</td>
+                                            <td>Rs 10,000</td>
+                                            <td>Unlimited</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="pgpermission">
+                    <table style="clear: both" class="table table-bordered table-striped" id="user">
+                        <thead>
+                            <th>
+                                Module
+                            </th>
+                            <th>
+                                Permissions
+                            </th>
+                            <th>
+                                Payment Gateway Limits
+                            </th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+
+                                <td width="20%">Atom:</td>
+                                <td>
+                                    <a href="javascript:;" id="apaymentGateway" data-type="select"
+                                        data-title="Select Permission" class="editable editable-click editable-disabled"
+                                        data-original-title="" title=""></a><br />
+                                    <small><label class="text-danger" id="lblreasonapaymentGateway"></label></small>
+                                </td>
+                                <td>
+                                    Min <i class="fa fa-rupee"></i> <a href="javascript:;" id="apgMinlimit"
+                                        data-type="text" data-title="Enter Min Payment Gateway Limit"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="apgMaxlimit"
+                                        data-type="text" data-title="Enter Max Payment Gateway Limit"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a><br />
+                                    <small class="text-danger">* Atom Payment Gateway Limits.
+                                    </small>
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updatePGatom(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="pgpermissionAtom"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td rowspan="2" width="20%">Bank Payout :</td>
+                                <td width="20%">
+                                    IMPS:&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" id="bankpayoutimps"
+                                        data-type="select" data-title="Select Permission"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br>
+                                    <small class="text-danger">* Enable and disable IMPS Payouts</small>
+                                    <br />
+                                    <small><label class="text-danger" id="lblreasonbankpayoutimps"></label></small>
+                                </td>
+                                <td>
+                                    Min <i class="fa fa-rupee"></i> <a href="javascript:;" id="bankimpsMinlimit"
+                                        data-type="text" data-title="Enter Min Payment Gateway Limit"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="bankimpsMaxlimit"
+                                        data-type="text" data-title="Enter Max Payment Gateway Limit"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a><br />
+                                    <small class="text-danger">* BANKPAYOUT Bank IMPS Limits.
+                                    </small>
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updatePGIMPS(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="pgpermissionIMPS"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="20%">
+                                    NEFT:&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" id="bankpayoutneft"
+                                        data-type="select" data-title="Select Permission"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br>
+                                    <small class="text-danger">* Enable and disable NEFT Payouts</small>
+                                    <br />
+                                    <small><label class="text-danger" id="lblreasonbankpayoutneft"></label></small>
+                                </td>
+                                <td>
+                                    Min <i class="fa fa-rupee"></i> <a href="javascript:;" id="bankneftMinlimit"
+                                        data-type="text" data-title="Enter Min Payment Gateway Limit"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a>
+                                    <br />
+                                    Max : <i class="fa fa-rupee"></i> <a href="javascript:;" id="bankneftMaxlimit"
+                                        data-type="text" data-title="Enter Max Payment Gateway Limit"
+                                        class="editable editable-click editable-disabled" data-original-title=""
+                                        title=""></a><br />
+                                    <small class="text-danger">* BANKPAYOUT Bank NEFT Limits.
+                                    </small>
+                                </td>
+                                <td width="50px"><a type="button" class="btn text-info updatebtn hidden"
+                                        onclick="updatePGNEFT(this)"><i class="fa fa-save fa-2x"></i></a>
+
+                                    <a type="button" title="Change Configuration" data-type="pgpermissionNEFT"
+                                        class="btn text-info" onclick="onedit(this)"><i class="fa fa fa-pencil"></i></a>
+                                </td>
+                            </tr>
+                               
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+            <!-- /.tab-content -->
+        </div>
+    </div>
+</div>
+<script src="js/consumer/configuration.js" type="text/javascript"></script>
+<script src="api/admin/controllers/verifyTPIN.js"></script>
+<script src="api/consumerApi/controllers/configuration.js"></script>

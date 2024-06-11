@@ -1,0 +1,18 @@
+head
+body(onload="authorize();")
+  form#frmProduct.col-md-8(method='post' name='frmProduct' action=pgurl.host)
+    input(type='hidden' name='PAY_ID' value=pgurl.PAY_ID)
+    input(type='hidden' name='ORDER_ID' value=pgurl.ORDER_ID)
+    input(type='hidden' name='AMOUNT' value=pgurl.Amount)
+    input(type='hidden' name='TXNTYPE' value=pgurl.TXNTYPE)
+    input(type='hidden' name='CUST_NAME' value=pgurl.CUST_NAME)
+    input(type='hidden' name='CUST_ID' value=pgurl.CUST_ID)
+    input(type='hidden' name='CUST_EMAIL' value=pgurl.CUST_EMAIL)
+    input(type='hidden' name='CURRENCY_CODE' value=pgurl.CURRENCY_CODE)
+    input(type='hidden' name='RETURN_URL' value=pgurl.RETURN_URL)
+    input(type='hidden' name='HASH' value=pgurl.HASH)
+  script(type='text/javascript').
+    function authorize()
+    {
+    document.getElementById("frmProduct").submit();
+    }

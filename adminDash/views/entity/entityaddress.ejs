@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include ('./partials/head'); %>
+    <link href="truComponents/bootstrap/dist/css/bootstrap-editable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/entity/addresses.css">
+    <link rel="stylesheet" href="css/mapInWindow.css">
+    <link rel="stylesheet" href="css/entity/summary.css">
+    <%- include ('./partials/lheader'); %>
+    <div class="row content">
+        <div class="col-lg-12">
+            <div class="box box-widget box-widgets" id="existaddr">
+                <div id="entityAddrLoader" class="loaderContainer" style="display:none;">
+                    <div class="loader"></div>
+                </div>
+                <div class="box-header">
+                    <h3 class="box-title"> <i class="fa fa-list"></i> Contact Details
+                    </h3>
+                    <div class="box-tools pull-right">
+                        <a id="updateProf" class="hidden" type="button" onclick="updateAddr();"
+                            title="update profile information" class="btn btn-box-tool"><i
+                                class="fa fa-2x fa-floppy-o"></i></a>
+                        <a type="button" id="btnedit" title="edit profile information" class="btn btn-box-tool"><i
+                                class="fa fa-2x fa-pencil"></i></a>
+                    </div>
+                    <hr>
+                </div>
+                <div class="box-body">
+                    <input type="hidden" id='isLend'>
+                    <div class="col-lg-8">
+                        <div class="box box-widget box-widgets">
+                            <div class="box-body">
+                                <h4 class="box-title text text-primary">Contact Address :</h3>
+                                    <a href="javascript:;" id="txtaddress" class="editable editable-click editable-disabled"
+                                        data-type="address" data-pk="1" data-title="Please, fill address"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="box box-widget box-widgets hidden" id="addressmap">
+                <div class="box-header">
+                    <h3 class="box-title text"> <i class="fa fa-list"></i> Consumer Location
+                    </h3>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                    <hr>
+                </div>
+                <div class="box-body">
+                    <div class="col-sm-12">
+                        <div id="map"></div>
+                        <input type="hidden" id="lat" name="lat">
+                        <input type="hidden" id="lng" name="lng">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <%- include ('./partials/footer'); %>
+    <script>
+        $('.radio-group label').on('click', function () {
+            $(this).removeClass('not-active').siblings().addClass('not-active');
+        });
+    </script>
+    <script src="js/entity/addresses.js"></script>
+    <script src="api/entityApi/controllers/entityAddr.js"></script>
+    <!-- <script src="js/entitymap.js"></script> -->
+    <script src="js/globalVal.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <%- include ('./partials/head'); %>
+<!---Designed by:-Suresh Patil-->
+<!---Re Designed by:-Nikhil Bharambe-->
+<!--- CSS-->
+<link rel="stylesheet" href="css/branchStep.css">  
+<link rel="stylesheet" href="css/mapInWindow.css">
+
+<body class="skin-blue fixed sidebar-mini sidebar-collapse"> 
+    <div class="wrapper"> 
+      <%- include ('./partials/header'); %><div class="content-wrapper"> 
+        <div class="containerbg">
+    <div class="box box-info">
+        <div id="compMasterLoader" class="loaderContainer" style="display:none;">
+            <div class="loader"></div>
+          </div> 
+        <div class="box-header with-border">
+            <h3 class="box-title">Company Master</h3>
+            <div class="box-tools pull-right"> 
+                
+                <a type="button" title="modify company details" class="btn btn-box-tool editcompany" data-widget="edit"><i class="fa fa-pencil"></i></a>
+                <!-- <a type="button" class="btn btn-box-tool dashboard" title="go to homepage" data-widget="remove"><i class="fa fa-times"></i></a> -->
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <section>
+                <div class="stepwizard">
+                    <div class="stepwizard-row setup-panel">
+                        <div class="stepwizard-step">
+                            <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                            <p>Step 1</p>
+                        </div>
+                        <div class="stepwizard-step">
+                            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                            <p>Step 2</p>
+                        </div>
+                        <div class="stepwizard-step">
+                                <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                                <p>Step 3</p>
+                        </div>
+                        <!-- <div class="stepwizard-step">
+                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
+                            <p>Step 4</p>
+                        </div>  -->
+                    </div>
+                </div>  
+                    <form role="form" id="companyform" data-toggle="validator">
+                        <div class="containerbg">
+                        <div class="tab-content">
+                            <div class="row setup-content active" role="tabpanel" id="step-1">
+                                   
+                                
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label> Company Name : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+                                                <input type="text" maxlength="100" class="form-control aplhanumspaceDot"
+                                                    placeholder="Company Name" id="txtcomp_name" required="required">
+                                            </div>
+                                            <div class="text-danger" id="error_comp_name"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Short Name :  </label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-user"></i>
+                                                </div>
+
+                                                <input maxlength="10" type="text" required="required"
+                                                    class="form-control aplhanumspace" id="txtcshort_name"
+                                                    placeholder="Short Name" /> 
+
+                                            </div>
+                                            <div class="text-danger" id="error_cshort_name"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Telephone Number 1 : <span class="text text-danger">*</span></label>
+
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-phone"></i>
+                                                </div>
+                                                <input type="text" class="form-control number" id="txttelno"  maxlength="15"
+                                                    placeholder="enter telephone number">
+                                            </div>
+                                            <!-- /.input group -->
+                                            <div class="text-danger" id="error_txttelno"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group ">
+                                            <label>Telephone Number 2 : </label>
+
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-phone"></i>
+                                                </div>
+                                                <input type="text" class="form-control number" id="txttelno2" maxlength="15"
+                                                placeholder="enter telephone number">
+                                            </div>
+                                            <!-- /.input group -->
+                                            <div class="text-danger" id="error_txttelno2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Email ID : <span
+                                                    class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-envelope"></i>
+                                                </div>
+                                                <input maxlength="48" type="email" required="required" id="txtemail"
+                                                    class="form-control" placeholder="Email ID"
+                                                    onkeypress="isEmail()" />
+                                            </div>
+                                            <div id="error_txtemail" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Fax : </label>
+
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-fax"></i>
+                                                </div>
+                                                <input type="text" class="form-control number" id="txtfaxno" maxlength="20">
+                                            </div>
+                                            <!-- /.input group -->
+                                            <div id="error_txtfaxno" class="text-danger"></div>
+                                        </div>
+                                    </div>
+                                </div> 
+                                
+                                <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Company Reg. No. : <span
+                                                        class="text text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-address-book-o"></i>
+                                                    </div>
+                                                    <input maxlength="20" type="text" required="required"
+                                                        class="form-control" id="txtcompregno"
+                                                        placeholder="Company Reg. No." />
+                                                </div>
+                                                <div class="text-danger" id="error_txtcompregno"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Company Reg. Date : <span class="text text-danger">*</span></label>
+    
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input type="text" id="txtcompregdatedatepicker"
+                                                        class="form-control pull-right" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                                                </div> 
+                                                <div class="text-danger" id="error_txtcompregdate"></div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="control-label">PAN No. : <span
+                                                        class="text text-danger">*</span></label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-id-card"></i>
+                                                    </div>
+                                                    <input maxlength="10" type="text" required="required" style="text-transform:uppercase"
+                                                        class="form-control alphanume" id="txtpan" placeholder="PAN" />
+                                                </div>
+                                                <div class="text-danger" id="error_txtpan"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label class="control-label">GSTIN No. : <span
+                                                        class="text text-danger">*</span></label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-id-card"></i>
+                                                    </div>
+                                                    <input maxlength="15" type="text" required="required"
+                                                        class="form-control alphanume"  id="txtGSTIN" placeholder="GSTIN No." />
+                                                </div>
+                                                <div class="text-danger" id="error_txtGSTIN"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="control-label">Description :  </label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-id-card"></i>
+                                                        </div>
+                                                        <textarea class="form-control"  placeholder="Place company description here" id="txtDescription"
+                                                                style="width: 100%;resize: none; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                    </div>
+                                                    <div class="text-danger" id="error_txtGSTIN"></div>
+                                                </div>
+                                            </div>
+                                           
+                                    </div>
+                                <button class="btn btn-primary nextBtn btn-sm pull-right" disabled id="btn1" type="button" >Next</button>
+                            </div>
+                            <div class="row setup-content" role="tabpanel" id="step-2">
+                            <div class="row">  
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                                <label> Bank Name : <span class="text text-danger">*</span></label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-user"></i>
+                                                    </div>
+                                                    <input type="text" maxlength="50" class="form-control aplhanumspace"
+                                                        placeholder="Bank Name" id="txt_bankname" required="required">
+                                                </div>
+                                                <div class="text-danger" id="error_bankname"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label> IFSC Code : <span class="text text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <input type="text" maxlength="12" class="form-control aplhanumspace"
+                                            placeholder="Enter IFSC Code" id="txtifsc" required="required">
+                                    </div>
+                                    <div class="text-danger" id="error_ifsc"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="control-label">Account Number : <span
+                                            class="text text-danger">*</span></label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </div>
+
+                                        <input maxlength="20" type="text" required="required"
+                                            class="form-control aplhanumspace" id="txtAcc"
+                                            placeholder="Enter Account Number" />
+
+                                    </div>
+                                    <div class="text-danger" id="error_acc"></div>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+                        <button class="btn btn-primary nextBtn btn-sm pull-right" disabled id="btn2" type="button" >Next</button>
+                            </div>
+                            <div class="row setup-content" role="tabpanel" id="step-3">
+                                <input type="hidden" id="lat" value="0">
+                                <input type="hidden" id="lng" value="0">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <!--<label class="control-label">Contact Address : Remove due to red labelling-->
+                                            <label>Registered Address : <span class="text text-danger">*</span>
+                                                <small>
+                                                    <div class="input-group">
+                                                        <div class="btn-group radio-group">
+                                                            <label class="btn-sm not-active1">|</label>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                </small>
+                                            </label>
+                                            <div>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-address-book-o"></span>
+                                                    </span>
+                                                    <input data-parsley-type="alphanum" id="appa" type="text"
+                                                        class="form-control" required maxlength="50"
+                                                        placeholder="Appartment No / Building No" />
+                                                </div>
+                                                <div class="text-danger" id="error_cp_add1"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <label class="control-label">Landmark :</label> Remove due to red labelling -->
+                                            <label>Landmark : <span class="text text-danger">*</span></label>
+                                            <div>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-address-book-o"></span>
+                                                    </span>
+                                                    <input data-parsley-type="alphanum" id="txtlandmark" type="text"
+                                                        class="form-control" maxlength="50"
+                                                        placeholder="Enter your Landamark" required />
+                                                </div>
+                                                <div class="text-danger" id="error_landmark"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <label class="control-label">Street No / Name :</label> Remove due to red labelling-->
+                                            <label>Street No / Name : <span class="text text-danger">*</span></label>
+                                            <div>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-address-book-o"></span>
+                                                    </span>
+                                                    <input data-parsley-type="alphanum" id="txtstreet" type="text"
+                                                        class="form-control" maxlength="50"
+                                                        placeholder="Enter your Street No or Name" required />
+                                                </div>
+                                                <div class="text-danger" id="error_street"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Pincode : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-map"></span>
+                                                </span>
+                                                <input type="text" id="txtpincode" placeholder="Enter Pincode"
+                                                    maxlength="6" required class="form-control number">
+
+                                            </div>
+                                            <div class="text-danger" id="error_pin"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>City : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-globe"></span>
+                                                </span>
+                                                <input type="text" class="form-control alpha" maxlength="50" required
+                                                    id="txtcity" placeholder="Enter your city" />
+                                            </div>
+                                            <div class="text-danger" id="error_city"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>State : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-globe"></span>
+                                                </span>
+                                                <input type="text" class="form-control alpha" maxlength="50" required
+                                                    id="txtstate" placeholder="Enter your state" />
+                                            </div>
+                                            <div class="text-danger" id="error_state"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Country : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-globe"></span>
+                                                </span>
+                                                <input type="text" class="form-control alpha" maxlength="50"
+                                                    id="txtcountry" placeholder="Enter your Country" required />
+                                            </div>
+                                            <div class="text-danger" id="error_country"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label>Company Operation Address : 
+                                                <small>
+                                                    <div class="input-group">
+                                                        <div class="btn-group radio-group">
+                                                            <label class="btn btn-info btn-sm not-active">
+                                                                Same as my contact address <input id="rdoYes" type="radio" value="True" name="reg"></label>
+                                                            <label class="btn btn-info btn-sm active">Not same 
+                                                            <input type="radio" value="False" id="rdoNo" checked name="reg"></label>
+                                                        </div>
+                                                    </div>
+                                                </small>
+                                            </label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-address-book-o"></span>
+                                                </span>
+                                                <input data-parsley-type="alphanum" type="text" class="form-control" id="b_appa" maxlength="50" placeholder="Appartment No / Building No" required />
+                                            </div>
+                                            <div id="error_b_add1" class="text-danger"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <label class="control-label">Landmark :</label> Remove due to red labelling -->
+                                            <label>Landmark : <span class="text text-danger">*</span></label>
+                                            <div>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-address-book-o"></span>
+                                                    </span>
+                                                    <input data-parsley-type="alphanum" id="b_txtlandmark" type="text"
+                                                        class="form-control" maxlength="50"
+                                                        placeholder="Enter your Landamark" required />
+                                                </div>
+                                                <div id="error_b_landmark" class="text-danger"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <!-- <label class="control-label">Street No / Name :</label> Remove due to red labelling-->
+                                            <label>Street No / Area Name : <span
+                                                    class="text text-danger">*</span></label>
+                                            <div>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <span class="fa fa-address-book-o"></span>
+                                                    </span>
+                                                    <input data-parsley-type="alphanum" id="b_txtstreet" type="text"
+                                                        class="form-control" maxlength="50"
+                                                        placeholder="Enter your Street No or Name" required />
+                                                </div>
+                                                <div class="text-danger" id="error_b_street"></div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Pincode : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-map"></span>
+                                                </span>
+                                                <input type="text" id="b_txtpincode" placeholder="Enter Pincode"
+                                                    maxlength="6" required class="form-control number">
+
+                                            </div>
+                                            <div class="text-danger" id="error_b_pin"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>City : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-globe"></span>
+                                                </span>
+                                                <input type="text" class="form-control alpha" maxlength="50" required
+                                                    id="b_txtcity" placeholder="Enter your city" />
+                                            </div>
+                                            <div class="text-danger" id="error_b_city"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>State : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-globe"></span>
+                                                </span>
+                                                <input type="text" class="form-control alpha" maxlength="50" required
+                                                    id="b_txtstate" placeholder="Enter your state" />
+                                            </div>
+                                            <div class="text-danger" id="error_b_state"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Country : <span class="text text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="fa fa-globe"></span>
+                                                </span>
+                                                <input type="text" class="form-control alpha" maxlength="50"
+                                                    id="b_txtcountry" placeholder="Enter your Country" required />
+                                            </div>
+                                            <div class="text-danger" id="error_b_country"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary nextBtn btn-sm pull-right" disabled id="btn3" type="button" >Next</button>
+                            
+                            </div>
+                            <!-- <div class="row setup-content" role="tabpanel" id="step-4">
+                                    <div class="col-sm-12">
+                                        <div class="container-fuild">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                    <button type="button" class="btn btn-sm btn-primary"
+                                                        value="Verify Your Location" id="loadprop"><i
+                                                            class="fa fa-map-marker"> Locate Your
+                                                            Company Location</i></button>
+                                                     
+                                                            <button class="btn btn-primary nextBtn btn-sm pull-right"  id="btnSubmit" type="button" >Submit</button>
+                                                </div></div>
+                                                <div class="col-sm-12">
+                                                    <div id="map"></div>
+                                                    <input type="hidden" id="lat" value="0">
+                                                    <input type="hidden" id="lng" value="0">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>                             -->
+                            <div class="clearfix"></div>
+                        </div></div>
+                    </form>
+            </section>
+        </div>
+    </div></div></div></div>
+    </div></div>
+   
+<script src="truComponents/inputmask/jquery.inputmask.js"></script>
+<script src="truComponents/inputmask/jquery.inputmask.date.extensions.js"></script>
+<script src="truComponents/inputmask/jquery.inputmask.extensions.js"></script>
+<!--Google Map-->
+<script src="js/globalVal.js"></script>
+<!-- <script src="dist/js/companymap.js"></script> -->
+<!--Step wizard javascript-->
+<!-- use for form step wizard with validation-->
+<script src="api/admin/controllers/companyMaster.js"></script>
+<script src="api/admin/controllers/verifyTPIN.js"></script>
+<script src="js/companyWizard.js"></script>
+<!-- /.content-wrapper --> 
+<%- include ('./partials/footer'); %>
+</body>
+</html>

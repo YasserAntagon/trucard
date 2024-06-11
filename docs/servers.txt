@@ -1,0 +1,27 @@
+// Route
+CDNServer    :-  3111
+client_server   :-  3112
+customer_Router   :-  3113
+EmailSMS_server   :-  3114
+partner_Router   :-  3115
+Notification   :-  3116
+PGServer   :-  3117
+SMSServer   :-  3118
+zipORpostalcodeServer   :-  3119
+
+// Core
+customer_Auth   :-  4112
+customer_MOP   :-  4113
+customer_Transaction   :-  4114
+tru_Notification :- 4116
+tru_OTP   :-  4123
+tru_Rates   :-  4125
+
+// Admin
+adminOTP   :-  5111 
+tru_Admin_Auth   :-  5112
+tru_Admin_Router :- 5113
+tru_Admin_Core   :-  5114
+truAdminPartner   :-  5115
+
+
