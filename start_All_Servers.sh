@@ -60,5 +60,5 @@ cd ../truAdminPartner
 pm2 start truAdminPartner.js
 
 cd ../../adminDash
-pm2 start app.js
+npm start app.js
 

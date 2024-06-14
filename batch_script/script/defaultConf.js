@@ -356,9 +356,9 @@ db.permissions.insertMany([{
 			"status": "allow",
 			"message": ""
 		},
-		"redeemToWallet" : {
-			"status" : "allow",
-			"message" : ""
+		"redeemToWallet": {
+			"status": "allow",
+			"message": ""
 		}
 	},
 	"limit": {
