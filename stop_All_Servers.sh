@@ -59,5 +59,5 @@ pm2 stop truAdminRouter.js
 cd ../truAdminPartner
 pm2 stop truAdminPartner.js
 
-cd ../adminDash
+cd ../../adminDash
 pm2 stop app.js

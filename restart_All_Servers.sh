@@ -59,5 +59,5 @@ pm2 restart truAdminRouter.js
 cd ../truAdminPartner
 pm2 restart truAdminPartner.js
 
-cd ../adminDash
+cd ../../adminDash
 pm2 restart app.js

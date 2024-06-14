@@ -59,6 +59,6 @@ pm2 start truAdminRouter.js
 cd ../truAdminPartner
 pm2 start truAdminPartner.js
 
-cd ../adminDash
+cd ../../adminDash
 pm2 start app.js
 
